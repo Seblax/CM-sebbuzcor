@@ -5,7 +5,7 @@ public class MenuManager : Singleton<MenuManager>
 {
     //La lista de menus qu ehay en la escena
     [SerializeField]
-    public List<Menu> menuList = new List<Menu>();
+    public List<IMenu> menuList = new List<IMenu>();
 
     private void Start()
     {
@@ -18,7 +18,7 @@ public class MenuManager : Singleton<MenuManager>
     /// Sirve para activar o desactivar los menus en funci�n al menu que se est� mostrando
     /// </summary>
     /// <param name="menuToShow"></param>
-    public void ShowMenu(Menu menuToShow)
+    public void ShowMenu(IMenu menuToShow)
     {
         //Nos Seguramos de que exista dicho menu
         if (!menuList.Contains(menuToShow))
@@ -27,7 +27,7 @@ public class MenuManager : Singleton<MenuManager>
         }
 
         //Por cada menu en la lista aplicaremos lo siguiente
-        foreach (Menu menu in menuList)
+        foreach (IMenu menu in menuList)
         {
             if (menu == menuToShow)                    //Si el menu es igual al menu que toca estar activado, entonces se activar� y se llamara al evento menuDidAppear
             {
@@ -39,7 +39,6 @@ public class MenuManager : Singleton<MenuManager>
                 if (menu.gameObject.activeInHierarchy)
                 {
                     menu.disappear.Invoke();
-
                 }
             }
         }
