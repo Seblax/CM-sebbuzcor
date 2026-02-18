@@ -73,3 +73,14 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Ignore Library folders anywhere
+[Ll]ibrary/
+
+# Ignore Bee build system (Unity IL2CPP)
+[Bb]ee/
+
+# Ignore Android native artifacts
+*.so
+*.dbg.so
+*.zip
