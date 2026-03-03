@@ -1,13 +1,14 @@
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(TextMeshProUGUI))]
+
+/// Este script sirve para mostrar en pantalla la versión actual del
+/// juego
 public class Version : MonoBehaviour
 {
-    TextMeshProUGUI _text;
-
-    void Start()
+    void Awake()
     {
-        this._text = GetComponent<TextMeshProUGUI>();
-        _text.text = Application.version + "v";
+        GetComponent<TextMeshProUGUI>().text = "v" + Application.version;
     }
 }

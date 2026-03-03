@@ -2041,7 +2041,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   yPosition: -1920
+  _startY: 0
+  _targetY: 0
   _grid: {fileID: 688905814}
+  _menuObject: {fileID: 0}
 --- !u!224 &589594194 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1017846352738310373, guid: 4882aec5358be6d468463609bafb3d30, type: 3}
@@ -2922,21 +2925,9 @@ MonoBehaviour:
   bpm: 135
   beat: 4
   offset: 12
-  _event:
+  unityEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 872301456}
-        m_TargetAssemblyTypeName: Hop, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &886765557
 GameObject:
   m_ObjectHideFlags: 0
@@ -3128,7 +3119,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   yPosition: 0
+  _startY: 0
+  _targetY: 0
   _grid: {fileID: 688905814}
+  _menuObject: {fileID: 0}
 --- !u!1 &942010355
 GameObject:
   m_ObjectHideFlags: 0
@@ -4115,21 +4109,9 @@ MonoBehaviour:
   bpm: 135
   beat: 4
   offset: 11
-  _event:
+  unityEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1192012779}
-        m_TargetAssemblyTypeName: Hop, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1199625455
 GameObject:
   m_ObjectHideFlags: 0
@@ -5232,21 +5214,9 @@ MonoBehaviour:
   bpm: 135
   beat: 2
   offset: 0
-  _event:
+  unityEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1412529309}
-        m_TargetAssemblyTypeName: Hop, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1415194016
 GameObject:
   m_ObjectHideFlags: 0
@@ -5561,21 +5531,9 @@ MonoBehaviour:
   bpm: 135
   beat: 4
   offset: 10
-  _event:
+  unityEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1581386668}
-        m_TargetAssemblyTypeName: Hop, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1582722015
 GameObject:
   m_ObjectHideFlags: 0
@@ -6750,7 +6708,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   yPosition: 1920
+  _startY: 0
+  _targetY: 0
   _grid: {fileID: 688905814}
+  _menuObject: {fileID: 0}
 --- !u!1 &1910473884
 GameObject:
   m_ObjectHideFlags: 0
