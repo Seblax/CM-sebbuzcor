@@ -10,6 +10,8 @@ public class RawImageScroller : MonoBehaviour
     RawImage _rawImage;
     public bool inverse;
     public float speed = 1;
+    public bool horizontal;
+    public bool vertical;
 
     int direction = 1;
     Vector2 _offset;
@@ -22,7 +24,12 @@ public class RawImageScroller : MonoBehaviour
 
     void Update()
     {
+        if (horizontal)
         _offset += Vector2.right * direction * speed * Time.deltaTime;
+
+        if (vertical)
+            _offset += Vector2.up * direction * speed * Time.deltaTime;
+
         _rawImage.uvRect = new Rect(_offset, _rawImage.uvRect.size);
     }
 

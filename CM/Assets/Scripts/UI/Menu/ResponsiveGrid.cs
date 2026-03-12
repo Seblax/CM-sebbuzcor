@@ -17,7 +17,7 @@ public class ResponsiveGrid : MonoBehaviour
     void Start()    // --Tiene que ser en el Start, el canvas no se redimensiona post Awake
     {
         _grid = this.gameObject.GetComponent<GridLayoutGroup>();
-        _canvasRect = this.gameObject.GetComponentInParent<Canvas>().gameObject.GetComponent<RectTransform>();
+        _canvasRect = GameObject.FindGameObjectWithTag("Menu").GetComponent<Canvas>().gameObject.GetComponent<RectTransform>();
 
         if (width)
         {

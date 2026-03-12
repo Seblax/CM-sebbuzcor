@@ -16,8 +16,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                 _instance = FindOrCrateInstance();
             }
             return _instance;
-
-
         }
     }
 

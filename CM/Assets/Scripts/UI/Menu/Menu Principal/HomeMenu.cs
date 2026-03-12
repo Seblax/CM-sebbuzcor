@@ -7,7 +7,7 @@ using UnityEngine;
 /// de los menús.
 /// </summary>
 /// 
-public class HomeMenu : IMenu
+public class HomeMenu : Menu
 {
     public static float speed = 100f;                   // Velocidad de la animación
 
