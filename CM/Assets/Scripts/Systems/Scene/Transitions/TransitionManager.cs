@@ -7,7 +7,7 @@ namespace ui
     {
         private GameObject transitionPrefab;
         private Canvas _canvas;
-
+        private Transition transition;
         public GameObject TransitionPrefab { set => transitionPrefab = value; }
 
         private void Awake()
@@ -37,17 +37,23 @@ namespace ui
             if (transitionPrefab == null) throw new IOException("Transition Object is null") ;
             
             GameObject transitionObject = Instantiate(transitionPrefab, transform);
-            Transition transition = transitionObject.GetComponent<Transition>();
+            transition = transitionObject.GetComponent<Transition>();
 
             if (transition == null) throw new IOException("Transition Object doesn't have Transition component.");
 
             SetTransitionManagerAsParent(transitionObject);
-            transition.PlayTransitionIn(scene);
+            transition.Play(scene);
         }
 
         private void LateUpdate()
         {
             _canvas.worldCamera = Camera.main;
+
+            if (transition == null) return;
+            if (transition.State == null) return;
+
+            transition.HandleStateTransitions();
+            transition.State.OnExecute();
         }
 
         private void SetTransitionManagerAsParent(GameObject transitionObject) {

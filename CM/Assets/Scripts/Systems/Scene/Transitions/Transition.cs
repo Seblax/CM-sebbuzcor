@@ -1,38 +1,86 @@
+using StateManagement;
 using System.Collections;
-using UnityEditor.SearchService;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using StateTransition = StateManagement.Transition;
 
 namespace ui
 {
-    public class Transition : MonoBehaviour
+    public class Transition : MonoBehaviour, IStateMachine
     {
         public string sceneName = string.Empty;
-        public AsyncOperation operation;
 
-        public virtual void PlayTransitionIn(string sceneName)
+        protected IState _state;
+        protected List<StateTransition> _transitions = new List<StateTransition>();
+
+        public IState State => _state;
+        public  List<StateTransition> Transitions => _transitions;
+
+        public bool isSceneLoaded = false;
+
+        public void Play(string sceneName)
         {
             this.sceneName = sceneName;
-            LoadTargetScene();
+            this.InitializeStateMachine();
         }
 
-        public virtual void LoadTargetScene()
+        public virtual void InitializeStateMachine()
         {
-            if (operation != null) return;
-            operation = SceneManager.LoadSceneAsync(sceneName);
+            // Initialize States
+            StartState startState = new(this);
+            LoadingState loadingState = new(this);
+            EndState endState = new(this);
+
+            _transitions = new List<StateTransition>
+            {
+                new() {
+                    Condition = () => true,
+                    Source = startState,
+                    Target = loadingState,
+                },
+                new() {
+                    Condition = () => isSceneLoaded,
+                    Source = loadingState,
+                    Target = endState,
+                }
+            };
+
+            _state = startState;
+            _state.OnEnter();
+        }
+
+        public void TransitionToState(IState targetState)
+        {
+            _state.OnExit();
+            _state = targetState;
+            _state.OnEnter();
+        }
+
+        public void HandleStateTransitions()
+        {
+            foreach (StateTransition transition in _transitions)
+            {
+                if (transition.Source == _state && transition.Condition())
+                {
+                    TransitionToState(transition.Target);
+                    break;
+                }
+            }
+        }
+
+        //###################################
+
+        public void PlayLoadingScreen()
+        {
+            StopAllCoroutines();
             StartCoroutine(LoadSceneRoutine());
-        }
-
-
-        public virtual void PlayTransitionOut()
-        {
-            Destroy(this.gameObject);
         }
 
         private IEnumerator LoadSceneRoutine()
         {
-            operation.allowSceneActivation = false;
+            AsyncOperation operation = SceneManager.LoadSceneAsync(this.sceneName);
+
             yield return new WaitForSeconds(0.5f);
 
             while (operation.progress < 0.9f)
@@ -41,7 +89,7 @@ namespace ui
             }
 
             operation.allowSceneActivation = true;
-            PlayTransitionOut();
+            this.isSceneLoaded = true;
         }
     }
 }

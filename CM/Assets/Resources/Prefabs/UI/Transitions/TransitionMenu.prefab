@@ -250,10 +250,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d088485a3a2254b41ae170174d2e6a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ui.MenuTransition
-  sceneName: 
+  sceneName: ScenePlaceholder
+  isSceneLoaded: 0
   xi: 2500
   xf: -2500
   duration: 0.25
-  speed: 0
+  loading: 0
+  speed: 200
   _transitionGameObject: {fileID: 6747978176990290886}
   _parentCanvas: {fileID: 0}
