@@ -1,3 +1,4 @@
+using gamemanager;
 using UnityEngine;
 
 /// <summary>
@@ -16,5 +17,6 @@ public class PrincipalMenuMusic : MonoBehaviour
     private void Update()
     {
         MenuData.MENUMUSIC_TIMER = this._audioSource.time;
+        this._audioSource.pitch = Aceleration.GetScale;
     }
 }

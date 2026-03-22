@@ -464,6 +464,8 @@
 "Assets/Scripts/Animations/Hop.cs"
 "Assets/Scripts/Systems/Beat.cs"
 "Assets/Scripts/Systems/BeatMenu.cs"
+"Assets/Scripts/Systems/Game/Aceleration.cs"
+"Assets/Scripts/Systems/GameManager.cs"
 "Assets/Scripts/Systems/RawImageScroller.cs"
 "Assets/Scripts/Systems/Scene/Transitions/MenuTransitions/MenuTransition.cs"
 "Assets/Scripts/Systems/Scene/Transitions/MenuTransitions/States/MenuTransitionEndState.cs"
