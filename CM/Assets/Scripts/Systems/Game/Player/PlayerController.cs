@@ -1,29 +1,27 @@
-using Player;
 using UnityEngine;
+using Minigame;
 
 public class PlayerController : MonoBehaviour
 {
-    private PlayerInputActions inputActions;
+    private Vector2 startPosition;
+    private Hop hop;
 
     private void Awake()
     {
-        inputActions = new PlayerInputActions();
+        InputManager.instance.TapActions += PlayHop;
+        InputManager.instance.TouchActions += MovePlayer;
+
+        startPosition = this.transform.localPosition;
+        hop = this.GetComponent<Hop>();
     }
 
-    private void OnEnable()
-    {
-        inputActions.Enable();
-        inputActions.Player.Interact.performed += OnInteract;
+    void PlayHop() {
+        this.hop.Play();
     }
 
-    private void OnDisable()
+    void MovePlayer(Vector3 pos)
     {
-        inputActions.Player.Interact.performed -= OnInteract;
-        inputActions.Disable();
-    }
-
-    private void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
-    {
-        Debug.Log("Click detectado");
+        Debug.Log($"Position: {pos}");
+        transform.position = pos;
     }
 }

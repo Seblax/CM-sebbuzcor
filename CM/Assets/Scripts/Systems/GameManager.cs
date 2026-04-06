@@ -1,12 +1,10 @@
 using UnityEngine;
-using gamemanager;
+using Gamemanager;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
     public float minigameDuration = 7f;
-    public float aceleration = 1f;
 
     private void Awake()
     {
@@ -21,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        Aceleration.SetScale = aceleration;
+        Time.timeScale = Aceleration.GetScale;
     }
 
 
