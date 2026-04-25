@@ -27,6 +27,9 @@ public class MinigameManager : Singleton<MinigameManager>
             placeHolder.Invoke();
             Aceleration.SetScale = Aceleration.GetScale+0.25f;
             Debug.Log($"Actual Aceleration Scale: {Aceleration.GetScale}");
+
+            /////////////////////// PLACEHODLER
+            MiniGameUiManager.instance.UpdateUI();
         }
     }
 }

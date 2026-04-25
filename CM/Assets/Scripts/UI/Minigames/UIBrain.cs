@@ -12,7 +12,7 @@ namespace Minigame
         public class BrainLevel
         {
             public float threshold;
-            public MinigameScriptableObject data;
+            public BrainScriptableObject data;
             [HideInInspector] public bool triggered;
         }
 
@@ -64,7 +64,7 @@ namespace Minigame
             return true;
         }
 
-        private void Apply(MinigameScriptableObject brain)
+        private void Apply(BrainScriptableObject brain)
         {
             image.sprite = brain.brainSprite;
             _shake.Play(brain.speed, brain.interval, brain.duration);

@@ -11,7 +11,7 @@ namespace Minigame
         public class BarLevel
         {
             public float threshold;
-            public MinigameScriptableObject data;
+            public BrainScriptableObject data;
         }
 
         [Header("Bar Levels")]
@@ -41,7 +41,7 @@ namespace Minigame
             }
         }
 
-        private void Apply(MinigameScriptableObject bar)
+        private void Apply(BrainScriptableObject bar)
         {
             image.sprite = bar.barSprite;
         }

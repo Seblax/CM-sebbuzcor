@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8cb7dde33b323342adb42b2f7d9ddf9, type: 3}
+  m_Name: 3_placeholder
+  m_EditorClassIdentifier: Assembly-CSharp::UserScriptableObject
+  userPicture: {fileID: 3721521005224932823, guid: 958e907f65b005f449c6878aae301f30, type: 3}
+  userName: DaevonGamer0216
+  userComment: The cake is a lie
+  likes: 5
+  comments: 2

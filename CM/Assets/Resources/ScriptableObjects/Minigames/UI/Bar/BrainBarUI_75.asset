@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07ec299ab0dc2764d9c1095f91243a5e, type: 3}
-  m_Name: MinigameUI_50
+  m_Name: BrainBarUI_75
   m_EditorClassIdentifier: Assembly-CSharp::BrainScriptableObject
-  brainSprite: {fileID: -7925756682465067353, guid: 4ba17fca36c044c48bc9e8a79607d8a1, type: 3}
-  barSprite: {fileID: -6413423016206125389, guid: 443f518276c184d4bbd826c4e509d9a8, type: 3}
+  brainSprite: {fileID: 4161619635676467774, guid: 0992b9caf6d40644f88839781fe642a2, type: 3}
+  barSprite: {fileID: -8187718925869904184, guid: 91867592d398bd647941b403e5de6c48, type: 3}
   barAudioClip: {fileID: 0}
-  speed: 5
+  speed: 2
   interval: 5
   duration: 15
