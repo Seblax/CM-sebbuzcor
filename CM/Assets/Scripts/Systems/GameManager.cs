@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public float minigameDuration = 7f;
 
     public float minigameTimer;
+    public int lives = 5;
 
     private void Awake()
     {
@@ -22,6 +23,5 @@ public class GameManager : MonoBehaviour
     private void LateUpdate()
     {
         Time.timeScale = Aceleration.GetScale;
-        PausableManager.instance.GlobalPause(true);
     }
 }
