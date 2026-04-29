@@ -174,6 +174,24 @@ namespace Player
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Touch"",
+                    ""type"": ""Value"",
+                    ""id"": ""3057a843-0915-47ff-951a-25ca747c93e7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Tap"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8615bde-7967-413c-8062-688ea6b0e2df"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -312,7 +330,7 @@ namespace Player
                 {
                     ""name"": ""2D Vector"",
                     ""id"": ""80345522-94da-40f3-83d2-9a3a522fd881"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -323,7 +341,7 @@ namespace Player
                 {
                     ""name"": ""up"",
                     ""id"": ""e72d7e60-dbef-4b3b-902c-b2762360ea21"",
-                    ""path"": ""<ViveTracker>/deviceAngularVelocity/y"",
+                    ""path"": ""<Accelerometer>/acceleration/y"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Touch;Gamepad"",
@@ -334,7 +352,7 @@ namespace Player
                 {
                     ""name"": ""down"",
                     ""id"": ""d092c028-2244-4cca-9b47-f49cb22a20a6"",
-                    ""path"": ""<ViveTracker>/deviceAngularVelocity/y"",
+                    ""path"": ""<Accelerometer>/acceleration/y"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Touch;Gamepad"",
@@ -625,6 +643,28 @@ namespace Player
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""32b41be3-a1bf-4fca-ad50-67b1cef31d09"",
+                    ""path"": ""<Touchscreen>/primaryTouch/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Touch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""63267eba-7736-4bb7-bbf1-9d63b9984872"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1221,6 +1261,8 @@ namespace Player
             m_Player_Previous = m_Player.FindAction("Previous", throwIfNotFound: true);
             m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
             m_Player_Newaction = m_Player.FindAction("New action", throwIfNotFound: true);
+            m_Player_Touch = m_Player.FindAction("Touch", throwIfNotFound: true);
+            m_Player_Tap = m_Player.FindAction("Tap", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1323,6 +1365,8 @@ namespace Player
         private readonly InputAction m_Player_Previous;
         private readonly InputAction m_Player_Next;
         private readonly InputAction m_Player_Newaction;
+        private readonly InputAction m_Player_Touch;
+        private readonly InputAction m_Player_Tap;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -1370,6 +1414,14 @@ namespace Player
             /// Provides access to the underlying input action "Player/Newaction".
             /// </summary>
             public InputAction @Newaction => m_Wrapper.m_Player_Newaction;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/Touch".
+            /// </summary>
+            public InputAction @Touch => m_Wrapper.m_Player_Touch;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/Tap".
+            /// </summary>
+            public InputAction @Tap => m_Wrapper.m_Player_Tap;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -1423,6 +1475,12 @@ namespace Player
                 @Newaction.started += instance.OnNewaction;
                 @Newaction.performed += instance.OnNewaction;
                 @Newaction.canceled += instance.OnNewaction;
+                @Touch.started += instance.OnTouch;
+                @Touch.performed += instance.OnTouch;
+                @Touch.canceled += instance.OnTouch;
+                @Tap.started += instance.OnTap;
+                @Tap.performed += instance.OnTap;
+                @Tap.canceled += instance.OnTap;
             }
 
             /// <summary>
@@ -1461,6 +1519,12 @@ namespace Player
                 @Newaction.started -= instance.OnNewaction;
                 @Newaction.performed -= instance.OnNewaction;
                 @Newaction.canceled -= instance.OnNewaction;
+                @Touch.started -= instance.OnTouch;
+                @Touch.performed -= instance.OnTouch;
+                @Touch.canceled -= instance.OnTouch;
+                @Tap.started -= instance.OnTap;
+                @Tap.performed -= instance.OnTap;
+                @Tap.canceled -= instance.OnTap;
             }
 
             /// <summary>
@@ -1824,6 +1888,20 @@ namespace Player
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnNewaction(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Touch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnTouch(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Tap" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnTap(InputAction.CallbackContext context);
         }
         /// <summary>
         /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

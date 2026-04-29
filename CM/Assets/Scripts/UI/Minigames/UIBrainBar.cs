@@ -1,0 +1,50 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Minigame
+{
+    public class UIBrainBar : MonoBehaviour
+    {
+        public Image image;
+
+        [System.Serializable]
+        public class BarLevel
+        {
+            public float threshold;
+            public BrainScriptableObject data;
+        }
+
+        [Header("Bar Levels")]
+        public BarLevel[] levels;
+
+        private void Start()
+        {
+            image = GetComponent<Image>();
+
+            MinigameUIManager.instance.OnHealthBarChanged += HandleBarLevels;
+            MinigameUIManager.instance.OnHealthBarChanged += HandleBarLenght;
+        }
+
+        private void HandleBarLenght(float timerPercent)
+        {
+            this.image.fillAmount = timerPercent;
+        }
+
+        private void HandleBarLevels(float timerPercent)
+        {
+            foreach (var level in levels)
+            {
+                if (timerPercent <= level.threshold)
+                {
+                    Apply(level.data);
+                }
+            }
+        }
+
+        private void Apply(BrainScriptableObject bar)
+        {
+            image.sprite = bar.barSprite;
+        }
+    }
+
+}

@@ -86,6 +86,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Touch",
+                    "type": "Value",
+                    "id": "3057a843-0915-47ff-951a-25ca747c93e7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Tap",
+                    "type": "Button",
+                    "id": "c8615bde-7967-413c-8062-688ea6b0e2df",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -224,7 +242,7 @@
                 {
                     "name": "2D Vector",
                     "id": "80345522-94da-40f3-83d2-9a3a522fd881",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -235,7 +253,7 @@
                 {
                     "name": "up",
                     "id": "e72d7e60-dbef-4b3b-902c-b2762360ea21",
-                    "path": "<ViveTracker>/deviceAngularVelocity/y",
+                    "path": "<Accelerometer>/acceleration/y",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch;Gamepad",
@@ -246,7 +264,7 @@
                 {
                     "name": "down",
                     "id": "d092c028-2244-4cca-9b47-f49cb22a20a6",
-                    "path": "<ViveTracker>/deviceAngularVelocity/y",
+                    "path": "<Accelerometer>/acceleration/y",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch;Gamepad",
@@ -537,6 +555,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "32b41be3-a1bf-4fca-ad50-67b1cef31d09",
+                    "path": "<Touchscreen>/primaryTouch/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "63267eba-7736-4bb7-bbf1-9d63b9984872",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

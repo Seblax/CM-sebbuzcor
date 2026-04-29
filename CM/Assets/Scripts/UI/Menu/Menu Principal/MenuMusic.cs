@@ -1,4 +1,4 @@
-using gamemanager;
+using Gamemanager;
 using UnityEngine;
 
 /// <summary>

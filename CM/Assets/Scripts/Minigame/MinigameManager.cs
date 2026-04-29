@@ -1,11 +1,96 @@
+using Gamemanager;
+using StateManagement;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class MinigameManager : MonoBehaviour
+namespace Minigame
 {
-
-    public float minigameDuration = 7f;
-
-    private void Awake()
+    public class MinigameManager : Singleton<MinigameManager>, IStateMachine
     {
+        public Minigame minigame;
+
+        public bool isMoving;
+        public bool isTittleOver;
+        public bool isStarting;
+        public bool isPlaying;
+
+        //State Machine
+        public IState State => _state;
+        public IState _state;
+        public List<Transition> Transitions => _transitions;
+        public List<Transition> _transitions = new List<Transition>();
+
+        public Action Move;
+
+
+
+        private void Awake()
+        {
+            this.minigame = Minigame.of(0);
+            
+            InitializeStateMachine();
+        }
+
+        public virtual void InitializeStateMachine()
+        {
+            // Initialize States
+            MinigameInitialState initialState = new();
+            MinigameTittleState tittleState = new(minigame);
+            MinigamePlayingState playingState = new(minigame);
+            MinigameVictoryState winState = new(minigame);
+            MinigameDefeatState defeatState = new(minigame);
+
+            _transitions = new List<Transition>
+            {
+                 new() {
+                    Condition = () => !isStarting,
+                    Source = initialState,
+                    Target = tittleState,
+                },
+                new() {
+                    Condition = () => !isMoving && isTittleOver,
+                    Source = tittleState,
+                    Target = playingState,
+                },
+                new() {
+                    Condition = () => !isPlaying && !isMoving,
+                    Source = playingState,
+                    Target = winState,
+                }
+            };
+
+            _state = initialState;
+            _state.OnEnter();
+        }
+
+        public void TransitionToState(IState targetState)
+        {
+            _state.OnExit();
+            _state = targetState;
+            _state.OnEnter();
+        }
+
+        public void HandleStateTransitions()
+        {
+            foreach (Transition transition in _transitions)
+            {
+                if (transition.Source == _state && transition.Condition())
+                {
+                    TransitionToState(transition.Target);
+                    break;
+                }
+            }
+        }
+
+        public void Update()
+        {
+            _state.OnExecute();
+            HandleStateTransitions();
+
+            Debug.Log($"CurrentState: {_state}");
+            Debug.Log($"CurrentState: {isMoving}");
+        }
     }
 }

@@ -1,8 +1,7 @@
 
 using UnityEngine;
-using UnityEngine.UIElements;
 
-namespace gamemanager
+namespace Gamemanager
 {
     public class Aceleration : MonoBehaviour
     {
@@ -14,6 +13,7 @@ namespace gamemanager
             {
                 SCALE = value;
                 Time.timeScale = SCALE;
+                SetTimeScale();
             }
         }
 
@@ -24,6 +24,11 @@ namespace gamemanager
                 SCALE = 1;
                 Time.timeScale = SCALE;
             }
+        }
+
+        static void SetTimeScale()
+        {
+            Time.timeScale = SCALE;
         }
     }
 }
