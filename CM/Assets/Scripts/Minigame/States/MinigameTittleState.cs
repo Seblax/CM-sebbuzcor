@@ -18,6 +18,9 @@ namespace Minigame
 
         public void OnEnter()
         {
+            MinigameUIManager.instance.minigame.SetActive(true);
+            MinigameUIManager.instance.tittle.SetActive(true);
+
             timer = 5f;
             _moveRequested = false;
             UI = MinigameUIManager.instance;
@@ -41,7 +44,7 @@ namespace Minigame
 
         public void OnExit()
         {
-
+            MinigameManager.instance.Destroy(MinigameUIManager.instance.tittle);
         }
     }
 }

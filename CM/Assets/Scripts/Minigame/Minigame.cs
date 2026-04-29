@@ -18,6 +18,7 @@ namespace Minigame
         public bool IsPaused { get => paused; set => paused = value; }
         public bool paused;
 
+        public float GetMinigameDuration{ get => minigameDuration; }
         public float TimerPercent { get => this.minigameTimer / this.minigameDuration; }
         public bool IsTimerOver { get => this.minigameTimer < 0; }
         public int GetCurrentRound{ get => rounds;}

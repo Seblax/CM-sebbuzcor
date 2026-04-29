@@ -12,6 +12,11 @@ namespace Minigame
         public void OnEnter()
         {
             MinigameManager.instance.isStarting = true;
+            
+            MinigameUIManager.instance.tittle.SetActive(true);
+            MinigameUIManager.instance.minigame.SetActive(false);
+            MinigameUIManager.instance.score.SetActive(false);
+
             timer = 2.5f;
         }
 

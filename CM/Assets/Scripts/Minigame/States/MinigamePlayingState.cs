@@ -16,6 +16,9 @@ namespace Minigame
 
         public void OnEnter()
         {
+            MinigameUIManager.instance.score.SetActive(true);
+            MinigameUIManager.instance.minigame.SetActive(true);
+
             MinigameManager.instance.isPlaying = true;
             timer = 2.5f;
             _moveRequested = false;
@@ -49,7 +52,7 @@ namespace Minigame
 
         public void OnExit()
         {
-
+            MinigameManager.instance.Destroy(MinigameUIManager.instance.minigame);
         }
     }
 }

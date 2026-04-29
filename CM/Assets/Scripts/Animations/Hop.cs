@@ -11,7 +11,9 @@ public class Hop : MonoBehaviour
 
     bool _isPlaying = false;            //  Está saltando
     Vector3 _startPos;                  //  Posición inicial del objeto
-    float _timer = 0;                   
+    float _timer = 0;         
+    
+    public bool IsHopping { get => _isPlaying; }
 
 
     void Start()
