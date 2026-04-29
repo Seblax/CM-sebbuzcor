@@ -1,29 +1,66 @@
+using EasyTextEffects.Editor.MyBoxCopy.Extensions;
 using System;
 using UnityEngine;
 using RandomNumber = UnityEngine.Random;
 
-public class MiniGameUiManager : Singleton<MiniGameUiManager>
+public class MinigameUIManager : Singleton<MinigameUIManager>
 {
-    public readonly string MINIGAME_USER_UI_SCRIPTABLEOBJECT_PATH = "ScriptableObjects/Minigames/UI/Post/0_MinigamePlaceholder";
+    public readonly string MINIGAME_USER_UI_SCRIPTABLEOBJECT_PATH = "ScriptableObjects/Minigames/UI/User/";
+    public readonly string MINIGAME_TITTLE_UI_SCRIPTABLEOBJECT_PATH = "ScriptableObjects/Minigames/UI/Tittle/";
+    
     UserScriptableObject[] userUIData;
-    public Action<UserScriptableObject> updateUI;
+
+    public Action<float> OnHealthBarChanged;
+    public Action<TittleScriptableObject> OnTittleChanged;
+    public Action<UserScriptableObject> OnUserChanged;
+    public Action<UserScriptableObject> OnScoreChanged;
+
+    public GameObject[] UIs;
 
     private void Awake()
     {
         userUIData = Resources.LoadAll<UserScriptableObject>(MINIGAME_USER_UI_SCRIPTABLEOBJECT_PATH);
-
-       
     }
 
-    void Start()
+    public void UpdateUserUI(UserScriptableObject userData)
     {
-        UpdateUI();
+        OnUserChanged?.Invoke(userData);
     }
 
-    public void UpdateUI()
+    public void UpdateTittleUI(TittleScriptableObject tittle)
+    {
+        OnTittleChanged?.Invoke(tittle);
+    }
+
+    public void UpdateScoreUI()
     {
         int randomIndex = RandomNumber.Range(0, userUIData.Length);
         UserScriptableObject randomUserData = userUIData[randomIndex];
-        updateUI?.Invoke(randomUserData);
+        OnUserChanged?.Invoke(randomUserData);
+    }
+
+    public void UpdateHealthBarUI(float percent)
+    {
+        OnHealthBarChanged?.Invoke(percent);
+    }
+
+    public TittleScriptableObject GetTittle(int minigameID)
+    {
+        return Resources.LoadAll<TittleScriptableObject>(MINIGAME_TITTLE_UI_SCRIPTABLEOBJECT_PATH)[minigameID];
+    }
+
+    public UserScriptableObject GetUser(int minigameID)
+    {
+        userUIData = Resources.LoadAll<UserScriptableObject>(MINIGAME_USER_UI_SCRIPTABLEOBJECT_PATH + minigameID);
+        return userUIData.GetRandom(); 
+    }
+
+    public void SetActive(int ui)
+    {
+        var i = 0;
+        foreach (GameObject o in UIs) {
+            o.SetActive(i == ui);
+            i++;
+        }
     }
 }

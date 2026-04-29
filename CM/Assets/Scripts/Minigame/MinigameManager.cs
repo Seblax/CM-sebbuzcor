@@ -9,9 +9,12 @@ namespace Minigame
 {
     public class MinigameManager : Singleton<MinigameManager>, IStateMachine
     {
-        Minigame _minigame;
-        public Action<float> UpdateUI;
-        public UnityEvent placeHolder;
+        public Minigame minigame;
+
+        public bool isMoving;
+        public bool isTittleOver;
+        public bool isStarting;
+        public bool isPlaying;
 
         //State Machine
         public IState State => _state;
@@ -19,29 +22,46 @@ namespace Minigame
         public List<Transition> Transitions => _transitions;
         public List<Transition> _transitions = new List<Transition>();
 
+        public Action Move;
+
+
+
         private void Awake()
         {
-            this._minigame = Minigame.of(7f);
+            this.minigame = Minigame.of(0);
+            
             InitializeStateMachine();
         }
 
         public virtual void InitializeStateMachine()
         {
             // Initialize States
-            MinigameStartState startState = new(_minigame);
-            MinigamePauseState stopState = new(_minigame);
-            MinigamePlayingState playingState = new(_minigame);
+            MinigameInitialState initialState = new();
+            MinigameTittleState tittleState = new(minigame);
+            MinigamePlayingState playingState = new(minigame);
+            MinigameVictoryState winState = new(minigame);
+            MinigameDefeatState defeatState = new(minigame);
 
             _transitions = new List<Transition>
             {
+                 new() {
+                    Condition = () => !isStarting,
+                    Source = initialState,
+                    Target = tittleState,
+                },
                 new() {
-                    Condition = () => true,
-                    Source = startState,
+                    Condition = () => !isMoving && isTittleOver,
+                    Source = tittleState,
                     Target = playingState,
+                },
+                new() {
+                    Condition = () => !isPlaying && !isMoving,
+                    Source = playingState,
+                    Target = winState,
                 }
             };
 
-            _state = startState;
+            _state = initialState;
             _state.OnEnter();
         }
 
@@ -66,17 +86,11 @@ namespace Minigame
 
         public void Update()
         {
-            if (this.UpdateUI != null) UpdateUI?.Invoke(_minigame.TimerPercent);
-            if (_minigame.IsTimerOver)
-            {
-                /////////////////////// PLACEHODLER
-                this._minigame.Reset();
-                placeHolder.Invoke();
-                Aceleration.SetScale = Aceleration.GetScale + 0.25f;
-                Debug.Log($"Actual Aceleration Scale: {Aceleration.GetScale}");
+            _state.OnExecute();
+            HandleStateTransitions();
 
-                MiniGameUiManager.instance.UpdateUI();
-            }
+            Debug.Log($"CurrentState: {_state}");
+            Debug.Log($"CurrentState: {isMoving}");
         }
     }
 }

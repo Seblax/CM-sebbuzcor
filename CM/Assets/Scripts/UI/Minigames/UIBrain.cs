@@ -26,7 +26,7 @@ namespace Minigame
             image = GetComponent<Image>();
             _shake = GetComponent<Shake>();
 
-            MinigameManager.instance.UpdateUI += HandleBrainLevels;
+            MinigameUIManager.instance.OnHealthBarChanged += HandleBrainLevels;
 
             foreach (var item in levels)
             {
@@ -51,7 +51,7 @@ namespace Minigame
 
             if (AllLevelsTriggered())
             {
-                MinigameManager.instance.UpdateUI -= HandleBrainLevels;
+                MinigameUIManager.instance.OnHealthBarChanged -= HandleBrainLevels;
             }
         }
 

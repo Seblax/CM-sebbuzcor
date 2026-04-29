@@ -1,51 +1,49 @@
 using ShakeAnimation;
-using Unity.Hierarchy;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LiveUI : MonoBehaviour
 {
-    private Image _image;
-    [SerializeField]
+    [SerializeField] private int heartIndex;
     private bool _heart = true;
-    private float timer;
-    private float offset;
-    private Shake shake;
 
+    private Image _image;
     public Sprite[] _sprites;
+    private int _lastSpriteIndex = -1;
+    
+    private float timer;
     public float amplitude = 2;
+
+    private Shake shake;
 
     void Start()
     {
         _image = GetComponent<Image>();
-        offset = Random.Range(0,1f);
-        shake = gameObject.GetComponent<Shake>();
+        shake = GetComponent<Shake>();
+
+        GameManager.instance.UpdateLives += UpdateHeartStatus;
     }
 
-    // Update is called once per frame
+    private void OnDestroy()
+    {
+        GameManager.instance.UpdateLives -= UpdateHeartStatus;
+    }
+
     void Update()
     {
-        //Placeholder
-        if (timer > 3 * offset) {
-            RemoveLife();
-        }
-
         if (!_heart) return;
         timer += Time.deltaTime;
-
         LifeAnimation();
     }
 
-    void LifeAnimation() {
-        float y = Mathf.Sin(offset + Mathf.PI * timer) * amplitude; 
-        transform.localPosition += Vector3.up * y;
-        if (Mathf.Repeat(Time.time, 0.5f) < 0.25f)
+    // Esta función decide si este corazón específico debe "morir"
+    private void UpdateHeartStatus(int currentLives)
+    {
+        // Si el índice de este corazón es mayor o igual a las vidas actuales, se elimina.
+        // Ejemplo: Si quedan 2 vidas, el corazón con índice 2 (el tercero) se apaga.
+        if (heartIndex >= currentLives && _heart)
         {
-            this._image.sprite = _sprites[0];
-        }
-        else
-        {
-            this._image.sprite = _sprites[1];
+            RemoveLife();
         }
     }
 
@@ -58,5 +56,18 @@ public class LiveUI : MonoBehaviour
         shake.startPosition = this.gameObject.transform.localPosition;
         shake.startPosition.y = -50;
         shake.Play(50, 10, 0.15f);
+    }
+
+    void LifeAnimation() {
+        float y = Mathf.Sin((this.heartIndex * 0.25f) + Mathf.PI * timer) * amplitude;
+        transform.localPosition += Vector3.up * y;
+
+        int currentSpriteIndex = (Mathf.Repeat(Time.time, 0.5f) < 0.25f) ? 0 : 1;
+
+        if (currentSpriteIndex != _lastSpriteIndex)
+        {
+            _image.sprite = _sprites[currentSpriteIndex];
+            _lastSpriteIndex = currentSpriteIndex;
+        }
     }
 }

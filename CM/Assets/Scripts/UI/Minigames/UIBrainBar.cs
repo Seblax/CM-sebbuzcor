@@ -21,8 +21,8 @@ namespace Minigame
         {
             image = GetComponent<Image>();
 
-            MinigameManager.instance.UpdateUI += HandleBarLevels;
-            MinigameManager.instance.UpdateUI += HandleBarLenght;
+            MinigameUIManager.instance.OnHealthBarChanged += HandleBarLevels;
+            MinigameUIManager.instance.OnHealthBarChanged += HandleBarLenght;
         }
 
         private void HandleBarLenght(float timerPercent)
