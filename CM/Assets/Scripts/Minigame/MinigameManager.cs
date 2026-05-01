@@ -24,45 +24,47 @@ namespace Minigame
 
         public Action Move;
 
-
+        public GameObject _titleObject;
+        public GameObject _minigameObject;
+        public GameObject _scoreObject;
 
         private void Awake()
         {
             this.minigame = Minigame.of(0);
-            
+
             InitializeStateMachine();
         }
 
         public virtual void InitializeStateMachine()
         {
-            // Initialize States
-            MinigameInitialState initialState = new();
-            MinigameTittleState tittleState = new(minigame);
-            MinigamePlayingState playingState = new(minigame);
-            MinigameVictoryState winState = new(minigame);
-            MinigameDefeatState defeatState = new(minigame);
+            //// Initialize States
+            //MinigameInitialState initialState = new();
+            //MinigameTittleState tittleState = new(minigame);
+            //MinigamePlayingState playingState = new(minigame);
+            //MinigameVictoryState winState = new(minigame);
+            //MinigameDefeatState defeatState = new(minigame);
 
-            _transitions = new List<Transition>
-            {
-                 new() {
-                    Condition = () => !isStarting,
-                    Source = initialState,
-                    Target = tittleState,
-                },
-                new() {
-                    Condition = () => !isMoving && isTittleOver,
-                    Source = tittleState,
-                    Target = playingState,
-                },
-                new() {
-                    Condition = () => !isPlaying && !isMoving,
-                    Source = playingState,
-                    Target = winState,
-                }
-            };
+            //_transitions = new List<Transition>
+            //{
+            //     new() {
+            //        Condition = () => !isStarting,
+            //        Source = initialState,
+            //        Target = tittleState,
+            //    },
+            //    new() {
+            //        Condition = () => !isMoving && isTittleOver,
+            //        Source = tittleState,
+            //        Target = playingState,
+            //    },
+            //    new() {
+            //        Condition = () => !isPlaying && !isMoving,
+            //        Source = playingState,
+            //        Target = winState,
+            //    }
+            //};
 
-            _state = initialState;
-            _state.OnEnter();
+            //_state = initialState;
+            //_state.OnEnter();
         }
 
         public void TransitionToState(IState targetState)
@@ -86,11 +88,14 @@ namespace Minigame
 
         public void Update()
         {
+            MinigamePlayingState forcePlay = new(this.minigame);
+            _state = forcePlay;
             _state.OnExecute();
             HandleStateTransitions();
+        }
 
-            Debug.Log($"CurrentState: {_state}");
-            Debug.Log($"CurrentState: {isMoving}");
+        public void Destroy(GameObject o) {
+            Destroy(o, 2.5f);
         }
     }
 }

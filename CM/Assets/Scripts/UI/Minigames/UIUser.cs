@@ -7,6 +7,8 @@ namespace Minigame
 
     public class UIUser : MonoBehaviour
     {
+        MinigameUIManager minigameUI;
+
         [Header("User components")]
         public Image userImage;
         public TextMeshProUGUI userName;
