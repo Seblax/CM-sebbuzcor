@@ -9,20 +9,20 @@ namespace Minigame
         public float minigameDuration;
         public float minigameTimer;
 
-        public int rounds;
-
         //Completado con exito;
         public bool succes = false;
-        
+
         //Pausar;
         public bool IsPaused { get => paused; set => paused = value; }
         public bool paused;
 
-        public float GetMinigameDuration{ get => minigameDuration; }
+        public float GetMinigameDuration { get => minigameDuration; }
         public float TimerPercent { get => this.minigameTimer / this.minigameDuration; }
         public bool IsTimerOver { get => this.minigameTimer < 0; }
-        public int GetCurrentRound{ get => rounds;}
-        public int IncrementRound { set => rounds += 1; }
+
+        public bool Win { get => succes; }
+        public bool Lose { get => !succes; }
+
         public int ID { get => id; }
 
         Minigame(int id)
@@ -48,10 +48,14 @@ namespace Minigame
             this.IsPaused = isPaused;
         }
 
-        public void Timer() {
-            if(this.IsPaused) { return; }
+        public void Timer()
+        {
+            if (this.IsPaused) { return; }
 
             if (minigameTimer > 0) this.minigameTimer -= Time.deltaTime;
         }
+
+        public void Victory() { succes = true; }
+        public void Defeat() { succes = false; }
     }
 }

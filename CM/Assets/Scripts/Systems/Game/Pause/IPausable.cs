@@ -1,5 +1,5 @@
 public interface IPausable
 {
-    bool IsPaused { get; set; }
+    bool IsPaused { get; }
     void SetPaused(bool isPaused);
 }

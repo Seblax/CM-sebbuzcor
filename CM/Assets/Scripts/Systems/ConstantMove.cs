@@ -9,23 +9,16 @@ public class ConstantMove : MonoBehaviour
     public float distance = 10f;             // A + 10
     public float duration = 0.25f;           // Tiempo en segundos
 
+    public bool isMoving = false; // Variable para controlar el estado del movimiento
+
     // Propiedad para consultar si ha terminado desde fuera
-    public bool IsMovementComplete => !MinigameManager.instance.isMoving;
+    public bool IsMovementComplete => !isMoving;
 
-    private void Awake()
-    {
-        MinigameManager.instance.Move += StartMove;
-    }
-
-    private void OnDestroy()
-    {
-        MinigameManager.instance.Move -= StartMove;
-    }
 
     [ContextMenu("Ejecutar Movimiento")] // Permite probarlo desde el Inspector
     public void StartMove()
     {
-        if (!MinigameManager.instance.isMoving)
+        if (!isMoving)
         {
             StartCoroutine(MoveRoutine(transform.position, transform.position + (direction.normalized * distance), duration));
         }
@@ -33,7 +26,7 @@ public class ConstantMove : MonoBehaviour
 
     private IEnumerator MoveRoutine(Vector3 startPos, Vector3 endPos, float time)
     {
-        MinigameManager.instance.isMoving = true;
+        isMoving = true;
         float elapsed = 0f;
 
         while (elapsed < time)
@@ -50,6 +43,6 @@ public class ConstantMove : MonoBehaviour
 
         // Aseguramos la posición final exacta
         transform.position = endPos;
-        MinigameManager.instance.isMoving = false;
+        isMoving = false;
     }
 }

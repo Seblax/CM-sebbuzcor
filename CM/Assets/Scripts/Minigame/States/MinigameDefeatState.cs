@@ -14,7 +14,7 @@ namespace Minigame
 
         public void OnEnter()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Perdiste");
         }
 
         public void OnExecute()

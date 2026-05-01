@@ -2,8 +2,8 @@ using Gamemanager;
 using StateManagement;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Minigame
 {
@@ -23,6 +23,7 @@ namespace Minigame
         public List<Transition> _transitions = new List<Transition>();
 
         public Action Move;
+        public Action<bool> Pause;
 
         public GameObject _titleObject;
         public GameObject _minigameObject;
@@ -37,34 +38,39 @@ namespace Minigame
 
         public virtual void InitializeStateMachine()
         {
-            //// Initialize States
-            //MinigameInitialState initialState = new();
-            //MinigameTittleState tittleState = new(minigame);
-            //MinigamePlayingState playingState = new(minigame);
-            //MinigameVictoryState winState = new(minigame);
-            //MinigameDefeatState defeatState = new(minigame);
+            // Initialize States
+            MinigameInitialState initialState = new();
+            MinigameTittleState tittleState = new(minigame);
+            MinigamePlayingState playingState = new(minigame);
+            MinigameVictoryState winState = new(minigame);
+            MinigameDefeatState defeatState = new(minigame);
 
-            //_transitions = new List<Transition>
-            //{
-            //     new() {
-            //        Condition = () => !isStarting,
-            //        Source = initialState,
-            //        Target = tittleState,
-            //    },
-            //    new() {
-            //        Condition = () => !isMoving && isTittleOver,
-            //        Source = tittleState,
-            //        Target = playingState,
-            //    },
-            //    new() {
-            //        Condition = () => !isPlaying && !isMoving,
-            //        Source = playingState,
-            //        Target = winState,
-            //    }
-            //};
+            _transitions = new List<Transition>
+            {
+                 new() {
+                    Condition = () => !isStarting,
+                    Source = initialState,
+                    Target = tittleState,
+                },
+                new() {
+                    Condition = () => !isMoving && isTittleOver,
+                    Source = tittleState,
+                    Target = playingState,
+                },
+                new() {
+                    Condition = () => !isPlaying && !isMoving && minigame.Win,
+                    Source = playingState,
+                    Target = winState,
+                },
+                new() {
+                    Condition = () => !isPlaying && !isMoving && minigame.Lose,
+                    Source = playingState,
+                    Target = defeatState,
+                }
+            };
 
-            //_state = initialState;
-            //_state.OnEnter();
+            _state = initialState;
+            _state.OnEnter();
         }
 
         public void TransitionToState(IState targetState)
@@ -88,14 +94,21 @@ namespace Minigame
 
         public void Update()
         {
-            MinigamePlayingState forcePlay = new(this.minigame);
-            _state = forcePlay;
+            //MinigamePlayingState forcePlay = new(this.minigame);
+            //_state = forcePlay;
             _state.OnExecute();
             HandleStateTransitions();
         }
 
-        public void Destroy(GameObject o) {
+        public void Destroy(GameObject o)
+        {
             Destroy(o, 2.5f);
+        }
+
+
+        public void UpdatePauseState(bool shouldPause)
+        {
+            Pause?.Invoke(shouldPause);
         }
     }
 }

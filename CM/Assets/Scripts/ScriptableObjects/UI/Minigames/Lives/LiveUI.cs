@@ -1,3 +1,4 @@
+using Minigame;
 using ShakeAnimation;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,12 +22,14 @@ public class LiveUI : MonoBehaviour
         _image = GetComponent<Image>();
         shake = GetComponent<Shake>();
 
-        GameManager.instance.UpdateLives += UpdateHeartStatus;
+        MinigameUIManager.instance.OnScoreChanged += UpdateHeartStatus;
+        _heart = heartIndex >= GameManager.instance.GetLives;
+        if (_heart) DisableHeart();
     }
 
     private void OnDestroy()
     {
-        GameManager.instance.UpdateLives -= UpdateHeartStatus;
+        MinigameUIManager.instance.OnScoreChanged -= UpdateHeartStatus;
     }
 
     void Update()
@@ -50,11 +53,8 @@ public class LiveUI : MonoBehaviour
     public void RemoveLife()
     {
         if (!this._heart) return;
-
         this._heart = false;
-        this._image.sprite = _sprites[2];
-        shake.startPosition = this.gameObject.transform.localPosition;
-        shake.startPosition.y = -50;
+        DisableHeart();
         shake.Play(50, 10, 0.15f);
     }
 
@@ -69,5 +69,11 @@ public class LiveUI : MonoBehaviour
             _image.sprite = _sprites[currentSpriteIndex];
             _lastSpriteIndex = currentSpriteIndex;
         }
+    }
+
+    void DisableHeart() {
+        this._image.sprite = _sprites[2];
+        shake.startPosition = this.gameObject.transform.localPosition;
+        shake.startPosition.y = -50;
     }
 }

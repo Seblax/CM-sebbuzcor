@@ -14,17 +14,17 @@ namespace Minigame
 
         public void OnEnter()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Ganaste!");
         }
 
         public void OnExecute()
         {
-            throw new System.NotImplementedException();
+
         }
 
         public void OnExit()
         {
-            throw new System.NotImplementedException();
+
         }
     }
 }

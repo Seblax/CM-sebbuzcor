@@ -25,6 +25,8 @@ namespace Minigame
             _moveRequested = false;
             UI = MinigameUIManager.instance;
             UI.UpdateTittleUI(UI.GetTittle(minigame.ID));
+
+            MinigameManager.instance.UpdatePauseState(true);
         }
 
         public void OnExecute()

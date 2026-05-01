@@ -4,22 +4,24 @@ using System;
 
 public class GameManager : Singleton<GameManager>
 {
-    public static GameManager Instance { get; private set; }
     public float minigameDuration = 7f;
 
     public float minigameTimer;
     public int lives = 5;
+    public int score = 0;
 
-    public Action<int> UpdateLives;
+    public int rounds = 0; 
+    public int GetCurrentRound { get => rounds; }
+    public int IncrementRound { set => rounds += 1; }
+    public int GetLives { get => lives; }
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
