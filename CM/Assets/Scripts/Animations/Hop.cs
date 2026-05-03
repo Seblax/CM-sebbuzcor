@@ -8,6 +8,7 @@ public class Hop : MonoBehaviour
     [Header("Settings")]
     public float _amplitude = 75f;      //  Amplitud del salto
     public float speed = 0.25f;         //  Velocidad del salto
+    public Vector3 direction = Vector3.up;         //  Velocidad del salto
 
     bool _isPlaying = false;            //  Está saltando
     Vector3 _startPos;                  //  Posición inicial del objeto
@@ -43,14 +44,13 @@ public class Hop : MonoBehaviour
 
         if (progress >= 1f)                 //  Si ya ha dado el salto, se reinicia
         {
-            transform.localPosition = _startPos;
-            _isPlaying = false;
+            Stop();
             return;
         }
 
         // El salto es una función seno, por lo que no es un salto como tal simulado con física
         // sino un salto "arreglado".
-        float y = Mathf.Sin(progress * Mathf.PI) * _amplitude; transform.localPosition = _startPos + Vector3.up * y;
+        float y = Mathf.Sin(progress * Mathf.PI) * _amplitude; transform.localPosition = _startPos + direction * y;
     }
 
     /// <summary>
@@ -61,6 +61,12 @@ public class Hop : MonoBehaviour
         this.Reset();
         _isPlaying = true;
     }
+    public void Stop()
+    {
+        transform.localPosition = _startPos;
+        _isPlaying = false;
+    }
+
 
     /// <summary>
     /// Reinicia las variables

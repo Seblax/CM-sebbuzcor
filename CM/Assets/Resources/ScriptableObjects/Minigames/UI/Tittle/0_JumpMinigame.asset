@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: 0_JumpMinigame
   m_EditorClassIdentifier: Assembly-CSharp::TittleScriptableObject
   adUser: {fileID: 11400000, guid: 71128bb165e094543a7de1ba413efd22, type: 2}
-  tittle: Jump over the Ham
+  tittle: 'Jump over the Ham   '

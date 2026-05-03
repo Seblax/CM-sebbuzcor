@@ -20,8 +20,10 @@ namespace Minigame
             MinigameUIManager.instance.minigame.SetActive(true);
 
             MinigameManager.instance.isPlaying = true;
-            timer = 2.5f;
+            timer = 0.25f;
             _moveRequested = false;
+
+            MinigameManager.instance.UpdatePauseState(false);
         }
 
         public void OnExecute()
@@ -32,11 +34,6 @@ namespace Minigame
             MinigameUIManager.instance.OnHealthBarChanged(this.minigame.TimerPercent);
 
             if (this.minigame.IsTimerOver) {
-                //Ejecutar victoria o derrota
-                var placehodlder = Random.Range(0, 1f);
-                var message = placehodlder >= 0.5 ? "Perdiste!" : "Ganaste!";
-
-                Debug.Log(message);
 
                 timer -= Time.deltaTime;
 
@@ -53,6 +50,7 @@ namespace Minigame
         public void OnExit()
         {
             MinigameManager.instance.Destroy(MinigameUIManager.instance.minigame);
+            MinigameManager.instance.UpdatePauseState(true);
         }
     }
 }

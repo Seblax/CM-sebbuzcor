@@ -17,6 +17,6 @@ public class PrincipalMenuMusic : MonoBehaviour
     private void Update()
     {
         MenuData.MENUMUSIC_TIMER = this._audioSource.time;
-        this._audioSource.pitch = Aceleration.GetScale;
+        this._audioSource.pitch = Aceleration.Scale;
     }
 }

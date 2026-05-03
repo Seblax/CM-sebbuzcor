@@ -3,62 +3,98 @@ using Minigame;
 using System.Collections;
 using UnityEngine;
 
-public class CarBehaviour : MonoBehaviour
+namespace Game0
 {
-    SpriteRenderer[] _sprenderers;
-    [SerializeField] Sprite[] cars;
-    [SerializeField] Sprite wheels;
-
-    ConstantMove mover;
-    Hop carHop;
-
-    public float distance = 100f;
-    public float interval = 5f;
-    float totalWindow;
-
-    private void Start()
+    public class CarBehaviour : MonoBehaviour, IPausable
     {
-        this.transform.localPosition += Vector3.right* (distance / 2);
-        mover = GetComponent<ConstantMove>();
-        _sprenderers = GetComponentsInChildren<SpriteRenderer>();
-        carHop = GetComponentInChildren<Hop>();
+        SpriteRenderer[] _sprenderers;
+        [SerializeField] Sprite[] cars;
+        [SerializeField] Sprite wheels;
 
-        mover.direction = Vector3.left;
-        mover.distance = distance;
-        mover.duration = interval;
-        totalWindow = MinigameManager.instance.minigame.GetMinigameDuration;
+        ConstantMove mover;
+        Hop carHop;
 
-        SetSkin();
-        StartCoroutine(SpawningLoop());
-    }
+        public float distance = 100f;
+        public float interval = 5f;
+        float totalWindow;
 
-    private IEnumerator SpawningLoop()
-    {
-        while (true)
+        bool paused = true;
+        public bool IsPaused { get => paused; }
+
+        private void Start()
         {
-            // 1. Calculamos el tiempo de espera aleatorio
-            // Restamos la duración del movimiento para no pasarnos de los 7s totales
-            float moveDuration = mover.duration;
-            float maxWait = totalWindow - moveDuration;
-            float randomWait = Random.Range(0f, maxWait);
+            this.transform.localPosition += Vector3.right * (distance / 2);
+            mover = GetComponent<ConstantMove>();
+            _sprenderers = GetComponentsInChildren<SpriteRenderer>();
+            carHop = GetComponentInChildren<Hop>();
 
-            // 2. Esperamos el tiempo aleatorio
-            yield return new WaitForSeconds(randomWait);
+            mover.direction = Vector3.left;
+            mover.distance = distance;
+            mover.duration = interval;
+            totalWindow = MinigameManager.instance.minigame.GetMinigameDuration;
 
-            // 3. Ejecutamos el movimiento
-            mover.StartMove();
-            Destroy(this.gameObject);
+            SetSkin();
+            StartCoroutine(SpawningLoop());
         }
-    }
 
-    void SetSkin() {
-        _sprenderers[0].sprite = cars.GetRandom();
-        _sprenderers[1].sprite = wheels;
-        _sprenderers[2].sprite = wheels;
-    }
+        private void OnEnable()
+        {
+            if (MinigameManager.instance != null)
+                MinigameManager.instance.Pause += SetPaused;
+        }
 
-    private void Update()
-    {
-        if(!carHop.IsHopping) carHop.Play();
+        private void OnDisable()
+        {
+            if (MinigameManager.instance != null)
+                MinigameManager.instance.Pause -= SetPaused;
+        }
+
+        private IEnumerator SpawningLoop()
+        {               
+            yield return new WaitUntil(() => !IsPaused);
+
+            while (true)
+            {
+                // 1. Calculamos el tiempo de espera aleatorio
+                // Restamos la duración del movimiento para no pasarnos de los 7s totales
+                float moveDuration = mover.duration;
+                float maxWait = totalWindow - moveDuration;
+                float randomWait = Random.Range(0f, maxWait);
+
+                // 2. Esperamos el tiempo aleatorio
+                yield return new WaitForSeconds(randomWait);
+
+                // 3. Ejecutamos el movimiento
+                mover.StartMove();
+
+                if (mover.IsMovementComplete) Destroy(this.gameObject);
+            }
+        }
+
+        void SetSkin()
+        {
+            _sprenderers[0].sprite = cars.GetRandom();
+            _sprenderers[1].sprite = wheels;
+            _sprenderers[2].sprite = wheels;
+        }
+
+        private void Update()
+        {
+            if (!carHop.IsHopping) carHop.Play();
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                Debug.Log("Player hit by car!");
+                collision.gameObject.GetComponentInParent<AnimalBehaviour>().Hit();
+            }
+        }
+
+        public void SetPaused(bool isPaused)
+        {
+            paused = isPaused;
+        }
     }
 }
