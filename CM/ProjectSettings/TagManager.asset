@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Menu
   - Transition
+  - MinigameGame
+  - MinigameTittle
+  - MinigameScore
   layers:
   - Default
   - TransparentFX

@@ -41,4 +41,37 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
         return singletonComponent;
     }
+
+    public static void Remove()
+    {
+        Remove(0);
+    }
+    public static void Remove(float timer)
+    {
+        if (_instance != null)
+        {
+            Destroy(_instance, timer);
+            _instance = null;
+        }
+    }
+
+
+    public static void RemoveGameObject()
+    {
+        RemoveGameObject(0);
+    }
+
+    public static void RemoveGameObject(float timer)
+    {
+        if (_instance != null)
+        {
+            Destroy(_instance.gameObject, timer);
+            _instance = null;
+        }
+    }
+
+    public static T Create()
+    {
+        return instance;
+    }
 }

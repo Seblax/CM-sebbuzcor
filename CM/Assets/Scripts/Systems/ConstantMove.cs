@@ -20,7 +20,7 @@ public class ConstantMove : MonoBehaviour
     {
         if (!isMoving)
         {
-            StartCoroutine(MoveRoutine(transform.position, transform.position + (direction.normalized * distance), duration));
+            StartCoroutine(MoveRoutine(transform.localPosition, transform.localPosition + (direction.normalized * distance), duration));
         }
     }
 
@@ -35,14 +35,14 @@ public class ConstantMove : MonoBehaviour
             float t = elapsed / time;
 
             // Interpolar posición de forma lineal
-            transform.position = Vector3.Lerp(startPos, endPos, t);
+            transform.localPosition = Vector3.Lerp(startPos, endPos, t);
 
             elapsed += Time.deltaTime;
             yield return null; // Espera al siguiente frame
         }
 
         // Aseguramos la posición final exacta
-        transform.position = endPos;
+        transform.localPosition = endPos;
         isMoving = false;
     }
 }

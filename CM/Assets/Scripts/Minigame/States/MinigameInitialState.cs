@@ -7,25 +7,21 @@ namespace Minigame
     // Solo si es el primer juego
     public class MinigameInitialState : IState
     {
-        float timer = 0;
+        bool _moveRequested = false;
 
         public void OnEnter()
         {
-            MinigameManager.instance.isStarting = true;
-            
-            MinigameUIManager.instance.tittle.SetActive(true);
-            MinigameUIManager.instance.minigame.SetActive(false);
-            MinigameUIManager.instance.score.SetActive(false);
 
-            timer = 2.5f;
         }
 
         public void OnExecute()
         {
-            timer -= Time.deltaTime;
+            if (_moveRequested) return;
 
-            if (timer < 0) {
-                MinigameManager.instance.isStarting = false;
+            if (!MinigameManager.instance.isMoving)
+            {
+                _moveRequested = true;
+                MinigameManager.instance.Move?.Invoke();
             }
         }
 

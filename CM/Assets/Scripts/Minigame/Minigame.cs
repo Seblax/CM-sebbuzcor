@@ -5,6 +5,12 @@ namespace Minigame
     public class Minigame : IPausable
     {
         int id;
+        public GameObject minigameObject;
+
+        public GameObject tittle;
+        public GameObject game;
+        public GameObject score;
+
 
         public float minigameDuration;
         public float minigameTimer;
@@ -25,17 +31,23 @@ namespace Minigame
 
         public int ID { get => id; }
 
-        Minigame(int id)
+
+        Minigame(int id, GameObject minigameObject)
         {
             this.id = id;
+            this.minigameObject = minigameObject;
 
             this.minigameDuration = 7;
             this.minigameTimer = this.minigameDuration;
+
+            this.tittle = minigameObject.transform.GetChild(0).gameObject;
+            this.game = minigameObject.transform.GetChild(1).gameObject;
+            this.score = minigameObject.transform.GetChild(2).gameObject;
         }
 
-        public static Minigame of(int id)
+        public static Minigame of(int id, GameObject minigameObject)
         {
-            return new Minigame(id);
+            return new Minigame(id, minigameObject);
         }
 
         public void Reset()

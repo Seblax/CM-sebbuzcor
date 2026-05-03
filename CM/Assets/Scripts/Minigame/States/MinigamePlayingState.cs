@@ -20,7 +20,7 @@ namespace Minigame
             MinigameUIManager.instance.minigame.SetActive(true);
 
             MinigameManager.instance.isPlaying = true;
-            timer = 2.5f;
+            timer = 0.25f;
             _moveRequested = false;
 
             MinigameManager.instance.UpdatePauseState(false);

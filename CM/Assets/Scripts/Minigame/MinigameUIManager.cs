@@ -14,11 +14,47 @@ namespace Minigame
         public Action<float> OnHealthBarChanged;
         public Action<TittleScriptableObject> OnTittleChanged;
         public Action<UserScriptableObject> OnUserChanged;
-        public Action<int> OnScoreChanged;
+        public Action<int, bool> OnLivesChanged;
 
         public GameObject tittle;
         public GameObject minigame;
         public GameObject score;
+
+        public GameObject Tittle
+        {
+            get
+            {
+                if (tittle == null)
+                {
+                    tittle = MinigameManager.instance.minigame.tittle;
+                }
+                return tittle;
+            }
+        }
+
+        public GameObject Minigame
+        {
+            get
+            {
+                if (tittle == null)
+                {
+                    tittle = MinigameManager.instance.minigame.game;
+                }
+                return tittle;
+            }
+        }
+
+        public GameObject Score
+        {
+            get
+            {
+                if (tittle == null)
+                {
+                    tittle = MinigameManager.instance.minigame.score;
+                }
+                return tittle;
+            }
+        }
 
         private void Awake()
         {
@@ -35,9 +71,9 @@ namespace Minigame
             OnTittleChanged?.Invoke(tittle);
         }
 
-        public void UpdateScoreUI()
+        public void UpdateScoreUI(bool animation)
         {
-            OnScoreChanged?.Invoke(GameManager.instance.GetLives);
+            OnLivesChanged?.Invoke(GameManager.instance.GetLives, animation);
         }
 
         public void UpdateHealthBarUI(float percent)

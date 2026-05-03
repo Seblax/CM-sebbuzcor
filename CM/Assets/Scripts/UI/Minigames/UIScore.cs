@@ -8,7 +8,7 @@ public class UIScore : MonoBehaviour
 
     void Start()
     {
-        MinigameUIManager.instance.OnScoreChanged += UpdateScoreUI;
+        MinigameUIManager.instance.OnLivesChanged += UpdateScoreUI;
     }
 
     // Update is called once per frame
@@ -17,7 +17,7 @@ public class UIScore : MonoBehaviour
         
     }
 
-    void UpdateScoreUI(int i) {
+    void UpdateScoreUI(int i, bool animation) {
         this.victory.SetActive(MinigameManager.instance.minigame.Win);
         this.defeat.SetActive(MinigameManager.instance.minigame.Lose);
     }

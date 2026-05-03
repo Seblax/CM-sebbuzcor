@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LiveUI : MonoBehaviour
 {
     [SerializeField] private int heartIndex;
-    private bool _heart = true;
+    [SerializeField] private bool _heart = true;
 
     private Image _image;
     public Sprite[] _sprites;
@@ -22,43 +22,45 @@ public class LiveUI : MonoBehaviour
         _image = GetComponent<Image>();
         shake = GetComponent<Shake>();
 
-        MinigameUIManager.instance.OnScoreChanged += UpdateHeartStatus;
-        _heart = heartIndex >= GameManager.instance.GetLives;
-        if (_heart) DisableHeart();
+        MinigameUIManager.instance.OnLivesChanged += UpdateHeartStatus;
     }
 
     private void OnDestroy()
     {
-        MinigameUIManager.instance.OnScoreChanged -= UpdateHeartStatus;
+        MinigameUIManager.instance.OnLivesChanged -= UpdateHeartStatus;
     }
 
     void Update()
     {
         if (!_heart) return;
-        timer += Time.deltaTime;
         LifeAnimation();
     }
 
+
     // Esta función decide si este corazón específico debe "morir"
-    private void UpdateHeartStatus(int currentLives)
+    private void UpdateHeartStatus(int currentLives, bool animation)
     {
-        // Si el índice de este corazón es mayor o igual a las vidas actuales, se elimina.
-        // Ejemplo: Si quedan 2 vidas, el corazón con índice 2 (el tercero) se apaga.
-        if (heartIndex >= currentLives && _heart)
+        if (heartIndex > currentLives && _heart)
         {
-            RemoveLife();
+            RemoveLife(animation);
         }
     }
 
-    public void RemoveLife()
+    public void RemoveLife(bool animation)
     {
         if (!this._heart) return;
+
         this._heart = false;
         DisableHeart();
+
         shake.Play(50, 10, 0.15f);
+        if (!animation) return;
+
+        /////SONIDO
     }
 
     void LifeAnimation() {
+        timer += Time.deltaTime;
         float y = Mathf.Sin((this.heartIndex * 0.25f) + Mathf.PI * timer) * amplitude;
         transform.localPosition += Vector3.up * y;
 

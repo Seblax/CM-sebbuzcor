@@ -52,11 +52,9 @@ namespace Game0
         private IEnumerator SpawningLoop()
         {               
             yield return new WaitUntil(() => !IsPaused);
-            yield return new WaitForSeconds(0.15f);
 
-            while (true )
+            while (true)
             {
-
                 // 1. Calculamos el tiempo de espera aleatorio
                 // Restamos la duración del movimiento para no pasarnos de los 7s totales
                 float moveDuration = mover.duration;
