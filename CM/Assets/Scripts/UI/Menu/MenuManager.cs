@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Gamemanager;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuManager : Singleton<MenuManager>
@@ -33,6 +34,7 @@ public class MenuManager : Singleton<MenuManager>
             {
                 menu.gameObject.SetActive(true);
                 menu.appear.Invoke();
+                AudioManager.instance.PlayEffect("Button");
             }
             else
             {                                           //Si el menu no es igual al menu que toca estar activado, entonces se desactivar� y se llamara al evento menuWillDisappear                               

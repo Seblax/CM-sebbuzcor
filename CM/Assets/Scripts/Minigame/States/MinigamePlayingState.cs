@@ -16,6 +16,8 @@ namespace Minigame
 
         public void OnEnter()
         {
+            if (!GameManager.instance.IsStillAlive) return;
+
             MinigameUIManager.instance.score.SetActive(true);
             MinigameUIManager.instance.minigame.SetActive(true);
 

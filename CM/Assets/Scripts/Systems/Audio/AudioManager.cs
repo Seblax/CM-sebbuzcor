@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.Timeline;
 
 public class AudioManager : Singleton<AudioManager>
 {
+    private const string MASTER_PARAM = "MasterVolume";
+    private const string MUSIC_PARAM = "MusicVolume";
+    private const string EFFECTS_PARAM = "EffectVolume";
+
     public SoundEffect[] effects;                                  //Todos los scripotables objects
 
     private Dictionary<string, SoundEffect> _effectDictionary;     //memoria de scirptable objects y nombre
 
     private AudioListener _listener;
 
+    private AudioMixer audioMixer;
+
+    private bool mute;
+
+    public bool IsMuted => mute;
+
     private void Awake()
     {
         effects = Resources.LoadAll<SoundEffect>("");                  //se cargan absolutamente todos los SoundEffects
+
+        audioMixer = Resources.Load<AudioMixer>("Sounds/Mixer");
 
         _effectDictionary = new Dictionary<string, SoundEffect>();     //se Inicializa el diccionario
 
@@ -26,6 +40,7 @@ public class AudioManager : Singleton<AudioManager>
                 _effectDictionary[effect.name] = effect;
             }
         }
+
     }
 
     public void PlayEffect(SoundEffect effect)
@@ -110,5 +125,35 @@ public class AudioManager : Singleton<AudioManager>
             audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
             yield return null;
         }
+    }
+
+    public void UpdateMixer(float master, float music, float effect)
+    {
+        // Convertimos el valor 0-100 a Decibelios y aplicamos al Mixer
+        audioMixer.SetFloat(MASTER_PARAM, ConvertToDecibel(master));
+        audioMixer.SetFloat(MUSIC_PARAM, ConvertToDecibel(music));
+        audioMixer.SetFloat(EFFECTS_PARAM, ConvertToDecibel(effect));
+    }
+
+    public void Mute()
+    {
+        mute = !mute;
+
+        if (IsMuted)
+        {
+            audioMixer.SetFloat(MASTER_PARAM, ConvertToDecibel(0));
+        }
+        else
+        {
+            audioMixer.SetFloat(MASTER_PARAM, ConvertToDecibel(PlayerPrefs.GetFloat("MasterVolume", 0.5f)));
+        }
+
+    }
+
+    private float ConvertToDecibel(float value)
+    {
+        float volume = Mathf.Clamp(value, 0.0001f, 1f);
+
+        return Mathf.Log10(volume) * 20f;
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Minigame;
+using Gamemanager;
 namespace Game0
 {
 
@@ -18,9 +19,7 @@ namespace Game0
 
         void Start()
         {
-            GameManager.instance.score += (int) +100;
             _renderer = GetComponentInChildren<SpriteRenderer>();
-            MinigameManager.instance.minigame.Victory();
             dead = false;
         }
 
@@ -33,12 +32,21 @@ namespace Game0
 
         void Update()
         {
-            if(IsPaused) return;
+            if (IsPaused) return;
 
             Sprite sprite = this._hop.IsHopping ? bunny[1] : bunny[0];
             sprite = this.dead ? bunny[2] : sprite;
 
             _renderer.sprite = sprite;
+
+            if (dead) return;
+            
+            MinigameManager.instance.minigame.Victory();
+            
+            if (MinigameManager.instance.minigame.Win && MinigameManager.instance.minigame.IsTimerOver)
+            {
+                GameManager.instance.score += 100 * (int)Aceleration.Scale;
+            }
         }
 
         public override void TapEvent()
@@ -50,7 +58,8 @@ namespace Game0
             AudioManager.instance.PlayEffect("BunnyJump");
         }
 
-        public void Hit() {
+        public void Hit()
+        {
             GameManager.instance.score -= (int)+100;
 
             this.dead = true;

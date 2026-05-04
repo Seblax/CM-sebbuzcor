@@ -16,6 +16,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bd2018a47a0f8b240adf65f9408ede36, type: 3}
   accerrelable: 1
   pitch: 0.25
-  group: {fileID: 0}
+  group: {fileID: -2346975980079933895, guid: 7e58d7b9298e9e842990e9c4c43c7a9d, type: 2}
   volume: 1
   estereo: 0

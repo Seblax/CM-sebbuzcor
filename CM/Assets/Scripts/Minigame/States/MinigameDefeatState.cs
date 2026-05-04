@@ -39,6 +39,8 @@ namespace Minigame
 
         public void OnExit()
         {
+            if (!GameManager.instance.IsStillAlive) return;
+
             MinigameUIManager.Remove();
             GameManager.instance.DestroyGameObject(MinigameUIManager.instance.gameObject, 2.5f);
 

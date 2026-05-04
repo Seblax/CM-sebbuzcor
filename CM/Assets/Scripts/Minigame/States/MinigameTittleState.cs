@@ -31,6 +31,8 @@ namespace Minigame
 
         public void OnExecute()
         {
+            if (!GameManager.instance.IsStillAlive) return;
+
             if (_moveRequested) return;
 
             timer -= Time.deltaTime;

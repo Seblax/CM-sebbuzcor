@@ -1,8 +1,10 @@
-using UnityEngine;
 using Gamemanager;
 using Minigame;
+using Score;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -33,6 +35,15 @@ public class GameManager : Singleton<GameManager>
             rounds = value;
         }
     }
+
+    public bool IsStillAlive
+    {
+        get
+        {
+            return GetLives > 0;
+        }
+    }
+
     public int IncrementRound { set => rounds += 1; }
     public int GetLives { get => lives; }
     public int SetLives { get => lives; set => lives = value; }
@@ -53,6 +64,24 @@ public class GameManager : Singleton<GameManager>
     private void LateUpdate()
     {
         Time.timeScale = Aceleration.Scale;
+
+        Scene activeScene = SceneManager.GetActiveScene();
+        if (activeScene.name != "Minigame")
+        {
+            ResetGameManager();
+        }
+    }
+
+    public void ResetGameManager()
+    {
+        int score = this.score;
+
+        Aceleration.Reset();
+
+        Score.Score.SaveScore(score);
+        ScoreManager.instance.UpdateLeaderBoardData();
+
+        Destroy(this.gameObject);
     }
 
     public Minigame.Minigame LoadMinigame()
@@ -71,5 +100,16 @@ public class GameManager : Singleton<GameManager>
     public void DestroyGameObject(GameObject obj, float delay)
     {
         Destroy(obj, delay);
+    }
+
+    public void Reset()
+    {
+        minigameDuration = 7f;
+
+        lives = 3;
+        score = 0;
+
+        rounds = 0;
+        roundsIncrementation = 3;
     }
 }

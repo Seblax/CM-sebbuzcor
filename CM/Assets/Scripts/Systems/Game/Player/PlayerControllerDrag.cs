@@ -9,6 +9,12 @@ public class PlayerControllerDrag : MonoBehaviour
         InputManager.instance.DragActions += DragEvent;
     }
 
+    public virtual void OnDisable()
+    {
+        InputManager.instance.DragActions -= DragEvent;
+    }
+
+
     public virtual void DragEvent(Vector3 vector)
     {
         throw new System.NotImplementedException();

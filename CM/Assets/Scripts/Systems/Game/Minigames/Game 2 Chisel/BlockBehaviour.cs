@@ -1,3 +1,4 @@
+using Gamemanager;
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -34,7 +35,7 @@ namespace Minigame.Game2
             if (this.health <= 0)
             {
                 this.paused = true;
-                GameManager.instance.score += (int)MinigameManager.instance.minigame.minigameTimer * 100 + 100;
+                GameManager.instance.score += (int)((MinigameManager.instance.minigame.minigameTimer * 100 + 100)*Aceleration.Scale);
                 MinigameManager.instance.minigame.Victory();
                 AudioManager.instance.PlayEffect("BlockWin");
             }

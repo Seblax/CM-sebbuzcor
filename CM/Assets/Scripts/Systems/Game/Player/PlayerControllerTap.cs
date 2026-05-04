@@ -8,6 +8,11 @@ public class PlayerControllerTap : MonoBehaviour
         InputManager.instance.TapActions += TapEvent;
     }
 
+    public virtual void OnDisable()
+    {
+        InputManager.instance.TapActions -= TapEvent;
+    }
+
     public virtual void TapEvent()
     {
         throw new System.NotImplementedException();

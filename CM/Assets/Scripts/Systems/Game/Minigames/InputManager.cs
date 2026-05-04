@@ -16,6 +16,13 @@ namespace Minigame
 
         void Awake()
         {
+            if (instance != null && instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            DontDestroyOnLoad(gameObject);
+
             inputActions = new PlayerInputActions();
 
             inputActions.Player.Tap.performed += x => Drag(Touchscreen.current.primaryTouch.position.ReadValue());

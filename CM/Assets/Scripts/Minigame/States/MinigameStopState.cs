@@ -18,27 +18,17 @@ namespace Minigame
 
             Aceleration.Scale = 0.15f;
 
-            TransitionManager.instance.SetTransitionPrefab(Resources.Load<GameObject>("Prefabs/UI/Transitions/TransitionMenu"));
-            TransitionManager.instance.TransitionTo("PrincipalMenu");
-            timer = 3f;
-
-            ///Destruirlo Todo
+            MinigameManager.instance.StartCoroutine(MinigameManager.instance.EndGame());
         }
 
         public void OnExecute()
         {
-            timer -= Time.unscaledDeltaTime;
-
-            Debug.Log($"Stop State Executing. Timer: {timer}");
-
-            if (timer <= 0)
-            {
-            }
+        
         }
 
         public void OnExit()
         {
-
+            if (!GameManager.instance.IsStillAlive) return;
         }
     }
 }

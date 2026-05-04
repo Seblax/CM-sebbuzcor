@@ -604,7 +604,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinigameManager
   gameManager: {fileID: 0}
-  transition: {fileID: 6747978176990290886, guid: b1d90051811032a459540e4d6eaa8d2c, type: 3}
   isMoving: 0
   isTittleOver: 0
   isPlaying: 0

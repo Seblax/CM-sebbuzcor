@@ -1,7 +1,9 @@
 using Gamemanager;
 using StateManagement;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using ui;
 using UnityEngine;
 
 namespace Minigame
@@ -19,8 +21,8 @@ namespace Minigame
         //State Machine
         public IState State => _state;
         public IState _state;
-        public List<Transition> Transitions => _transitions;
-        public List<Transition> _transitions = new List<Transition>();
+        public List<StateManagement.Transition> Transitions => _transitions;
+        public List<StateManagement.Transition> _transitions = new List<StateManagement.Transition>();
 
         public Action Move;
         public Action<bool> Pause;
@@ -48,7 +50,7 @@ namespace Minigame
             MinigameDefeatState defeatState = new(minigame);
             MinigameStopState stopState = new();
 
-            _transitions = new List<Transition>
+            _transitions = new List<StateManagement.Transition>
             {
                  new() {
                     Condition = () => (!isMoving) ,
@@ -74,7 +76,7 @@ namespace Minigame
                     Condition = () => isScoreScreenOver,
                     Source = winState,
                     Target = initialState,
-                },             
+                },
                 new() {
                     Condition = () => isScoreScreenOver && GameManager.instance.lives == 0,
                     Source = defeatState,
@@ -100,7 +102,7 @@ namespace Minigame
 
         public void HandleStateTransitions()
         {
-            foreach (Transition transition in _transitions)
+            foreach (StateManagement.Transition transition in _transitions)
             {
                 if (transition.Source == _state && transition.Condition())
                 {
@@ -147,5 +149,19 @@ namespace Minigame
             // 2. Cargamos el nuevo (esto sobreescribe la variable con datos frescos)
             this.minigame = gameManager.LoadMinigame();
         }
+        public IEnumerator EndGame()
+        {
+            yield return new WaitForSecondsRealtime(5f);
+
+
+            TransitionManager.instance.SetTransitionPrefab(Resources.Load<GameObject>("Prefabs/UI/Transitions/TransitionMinigame"));
+            TransitionManager.instance.TransitionTo("PrincipalMenu");
+            
+            MinigameUIManager.RemoveGameObject();
+            
+            GameManager.instance.ResetGameManager();
+            RemoveGameObject();
+        }
     }
+
 }

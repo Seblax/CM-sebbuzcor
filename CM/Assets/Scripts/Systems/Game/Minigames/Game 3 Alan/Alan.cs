@@ -1,3 +1,4 @@
+using Gamemanager;
 using ShakeAnimation;
 using System;
 using UnityEngine;
@@ -73,7 +74,7 @@ namespace Minigame.Game2
         public void Hit()
         {
             trail.enabled = false;
-            GameManager.instance.score -= 200;
+            GameManager.instance.score += (int)(200 * Aceleration.Scale);
             ResetSpeed();
             MinigameManager.instance.minigame.Victory();
             this.GetComponent<SpriteRenderer>().enabled = false; // Desaparece al ser golpeado
