@@ -46,6 +46,7 @@ namespace Minigame
             MinigamePlayingState playingState = new(minigame);
             MinigameVictoryState winState = new(minigame);
             MinigameDefeatState defeatState = new(minigame);
+            MinigameStopState stopState = new();
 
             _transitions = new List<Transition>
             {
@@ -73,9 +74,14 @@ namespace Minigame
                     Condition = () => isScoreScreenOver,
                     Source = winState,
                     Target = initialState,
+                },             
+                new() {
+                    Condition = () => isScoreScreenOver && GameManager.instance.lives == 0,
+                    Source = defeatState,
+                    Target = stopState,
                 },
                 new() {
-                    Condition = () => isScoreScreenOver,
+                    Condition = () => isScoreScreenOver && GameManager.instance.lives > 0,
                     Source = defeatState,
                     Target = initialState,
                 }
@@ -136,9 +142,7 @@ namespace Minigame
             }
 
             gameManager.SetCurrentRound = gameManager.GetCurrentRound + 1;
-
-            if (gameManager.GetCurrentRound % gameManager.roundsIncrementation == 0)
-                Aceleration.IncrementTimeScale();
+            Aceleration.IncrementTimeScale();
 
             // 2. Cargamos el nuevo (esto sobreescribe la variable con datos frescos)
             this.minigame = gameManager.LoadMinigame();

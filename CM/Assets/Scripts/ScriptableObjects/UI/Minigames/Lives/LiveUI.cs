@@ -56,7 +56,7 @@ public class LiveUI : MonoBehaviour
         shake.Play(50, 10, 0.15f);
         if (!animation) return;
 
-        /////SONIDO
+        AudioManager.instance.PlayEffect("HeartBreak");
     }
 
     void LifeAnimation() {

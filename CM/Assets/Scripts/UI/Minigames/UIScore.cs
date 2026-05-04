@@ -6,20 +6,23 @@ public class UIScore : MonoBehaviour
     [SerializeField] GameObject victory;
     [SerializeField] GameObject defeat;
 
+    [SerializeField] UIUser user;
+    [SerializeField] UserScriptableObject userData;
+
     void Start()
     {
         MinigameUIManager.instance.OnLivesChanged += UpdateScoreUI;
-    }
+        user = GetComponentInChildren<UIUser>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        userData.userComment = $"Your current score: {GameManager.instance.score}";
+
     }
 
     void UpdateScoreUI(int i, bool animation) {
         this.victory.SetActive(MinigameManager.instance.minigame.Win);
         this.defeat.SetActive(MinigameManager.instance.minigame.Lose);
+            userData.userComment = $"Your current score: {GameManager.instance.score}";
+            user.UpdateUI(userData);
     }
 
 

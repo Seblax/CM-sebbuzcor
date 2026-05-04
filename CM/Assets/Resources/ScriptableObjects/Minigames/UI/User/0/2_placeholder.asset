@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cb7dde33b323342adb42b2f7d9ddf9, type: 3}
   m_Name: 2_placeholder
   m_EditorClassIdentifier: Assembly-CSharp::UserScriptableObject
-  userPicture: {fileID: 3721521005224932823, guid: 958e907f65b005f449c6878aae301f30, type: 3}
+  userPicture: {fileID: 1185625210376227553, guid: 77512397054f4ae4991bb6ffc293f9e0, type: 3}
   userName: DaevonGamer0216
-  userComment: In 1992 Kiyoto Sakurai Misato created this platform game, read more...
+  userComment: "In 1992, Kiyoto Sakurai Misato didn\u2019t just create a platformer;
+    he accidentally founded the \"Synthetic Hyper-Realism\" movement following a
+    bizarre microwave laboratory accident in the outskirts of Kyoto..."
   likes: 1000
   comments: 2000

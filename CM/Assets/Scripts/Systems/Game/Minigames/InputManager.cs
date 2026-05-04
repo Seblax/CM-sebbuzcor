@@ -2,21 +2,24 @@ using Player;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 namespace Minigame
 {
     public class InputManager : Singleton<InputManager>
     {
-        public Action touchEvent;
         public PlayerInputActions inputActions;
 
         public Action TapActions;
         public Action<Vector3> TouchActions;
-        public Action DragActions;
+        public Action<Vector3> DragActions;
 
         void Awake()
         {
             inputActions = new PlayerInputActions();
+
+            inputActions.Player.Tap.performed += x => Drag(Touchscreen.current.primaryTouch.position.ReadValue());
+            inputActions.Player.Touch.performed += x => Drag(Touchscreen.current.primaryTouch.position.ReadValue());
 
             inputActions.Player.Touch.performed += x => Touch(Touchscreen.current.primaryTouch.position.ReadValue());
             inputActions.Player.Tap.performed += x => Tap();
@@ -30,6 +33,18 @@ namespace Minigame
         void OnDisable()
         {
             inputActions.Disable();
+        }
+
+        private void Drag(Vector2 drag)
+        {
+            float distanceToScene = Mathf.Abs(Camera.main.transform.position.z);
+
+            Vector3 screenPos = new Vector3(drag.x, drag.y, distanceToScene);
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPos);
+
+            worldPosition.z = 0f;
+
+            DragActions?.Invoke(worldPosition);
         }
 
         private void Tap()

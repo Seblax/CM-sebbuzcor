@@ -21,6 +21,8 @@ namespace Game0
         bool paused = true;
         public bool IsPaused { get => paused; }
 
+        private Sound moveSound;
+
         private void Start()
         {
             this.transform.localPosition += Vector3.right * (distance / 2);
@@ -50,16 +52,20 @@ namespace Game0
         }
 
         private IEnumerator SpawningLoop()
-        {               
+        {
             yield return new WaitUntil(() => !IsPaused);
+
+            AudioManager.instance.PlayEffect("CarStart");
 
             while (true)
             {
+
                 // 1. Calculamos el tiempo de espera aleatorio
                 // Restamos la duración del movimiento para no pasarnos de los 7s totales
                 float moveDuration = mover.duration;
                 float maxWait = totalWindow - moveDuration;
                 float randomWait = Random.Range(0f, maxWait);
+
 
                 // 2. Esperamos el tiempo aleatorio
                 yield return new WaitForSeconds(randomWait);
@@ -67,7 +73,13 @@ namespace Game0
                 // 3. Ejecutamos el movimiento
                 mover.StartMove();
 
-                if (mover.IsMovementComplete) Destroy(this.gameObject);
+                if (mover.IsMovementComplete)
+                {
+                    Destroy(this.gameObject);
+                    Destroy(moveSound.gameObject);
+                    SetPaused(true);
+                }
+
             }
         }
 
@@ -80,7 +92,16 @@ namespace Game0
 
         private void Update()
         {
+            if (IsPaused) return;
+
             if (!carHop.IsHopping) carHop.Play();
+
+            if (moveSound == null && !mover.IsMovementComplete) moveSound = AudioManager.instance.PlayEffect("CarMoveLoop");
+
+            if (moveSound != null && moveSound.GetAudioSource != null)
+            {
+                moveSound.GetAudioSource.panStereo = 1f - (mover.Percent * 2f);
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

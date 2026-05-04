@@ -15,6 +15,8 @@ namespace Minigame
 
         public void OnEnter()
         {
+         
+            AudioManager.instance.PlayEffect("WinGame");
             MinigameUIManager.instance.OnLivesChanged.Invoke(GameManager.instance.GetLives, false);
             timer = 3f;
         }

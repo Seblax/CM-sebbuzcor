@@ -19,6 +19,8 @@ namespace Minigame
             MinigameUIManager.instance.score.SetActive(true);
             MinigameUIManager.instance.minigame.SetActive(true);
 
+            MinigameUIManager.instance.OnUserChanged.Invoke(MinigameUIManager.instance.GetUser(this.minigame.ID));
+
             MinigameManager.instance.isPlaying = true;
             timer = 0.25f;
             _moveRequested = false;

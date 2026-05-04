@@ -1,6 +1,7 @@
 using Minigame;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ConstantMove : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class ConstantMove : MonoBehaviour
     public Vector3 direction = Vector3.up; // Dirección del movimiento
     public float distance = 10f;             // A + 10
     public float duration = 0.25f;           // Tiempo en segundos
+    private float percent;           // Tiempo en segundos
+
+    public float Percent { get => percent; }
+
+
 
     public bool isMoving = false; // Variable para controlar el estado del movimiento
 
@@ -39,6 +45,8 @@ public class ConstantMove : MonoBehaviour
 
             elapsed += Time.deltaTime;
             yield return null; // Espera al siguiente frame
+
+            percent = Mathf.Clamp01(elapsed / time); // Actualiza el porcentaje de movimiento
         }
 
         // Aseguramos la posición final exacta

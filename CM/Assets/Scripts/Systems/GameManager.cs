@@ -15,7 +15,6 @@ public class GameManager : Singleton<GameManager>
     public int lives = 3;
     public int score = 0;
 
-
     public int rounds = 0;
     public int roundsIncrementation = 3;
     public int GetCurrentRound
@@ -63,6 +62,8 @@ public class GameManager : Singleton<GameManager>
         Vector3 InitialMinigamePosition = Vector3.up * -20;
 
         GameObject minigameObject = Instantiate(minigamePrefabs[minigameID], InitialMinigamePosition, Quaternion.identity);
+
+        Debug.LogWarning($"Minigame {minigameID} loaded");
 
         return Minigame.Minigame.of(minigameID, minigameObject);
     }

@@ -68,7 +68,7 @@ namespace ui
                 Vector2.MoveTowards(
                     _transitionRectTransform.anchoredPosition,
                     target,
-                    speed * Time.deltaTime
+                    speed * Time.unscaledDeltaTime
                 );
         }
 

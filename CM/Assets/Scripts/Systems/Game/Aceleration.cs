@@ -27,8 +27,11 @@ namespace Gamemanager
 
         public static void IncrementTimeScale()
         {
-            // Accedemos a la propiedad Scale
-            Scale *= 1.25f;
+            if (GameManager.instance.GetCurrentRound % GameManager.instance.roundsIncrementation == 0)
+            {
+                AudioManager.instance.PlayEffect("SpeedUp");
+                Scale += 0.25f;
+            }
         }
     }
 }
