@@ -18,6 +18,8 @@ namespace Minigame
         {
             initialLives = GameManager.instance.GetLives;
             GameManager.instance.SetLives -=1;
+            AudioManager.instance.PlayEffect("LoseGame");
+
 
             MinigameUIManager.instance.OnLivesChanged.Invoke(initialLives, false);
             timer = 3f;

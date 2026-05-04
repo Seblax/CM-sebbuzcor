@@ -1,3 +1,4 @@
+using EasyTextEffects;
 using TMPro;
 using UnityEngine;
 
@@ -9,9 +10,11 @@ namespace Minigame
         TextMeshProUGUI tittleText;
         [SerializeField]
         TextMeshProUGUI tittleRound;
+        TextEffect tittleEffect;
 
         private void Awake()
         {
+            tittleEffect = tittleText.GetComponentInChildren<TextEffect>();
             MinigameUIManager.instance.OnTittleChanged += UpdateUI;    
         }
 
@@ -20,7 +23,8 @@ namespace Minigame
             this.tittleText.text = tittle.tittle;
             this.tittleRound.text = "Round: " + GameManager.instance.GetCurrentRound;
 
-            MinigameUIManager.instance.UpdateUserUI(tittle.adUser);
+            this.tittleEffect.Refresh();
+            MinigameUIManager.instance.UpdateUserUI(tittle.GetAdUser());
         }
     }
 }

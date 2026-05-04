@@ -13,26 +13,22 @@ namespace Game0
         public bool dead = false;
 
 
-        bool paused = true;
+        [SerializeField] bool paused = true;
         public bool IsPaused { get => paused; }
 
         void Start()
         {
+            GameManager.instance.score += (int) +100;
             _renderer = GetComponentInChildren<SpriteRenderer>();
             MinigameManager.instance.minigame.Victory();
             dead = false;
         }
 
-        private void OnEnable()
+        public override void OnEnable()
         {
+            base.OnEnable();
             if (MinigameManager.instance != null)
                 MinigameManager.instance.Pause += SetPaused;
-        }
-
-        private void OnDisable()
-        {
-            if (MinigameManager.instance != null)
-                MinigameManager.instance.Pause -= SetPaused;
         }
 
         void Update()
@@ -51,14 +47,17 @@ namespace Game0
 
             if (_hop.IsHopping || dead) return;
             _hop.Play();
+            AudioManager.instance.PlayEffect("BunnyJump");
         }
 
-        public void Hit() { 
+        public void Hit() {
+            GameManager.instance.score -= (int)+100;
+
             this.dead = true;
             _hop.Stop();
             MinigameManager.instance.minigame.Defeat();
 
-            ///////////////// Sonido de muerte
+            AudioManager.instance.PlayEffect("BunnyHit");
         }
 
         public void SetPaused(bool isPaused)

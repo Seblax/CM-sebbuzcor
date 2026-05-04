@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8cb7dde33b323342adb42b2f7d9ddf9, type: 3}
+  m_Name: adUser 2
+  m_EditorClassIdentifier: Assembly-CSharp::UserScriptableObject
+  userPicture: {fileID: 5163236881460400774, guid: 0e49b4fcd298be74ca284080ff8b3265, type: 3}
+  userName: Pumba
+  userComment: Bomboclaaaaaaaaaaaaaap
+  likes: 3666
+  comments: 5555

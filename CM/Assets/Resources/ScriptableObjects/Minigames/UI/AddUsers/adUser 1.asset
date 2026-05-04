@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cb7dde33b323342adb42b2f7d9ddf9, type: 3}
   m_Name: adUser 1
   m_EditorClassIdentifier: Assembly-CSharp::UserScriptableObject
-  userPicture: {fileID: -4997167023504409373, guid: 05b3920ad42fc6a469768e1dc0dacb9a, type: 3}
-  userName: ' Frigopie'
-  userComment: Bomboclaaaaaaaaaaaaaap
-  likes: 0
-  comments: 0
+  userPicture: {fileID: 5163236881460400774, guid: 0e49b4fcd298be74ca284080ff8b3265, type: 3}
+  userName: Pumba
+  userComment: Actually, we don't sell pumas at all!
+  likes: 2134234
+  comments: 234444

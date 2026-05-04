@@ -3,10 +3,9 @@ using Minigame;
 
 public class PlayerControllerTap : MonoBehaviour
 {
-    private void Awake()
+    public virtual void OnEnable()
     {
         InputManager.instance.TapActions += TapEvent;
-
     }
 
     public virtual void TapEvent()

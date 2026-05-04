@@ -7,8 +7,6 @@ namespace Minigame
 
     public class UIUser : MonoBehaviour
     {
-        MinigameUIManager minigameUI;
-
         [Header("User components")]
         public Image userImage;
         public TextMeshProUGUI userName;
@@ -23,7 +21,7 @@ namespace Minigame
             MinigameUIManager.instance.OnUserChanged += UpdateUI;
         }
 
-        void UpdateUI(UserScriptableObject userData)
+        public void UpdateUI(UserScriptableObject userData)
         {
             SetUserUI(userData);
             SetPostUI(userData);
