@@ -67,6 +67,10 @@ namespace Minigame
         private void Apply(BrainScriptableObject brain)
         {
             image.sprite = brain.brainSprite;
+
+            if (brain.soundEffect != null)
+                AudioManager.instance.PlayEffect(brain.soundEffect);
+
             _shake.Play(brain.speed, brain.interval, brain.duration);
         }
     }

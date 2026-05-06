@@ -1,7 +1,7 @@
 using Gamemanager;
 using UnityEngine;
 using UnityEngine.Audio;
-[CreateAssetMenu(menuName = "Scriptable Objects/SoundEffect")]
+[CreateAssetMenu(menuName = "ScriptableObjects/SoundEffect")]
 
 public class SoundEffect : ScriptableObject
 {
@@ -10,8 +10,9 @@ public class SoundEffect : ScriptableObject
     //############################################################
 
     public AudioClip[] clips;
-    public bool accerrelable = true;
-    public float pitch;
+    public bool accerelable = true;
+    [SerializeField, Range(-3f, 3f)] public float randomPitch = 0f;
+    [SerializeField, Range(-3f, 3f)] public float globalPitch = 1f;
     public AudioMixerGroup group;
     public float volume = 1;
     public float estereo = 0;
@@ -31,8 +32,8 @@ public class SoundEffect : ScriptableObject
 
     public float GetPitch()
     {
-        if (!accerrelable) return Random.Range(1 - pitch, 1 + pitch);
-        return Aceleration.Scale + Random.Range( - pitch,  + pitch);
+        if (!accerelable) return globalPitch + Random.Range(1 - randomPitch, 1 + randomPitch);
+        return globalPitch + (1-Aceleration.Scale) + Random.Range( - randomPitch,  + randomPitch);
     }
 
     public void addNewClip(AudioClip c)

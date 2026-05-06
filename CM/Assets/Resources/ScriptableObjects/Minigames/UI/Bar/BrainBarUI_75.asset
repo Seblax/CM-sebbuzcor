@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07ec299ab0dc2764d9c1095f91243a5e, type: 3}
+  m_Script: {fileID: 11500000, guid: 13c21aa1dfbe4bb48aada27e0eac3ea0, type: 3}
   m_Name: BrainBarUI_75
   m_EditorClassIdentifier: Assembly-CSharp::BrainScriptableObject
-  brainSprite: {fileID: 4161619635676467774, guid: 0992b9caf6d40644f88839781fe642a2, type: 3}
-  barSprite: {fileID: -8187718925869904184, guid: 91867592d398bd647941b403e5de6c48, type: 3}
-  barAudioClip: {fileID: 0}
+  brainSprite: {fileID: 21300000, guid: 0992b9caf6d40644f88839781fe642a2, type: 3}
+  barSprite: {fileID: 21300000, guid: 91867592d398bd647941b403e5de6c48, type: 3}
+  soundEffect: {fileID: 11400000, guid: 1396872493e0fd34682befff8b6d395e, type: 2}
   speed: 2
   interval: 5
   duration: 15

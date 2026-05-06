@@ -35,7 +35,7 @@ namespace Minigame
             if (_moveRequested) return;
 
             this.minigame.Timer();
-            MinigameUIManager.instance.OnHealthBarChanged(this.minigame.TimerPercent);
+            MinigameUIManager.instance.UpdateHealthBarUI(this.minigame.TimerPercent);
 
             if (this.minigame.IsTimerOver) {
 

@@ -4993,6 +4993,9 @@ MonoBehaviour:
   - threshold: 0.25
     data: {fileID: 11400000, guid: d28b77fff49852d439e2d76ebc727ca5, type: 2}
     triggered: 0
+  - threshold: 0
+    data: {fileID: 11400000, guid: cca7cb4974ba87644ab4c87e8b0330bb, type: 2}
+    triggered: 0
 --- !u!114 &2442558430611459121
 MonoBehaviour:
   m_ObjectHideFlags: 0
