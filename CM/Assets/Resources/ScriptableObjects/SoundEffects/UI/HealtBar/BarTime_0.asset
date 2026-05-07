@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45447b1fa3b5f8d409dc880acb482b15, type: 3}
   m_Name: BarTime_0
   m_EditorClassIdentifier: Assembly-CSharp::SoundEffect
-  clips: []
+  clips:
+  - {fileID: 8300000, guid: b10c48e7343e7124795c747ee1df4953, type: 3}
   accerelable: 1
   randomPitch: 0
   globalPitch: 1

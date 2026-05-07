@@ -15,7 +15,7 @@ MonoBehaviour:
   clips:
   - {fileID: 8300000, guid: 0ea980829c6c2d24cba6ec1031391fd4, type: 3}
   accerelable: 1
-  randomPitch: 1
+  randomPitch: 0.25
   globalPitch: 1
   group: {fileID: -2346975980079933895, guid: 7e58d7b9298e9e842990e9c4c43c7a9d, type: 2}
   volume: 1

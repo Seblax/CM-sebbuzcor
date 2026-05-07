@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoundEffect
   clips:
   - {fileID: 8300000, guid: 60ac09af98bf3d742a8230879d66d316, type: 3}
-  accerrelable: 0
-  pitch: 0
+  accerelable: 0
+  randomPitch: 0
+  globalPitch: 1
   group: {fileID: -2346975980079933895, guid: 7e58d7b9298e9e842990e9c4c43c7a9d, type: 2}
   volume: 1
   estereo: 0

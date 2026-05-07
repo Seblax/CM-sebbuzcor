@@ -649,7 +649,7 @@ namespace Player
                 {
                     ""name"": """",
                     ""id"": ""32b41be3-a1bf-4fca-ad50-67b1cef31d09"",
-                    ""path"": ""<Touchscreen>/primaryTouch/delta"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

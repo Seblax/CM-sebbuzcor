@@ -5,17 +5,10 @@ namespace Minigame
 {
     public class MinigameVictoryState : IState
     {
-        private Minigame minigame;
         private float timer;
-
-        public MinigameVictoryState(Minigame minigame)
-        {
-            this.minigame = minigame;
-        }
 
         public void OnEnter()
         {
-         
             AudioManager.instance.PlayEffect("WinGame");
             MinigameUIManager.instance.OnLivesChanged.Invoke(GameManager.instance.GetLives, false);
             timer = 3f;

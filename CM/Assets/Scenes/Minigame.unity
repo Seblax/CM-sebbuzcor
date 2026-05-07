@@ -164,50 +164,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &435703362
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 435703364}
-  - component: {fileID: 435703363}
-  m_Layer: 0
-  m_Name: InputManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &435703363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 435703362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 646688a347a01b848a4a54d998f755d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InputManager
---- !u!4 &435703364
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 435703362}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.83036, y: -3.66897, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &492915205
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10654ece19bdd04c8f665944c52c2cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinigameMusic
-  audio: {fileID: 0}
+  _audio: {fileID: 0}
   volume: 0.25
 --- !u!1 &519420028
 GameObject:
@@ -725,6 +681,5 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1706951931}
   - {fileID: 1655755447}
-  - {fileID: 435703364}
   - {fileID: 85650514}
   - {fileID: 492915207}

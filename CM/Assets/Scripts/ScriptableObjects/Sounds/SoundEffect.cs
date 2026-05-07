@@ -32,8 +32,12 @@ public class SoundEffect : ScriptableObject
 
     public float GetPitch()
     {
-        if (!accerelable) return globalPitch + Random.Range(1 - randomPitch, 1 + randomPitch);
-        return globalPitch + (1-Aceleration.Scale) + Random.Range( - randomPitch,  + randomPitch);
+        float variation = Random.Range(-randomPitch, randomPitch);
+
+        if (!accerelable)
+            return globalPitch + variation;
+
+        return globalPitch + (Aceleration.Scale - 1f) + variation;
     }
 
     public void addNewClip(AudioClip c)

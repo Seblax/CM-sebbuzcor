@@ -13,9 +13,9 @@ namespace Minigame.Game3
 
         private void Update()
         {
-            if(IsPaused) return;
-            Alan.transform.localPosition = RandomPosition();
-            Door.transform.localPosition = RandomPosition(Door.transform.localPosition);
+            if (IsPaused) return;
+            Alan.transform.localPosition = RandomAlanPosition();
+            Door.transform.localPosition = RandomDoorPosition(Alan.transform.localPosition);
             Destroy(gameObject);
         }
 
@@ -31,40 +31,50 @@ namespace Minigame.Game3
                 MinigameManager.instance.Pause -= SetPaused;
         }
 
-        Vector3 RandomPosition()
+        Vector3 RandomAlanPosition()
         {
             Camera cam = Camera.main;
 
-            float spawnX = Random.Range(0f,1f);
+            float spawnX = Random.Range(0f, 1f);
             float spawnY = Random.Range(0.15f, 0.85f);
-;
+            ;
 
             Vector3 spawnViewportPos = new Vector3(spawnX, spawnY, Mathf.Abs(cam.transform.position.z));
             return cam.ViewportToWorldPoint(spawnViewportPos);
         }
 
-        Vector3 RandomPosition(Vector3 referencePosition)
+        Vector3 RandomDoorPosition(Vector3 referencePosition)
         {
             Camera cam = Camera.main;
             Vector3 finalPosition;
-            float minDistance = 5f;
-            int maxAttempts = 10; // Para evitar bucles infinitos en espacios pequeños
-            int attempts = 0;
+            float currentDistance;
+            float requiredMinDistance = 4.5f; // Tu distancia mínima absoluta
+            float requiredMaxDistance = 8f; // Tu distancia máxima absoluta
+
+            int maxAttempts = 50; // ¡Seguro de vida!
+            int currentAttempt = 0;
 
             do
             {
                 float spawnX = Random.Range(0.15f, 0.85f);
                 float spawnY = Random.Range(0.15f, 0.85f);
 
-                // Usamos la distancia Z absoluta entre la cámara y la posición de referencia
-                // para que el punto se genere en el mismo plano que el objeto
                 float distanceZ = Mathf.Abs(cam.transform.position.z - referencePosition.z);
                 Vector3 spawnViewportPos = new Vector3(spawnX, spawnY, distanceZ);
                 finalPosition = cam.ViewportToWorldPoint(spawnViewportPos);
 
-                attempts++;
-            }
-            while (Vector3.Distance(finalPosition, referencePosition) < minDistance && attempts < maxAttempts);
+                currentDistance = Vector3.Distance(finalPosition, referencePosition);
+
+                Debug.Log($"Current Door distance: {currentDistance}");
+                if (currentAttempt > maxAttempts)
+                {
+                    currentAttempt = 0;
+                    requiredMinDistance -= 0.1f;
+                    Debug.Log($"Límite de intentos alcanzado: {currentDistance}");
+                }
+
+                currentAttempt++;
+            } while (currentDistance < requiredMinDistance || currentDistance > requiredMaxDistance);
 
             return finalPosition;
         }

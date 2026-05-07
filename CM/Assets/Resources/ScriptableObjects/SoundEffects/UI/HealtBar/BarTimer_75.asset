@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BarTimer_75
   m_EditorClassIdentifier: Assembly-CSharp::SoundEffect
   clips:
-  - {fileID: 8300000, guid: 2b80219bb99eeb544a2ad2edf9c95af9, type: 3}
+  - {fileID: 8300000, guid: 38335ef8652a305498a29e7cd745bfba, type: 3}
   accerelable: 1
   randomPitch: 0
   globalPitch: 1

@@ -25,6 +25,8 @@ namespace Minigame
         public List<StateManagement.Transition> _transitions = new List<StateManagement.Transition>();
 
         public Action Move;
+
+        public bool IsPaused;
         public Action<bool> Pause;
 
         public string CurrentState;
@@ -46,8 +48,8 @@ namespace Minigame
             MinigameInitialState initialState = new();
             MinigameTittleState tittleState = new(minigame);
             MinigamePlayingState playingState = new(minigame);
-            MinigameVictoryState winState = new(minigame);
-            MinigameDefeatState defeatState = new(minigame);
+            MinigameVictoryState winState = new();
+            MinigameDefeatState defeatState = new();
             MinigameStopState stopState = new();
 
             _transitions = new List<StateManagement.Transition>
@@ -131,6 +133,7 @@ namespace Minigame
 
         public void UpdatePauseState(bool shouldPause)
         {
+            IsPaused = shouldPause;
             Pause?.Invoke(shouldPause);
         }
 

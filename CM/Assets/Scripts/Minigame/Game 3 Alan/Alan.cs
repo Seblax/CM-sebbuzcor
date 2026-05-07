@@ -1,5 +1,4 @@
 using Gamemanager;
-using ShakeAnimation;
 using System;
 using UnityEngine;
 
@@ -13,15 +12,17 @@ namespace Minigame.Game2
 
         private float currentSpeed;       // Velocidad actual acumulada
         public Rigidbody2D rb;
-        public TrailRenderer trail;
+        public AlanTrail trail;
 
         [SerializeField] bool paused = true;
         public bool IsPaused { get => paused; }
 
+        public Action<float> OnAlanChange;
+
         private void Start()
         {
-            trail = this.GetComponentInChildren<TrailRenderer>(); 
-            trail.enabled = false; // Desactivamos el trail al inicio
+            trail = this.GetComponentInChildren<AlanTrail>();
+            trail.Stop();
 
             rb = GetComponent<Rigidbody2D>();
             rb.gravityScale = 0; // Aseguramos que no caiga por gravedad
@@ -36,35 +37,47 @@ namespace Minigame.Game2
                 MinigameManager.instance.Pause += SetPaused;
         }
 
-        // Se asume que DragEvent se llama constantemente mientras arrastras
-        public override void DragEvent(Vector3 worldPosition) // Ahora recibe posición del mundo
+        public override void OnDisable()
         {
-            if (paused) return;
-            if (MinigameManager.instance.minigame.Win) return;
+            base.OnDisable();
+            if (MinigameManager.instance != null)
+                MinigameManager.instance.Pause -= SetPaused;
+        }
 
-            MinigameManager.instance.minigame.Defeat();
-            trail.enabled = true; // Desactivamos el trail al inicio
-
-            // 1. Dirección: (Hacia donde voy - Donde estoy)
-            Vector2 direction = (Vector2)worldPosition - rb.position;
-
-            // Si estamos muy cerca del dedo, paramos para evitar que "vibre"
-            if (direction.magnitude < 0.1f)
-            {
-                rb.linearVelocity = Vector2.zero;
+        public override void DragEvent(Vector3 worldPosition)
+        {
+            if (paused || MinigameManager.instance.minigame.Win || MinigameManager.instance.minigame.IsTimerOver) {
+                ResetSpeed();
                 return;
             }
 
-            // 2. Aceleración constante mientras se arrastra
-            currentSpeed += acceleration * Time.deltaTime;
-            currentSpeed = Mathf.Clamp(currentSpeed, baseSpeed, maxSpeed);
+            MinigameManager.instance.minigame.Defeat();
 
-            // 3. Aplicar velocidad
-            rb.linearVelocity = direction.normalized * currentSpeed;
+            Move(worldPosition);
         }
 
-        // Opcional: Si quieres que la velocidad se resetee al soltar el clic
-        // deberías sobrescribir el evento de "EndDrag" o similar en tu PlayerControllerDrag
+        public void Move(Vector3 worldPosition)
+        {
+
+            Vector2 targetDirection = (Vector2)worldPosition - rb.position;
+            float distance = targetDirection.magnitude;
+
+            if (distance < 0.1f)
+            {
+                // Reducimos la velocidad gradualmente en lugar de cortarla en seco
+                rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.zero, Time.deltaTime * 10f);
+                return;
+            }
+
+            // Calculamos la velocidad objetivo
+            currentSpeed = Mathf.MoveTowards(currentSpeed, maxSpeed, acceleration * Time.deltaTime);
+            Vector2 desiredVelocity = targetDirection.normalized * currentSpeed;
+
+            // EL TRUCO: Interpolamos la velocidad actual hacia la deseada
+            // El valor '5f' controla qué tan "pesado" o "flotante" se siente (menor = más flotante)
+            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, desiredVelocity, Time.deltaTime * 5f);
+        }
+
         public void ResetSpeed()
         {
             currentSpeed = baseSpeed;
@@ -73,22 +86,28 @@ namespace Minigame.Game2
 
         public void Hit()
         {
-            trail.enabled = false;
+            trail.Stop();
             GameManager.instance.score += (int)(200 * Aceleration.Scale);
             ResetSpeed();
             MinigameManager.instance.minigame.Victory();
-            this.GetComponent<SpriteRenderer>().enabled = false; // Desaparece al ser golpeado
-            AudioManager.instance.PlayEffect("BaloonPop"); // Asegúrate de tener un sonido llamado "BaloonPop" en tu AudioManager
+            this.GetComponentInChildren<SpriteRenderer>().enabled = false; // Desaparece al ser golpeado
+            AudioManager.instance.PlayEffect("BalloonPop");
             Destroy(this.gameObject);
         }
 
         public void LateUpdate()
         {
-            if(MinigameManager.instance.minigame.IsTimerOver) Destroy(this);
+            if (MinigameManager.instance.minigame.IsTimerOver) trail.Stop();
+            OnAlanChange?.Invoke(MinigameManager.instance.minigame.TimerPercent);
         }
 
         public void SetPaused(bool isPaused)
         {
+            if (!isPaused)
+            {
+                trail.Play(1.25f);
+            }
+
             this.paused = isPaused;
         }
     }

@@ -5,19 +5,13 @@ namespace Minigame
 {
     public class MinigameDefeatState : IState
     {
-        private Minigame minigame;
         private float timer;
         private int initialLives;
-
-        public MinigameDefeatState(Minigame minigame)
-        {
-            this.minigame = minigame;
-        }
 
         public void OnEnter()
         {
             initialLives = GameManager.instance.GetLives;
-            GameManager.instance.SetLives -=1;
+            GameManager.instance.SetLives -= 1;
             AudioManager.instance.PlayEffect("LoseGame");
 
 

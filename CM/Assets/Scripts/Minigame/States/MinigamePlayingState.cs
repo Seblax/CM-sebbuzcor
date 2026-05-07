@@ -24,7 +24,7 @@ namespace Minigame
             MinigameUIManager.instance.OnUserChanged.Invoke(MinigameUIManager.instance.GetUser(this.minigame.ID));
 
             MinigameManager.instance.isPlaying = true;
-            timer = 0.25f;
+            timer = 0.75f;
             _moveRequested = false;
 
             MinigameManager.instance.UpdatePauseState(false);

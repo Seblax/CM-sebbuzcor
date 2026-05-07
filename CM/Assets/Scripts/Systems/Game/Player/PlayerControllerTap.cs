@@ -5,12 +5,17 @@ public class PlayerControllerTap : MonoBehaviour
 {
     public virtual void OnEnable()
     {
-        InputManager.instance.TapActions += TapEvent;
+        InputManager.instance.TapActions += this.TapEvent;
     }
 
     public virtual void OnDisable()
     {
-        InputManager.instance.TapActions -= TapEvent;
+        InputManager.instance.TapActions -= this.TapEvent;
+    }
+
+    public virtual void OnDestroy()
+    {
+        InputManager.instance.TapActions -= this.TapEvent;
     }
 
     public virtual void TapEvent()
