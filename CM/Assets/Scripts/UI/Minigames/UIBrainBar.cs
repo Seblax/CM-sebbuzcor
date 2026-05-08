@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Minigame
+namespace Minigame.UI
 {
     public class UIBrainBar : MonoBehaviour
     {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LoseGame
   m_EditorClassIdentifier: Assembly-CSharp::SoundEffect
   clips:
-  - {fileID: 8300000, guid: 60ac09af98bf3d742a8230879d66d316, type: 3}
+  - {fileID: 8300000, guid: 02a04a5a406d9f84cabdd4061ea0f3a2, type: 3}
   accerelable: 0
   randomPitch: 0
   globalPitch: 1

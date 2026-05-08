@@ -108,7 +108,6 @@ namespace Game0
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-                Debug.Log("Player hit by car!");
                 collision.gameObject.GetComponentInParent<AnimalBehaviour>().Hit();
             }
         }

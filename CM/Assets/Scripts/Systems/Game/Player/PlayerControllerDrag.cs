@@ -1,27 +1,10 @@
-using UnityEngine;
-using Minigame;
-using System;
-
-public class PlayerControllerDrag : MonoBehaviour
+namespace Minigame
 {
-    public virtual void OnEnable()
+    public class PlayerControllerDrag : InputHandler, IPausable
     {
-        InputManager.instance.DragActions += this.DragEvent;
-    }
-
-    public virtual void OnDisable()
-    {
-        InputManager.instance.DragActions = null;
-    }
-
-    public virtual void OnDestroy()
-    {
-        InputManager.instance.DragActions = null;
-    }
-
-
-    public virtual void DragEvent(Vector3 vector)
-    {
-        throw new System.NotImplementedException();
+        public override void TapEvent()
+        {
+            return;
+        }
     }
 }

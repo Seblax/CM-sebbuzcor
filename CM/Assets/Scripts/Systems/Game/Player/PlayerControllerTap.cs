@@ -1,25 +1,12 @@
 using UnityEngine;
-using Minigame;
 
-public class PlayerControllerTap : MonoBehaviour
+namespace Minigame
 {
-    public virtual void OnEnable()
+    public class PlayerControllerTap : InputHandler, IPausable
     {
-        InputManager.instance.TapActions += this.TapEvent;
-    }
-
-    public virtual void OnDisable()
-    {
-        InputManager.instance.TapActions = null;
-    }
-
-    public virtual void OnDestroy()
-    {
-        InputManager.instance.TapActions = null;
-    }
-
-    public virtual void TapEvent()
-    {
-        throw new System.NotImplementedException();
+        public override void DragEvent(Vector3 worldPos)
+        {
+            return;
+        }
     }
 }

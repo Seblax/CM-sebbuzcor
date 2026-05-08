@@ -6881,13 +6881,14 @@ GameObject:
   - component: {fileID: 2574584932572667016}
   - component: {fileID: 2399572143634168746}
   - component: {fileID: 5145677739808440221}
+  - component: {fileID: 6473250989965443807}
   m_Layer: 5
-  m_Name: Succes
+  m_Name: Success
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &629069167017040391
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6962,12 +6963,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 586.8
+  m_fontSize: 485
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 586.8
+  m_fontSizeMax: 485
   m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -7030,6 +7031,24 @@ MonoBehaviour:
         m_Calls: []
     overrideTagEffects: 0
   updatesPerSecond: 30
+--- !u!114 &6473250989965443807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5967213732527271176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11a38a0e248c23c40aa6547b8151bd76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Minigame.UI.ScoreText
+  scoreText:
+  - Oh Yeah
+  - Nice
+  - Success
+  - Bomba
+  - Easy
 --- !u!1 &6056254066679137531
 GameObject:
   m_ObjectHideFlags: 0
@@ -8720,6 +8739,7 @@ GameObject:
   - component: {fileID: 3674071858618219713}
   - component: {fileID: 2362593624796420694}
   - component: {fileID: 1106124173227646861}
+  - component: {fileID: 8577208585128366850}
   m_Layer: 5
   m_Name: Fail
   m_TagString: Untagged
@@ -8801,12 +8821,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 586.8
+  m_fontSize: 485
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 586.8
+  m_fontSizeMax: 485
   m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -8869,6 +8889,24 @@ MonoBehaviour:
         m_Calls: []
     overrideTagEffects: 0
   updatesPerSecond: 30
+--- !u!114 &8577208585128366850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579861176251829995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11a38a0e248c23c40aa6547b8151bd76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Minigame.UI.ScoreText
+  scoreText:
+  - Fail
+  - F ck
+  - Loser
+  - GG
+  - So Bad
 --- !u!1 &8583497518844013457
 GameObject:
   m_ObjectHideFlags: 0
