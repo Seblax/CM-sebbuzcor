@@ -2,7 +2,7 @@ using EasyTextEffects;
 using TMPro;
 using UnityEngine;
 
-namespace Minigame
+namespace Minigame.UI
 {
     public class UITittle : MonoBehaviour
     {
@@ -15,7 +15,7 @@ namespace Minigame
         private void Awake()
         {
             tittleEffect = tittleText.GetComponentInChildren<TextEffect>();
-            MinigameUIManager.instance.OnTittleChanged += UpdateUI;    
+            MinigameUIManager.instance.OnTittleChanged += UpdateUI;
         }
 
         void UpdateUI(TittleScriptableObject tittle)

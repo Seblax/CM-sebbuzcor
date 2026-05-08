@@ -2,7 +2,7 @@ using ShakeAnimation;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Minigame
+namespace Minigame.UI
 {
     public class UIBrain : MonoBehaviour
     {

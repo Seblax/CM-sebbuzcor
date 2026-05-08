@@ -55,6 +55,8 @@ namespace Minigame
         {
             MinigameManager.instance.Destroy(MinigameUIManager.instance.minigame);
             MinigameManager.instance.UpdatePauseState(true);
+
+            InputManager.RemoveGameObject();
         }
     }
 }

@@ -4,9 +4,8 @@ using Gamemanager;
 namespace Game0
 {
 
-    public class AnimalBehaviour : PlayerControllerTap, IPausable
+    public class AnimalBehaviour : PlayerControllerTap
     {
-
         [SerializeField] private SpriteRenderer _renderer;
         [SerializeField] private Sprite[] bunny;
 
@@ -14,20 +13,10 @@ namespace Game0
         public bool dead = false;
 
 
-        [SerializeField] bool paused = true;
-        public bool IsPaused { get => paused; }
-
         void Start()
         {
             _renderer = GetComponentInChildren<SpriteRenderer>();
             dead = false;
-        }
-
-        public override void OnEnable()
-        {
-            base.OnEnable();
-            if (MinigameManager.instance != null)
-                MinigameManager.instance.Pause += SetPaused;
         }
 
         void Update()
@@ -42,11 +31,6 @@ namespace Game0
             if (dead) return;
 
             MinigameManager.instance.minigame.Victory();
-
-            if (MinigameManager.instance.minigame.Win && MinigameManager.instance.minigame.IsTimerOver)
-            {
-                GameManager.instance.score += 100 * (int)Aceleration.Scale;
-            }
         }
 
         public override void TapEvent()
@@ -67,11 +51,5 @@ namespace Game0
             MinigameManager.instance.minigame.Defeat();
             AudioManager.instance.PlayEffect("BunnyHit");
         }
-
-        public void SetPaused(bool isPaused)
-        {
-            paused = isPaused;
-        }
     }
-
 }

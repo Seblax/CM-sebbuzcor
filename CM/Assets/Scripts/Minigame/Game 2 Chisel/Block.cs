@@ -31,6 +31,7 @@ namespace Minigame.Game2
         {
             if (rb == null) rb = GetComponent<Rigidbody2D>();
             rb.gravityScale = 0;
+            blockBehaviour.OnDamageTaken += TakeDamage;
         }
 
         public void TakeDamage(float currentHealth)
@@ -43,7 +44,6 @@ namespace Minigame.Game2
             else if (currentHealth < health)
             {
                 ImpulsarObjeto();
-
                 Destroy(gameObject, 2f);
             }
         }
@@ -59,8 +59,7 @@ namespace Minigame.Game2
 
         private void OnDestroy()
         {
-            Debug.LogWarning("Blcok destroyed");
+            blockBehaviour.OnDamageTaken -= TakeDamage;
         }
     }
-
 }

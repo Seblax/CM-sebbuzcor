@@ -1,8 +1,5 @@
 using Gamemanager;
-using Minigame;
 using Score;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

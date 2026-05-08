@@ -1,29 +1,32 @@
-using Minigame;
 using UnityEngine;
 
-public class UIScore : MonoBehaviour
+namespace Minigame.UI
 {
-    [SerializeField] GameObject victory;
-    [SerializeField] GameObject defeat;
-
-    [SerializeField] UIUser user;
-    [SerializeField] UserScriptableObject userData;
-
-    void Start()
+    public class UIScore : MonoBehaviour
     {
-        MinigameUIManager.instance.OnLivesChanged += UpdateScoreUI;
-        user = GetComponentInChildren<UIUser>();
+        [SerializeField] GameObject victory;
+        [SerializeField] GameObject defeat;
 
-        userData.userComment = $"Your current score: {GameManager.instance.score}";
+        [SerializeField] UIUser user;
+        [SerializeField] UserScriptableObject userData;
 
-    }
+        void Start()
+        {
+            MinigameUIManager.instance.OnLivesChanged += UpdateScoreUI;
+            user = GetComponentInChildren<UIUser>();
 
-    void UpdateScoreUI(int i, bool animation) {
-        this.victory.SetActive(MinigameManager.instance.minigame.Win);
-        this.defeat.SetActive(MinigameManager.instance.minigame.Lose);
+            userData.userComment = $"Your current score: {GameManager.instance.score}";
+
+        }
+
+        void UpdateScoreUI(int i, bool animation)
+        {
+            this.victory.SetActive(MinigameManager.instance.minigame.Win);
+            this.defeat.SetActive(MinigameManager.instance.minigame.Lose);
             userData.userComment = $"Your current score: {GameManager.instance.score}";
             user.UpdateUI(userData);
+        }
+
+
     }
-
-
 }

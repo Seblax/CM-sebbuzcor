@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Minigame.Game2
 {
-    public class Alan : PlayerControllerDrag, IPausable
+    public class Alan : PlayerControllerDrag
     {
         public float baseSpeed = 5f;       // Velocidad inicial
         public float maxSpeed = 25f;      // Velocidad tope
@@ -14,9 +14,6 @@ namespace Minigame.Game2
         public Rigidbody2D rb;
         public AlanTrail trail;
 
-        [SerializeField] bool paused = true;
-        public bool IsPaused { get => paused; }
-
         public Action<float> OnAlanChange;
 
         private void Start()
@@ -25,28 +22,14 @@ namespace Minigame.Game2
             trail.Stop();
 
             rb = GetComponent<Rigidbody2D>();
-            rb.gravityScale = 0; // Aseguramos que no caiga por gravedad
+            rb.gravityScale = 0;
 
             currentSpeed = baseSpeed; // Inicializamos
         }
 
-        public override void OnEnable()
-        {
-            base.OnEnable();
-            if (MinigameManager.instance != null)
-                MinigameManager.instance.Pause += SetPaused;
-        }
-
-        public override void OnDisable()
-        {
-            base.OnDisable();
-            if (MinigameManager.instance != null)
-                MinigameManager.instance.Pause -= SetPaused;
-        }
-
         public override void DragEvent(Vector3 worldPosition)
         {
-            if (paused || MinigameManager.instance.minigame.Win || MinigameManager.instance.minigame.IsTimerOver) {
+            if (IsPaused || MinigameManager.instance.minigame.Win || MinigameManager.instance.minigame.IsTimerOver) {
                 ResetSpeed();
                 return;
             }
@@ -102,14 +85,13 @@ namespace Minigame.Game2
             OnAlanChange?.Invoke(MinigameManager.instance.minigame.TimerPercent);
         }
 
-        public void SetPaused(bool isPaused)
+        public override void SetPaused(bool isPaused)
         {
+            base.SetPaused(isPaused);
             if (!isPaused)
             {
                 trail.Play(1.25f);
             }
-
-            this.paused = isPaused;
         }
     }
 }
