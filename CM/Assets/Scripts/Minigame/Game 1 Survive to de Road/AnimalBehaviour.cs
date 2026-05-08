@@ -65,8 +65,9 @@ namespace Game0
             this.dead = true;
             _hop.Stop();
             MinigameManager.instance.minigame.Defeat();
-
             AudioManager.instance.PlayEffect("BunnyHit");
+
+            base.OnDisable();
         }
 
         public void SetPaused(bool isPaused)

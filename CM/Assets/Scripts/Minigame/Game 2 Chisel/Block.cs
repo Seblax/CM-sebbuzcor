@@ -59,6 +59,11 @@ namespace Minigame.Game2
 
             rb.gravityScale = 1;
         }
+
+        private void OnDestroy()
+        {
+            Debug.LogWarning("Blcok destroyed");
+        }
     }
 
 }
