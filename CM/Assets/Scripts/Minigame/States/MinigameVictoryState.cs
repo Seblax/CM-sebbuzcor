@@ -11,6 +11,9 @@ namespace Minigame
         {
             AudioManager.instance.PlayEffect("WinGame");
             MinigameUIManager.instance.OnLivesChanged.Invoke(GameManager.instance.GetLives, false);
+
+            GameManager.instance.Score = (int) MinigameManager.instance.minigame.MinigameScoreValue;
+
             timer = 3f;
         }
 

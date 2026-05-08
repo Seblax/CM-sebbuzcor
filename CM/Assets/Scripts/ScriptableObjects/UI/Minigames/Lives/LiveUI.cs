@@ -14,6 +14,8 @@ public class LiveUI : MonoBehaviour
     
     private float timer;
     public float amplitude = 2;
+    public float speed = 2;
+
 
     private Shake shake;
 
@@ -23,6 +25,7 @@ public class LiveUI : MonoBehaviour
         shake = GetComponent<Shake>();
 
         MinigameUIManager.instance.OnLivesChanged += UpdateHeartStatus;
+        amplitude = 0.5f;
     }
 
     private void OnDestroy()
@@ -61,7 +64,7 @@ public class LiveUI : MonoBehaviour
 
     void LifeAnimation() {
         timer += Time.deltaTime;
-        float y = Mathf.Sin((this.heartIndex * 0.25f) + Mathf.PI * timer) * amplitude;
+        float y = Mathf.Sin((this.heartIndex * 0.25f) + Mathf.PI * timer * speed) * amplitude;
         transform.localPosition += Vector3.up * y;
 
         int currentSpriteIndex = (Mathf.Repeat(Time.time, 0.5f) < 0.25f) ? 0 : 1;

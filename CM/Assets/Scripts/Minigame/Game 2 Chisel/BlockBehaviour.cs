@@ -27,7 +27,7 @@ namespace Minigame.Game2
             if (this.health < 0)
             {
                 SetPaused(true);
-                GameManager.instance.score += (int)((MinigameManager.instance.minigame.minigameTimer * 100 + 100) * Aceleration.Scale);
+                MinigameManager.instance.minigame.MinigameScoreValue += MinigameManager.instance.minigame.minigameTimer * 100;
                 MinigameManager.instance.minigame.Victory();
                 AudioManager.instance.PlayEffect("BlockWin");
             }

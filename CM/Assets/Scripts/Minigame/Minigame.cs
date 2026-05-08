@@ -10,6 +10,8 @@ namespace Minigame
         public GameObject tittle;
         public GameObject game;
         public GameObject score;
+        
+        private float minigameValue;
 
 
         public float minigameDuration;
@@ -30,6 +32,7 @@ namespace Minigame
         public bool Lose { get => !succes; }
 
         public int ID { get => id; }
+        public float MinigameScoreValue{ get => minigameValue; set => minigameValue = value; }
 
 
         Minigame(int id, GameObject minigameObject)
