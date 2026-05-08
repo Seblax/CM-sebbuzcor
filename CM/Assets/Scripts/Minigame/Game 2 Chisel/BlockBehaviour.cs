@@ -13,21 +13,6 @@ namespace Minigame.Game2
         {
             MinigameManager.instance.minigame.Defeat();
         }
-        public override void OnEnable()
-        {
-            base.OnEnable();
-
-            if (MinigameManager.instance != null)
-                MinigameManager.instance.Pause += SetPaused;
-        }
-
-        public override void OnDisable()
-        {
-            base.OnDisable();
-            if (MinigameManager.instance != null)
-                MinigameManager.instance.Pause -= SetPaused;
-        }
-
 
         public override void TapEvent()
         {
