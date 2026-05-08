@@ -47,17 +47,13 @@ namespace Minigame.Game2
 
             if (distance < 0.1f)
             {
-                // Reducimos la velocidad gradualmente en lugar de cortarla en seco
                 rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.zero, Time.deltaTime * 10f);
                 return;
             }
 
-            // Calculamos la velocidad objetivo
             currentSpeed = Mathf.MoveTowards(currentSpeed, maxSpeed, acceleration * Time.deltaTime);
             Vector2 desiredVelocity = targetDirection.normalized * currentSpeed;
 
-            // EL TRUCO: Interpolamos la velocidad actual hacia la deseada
-            // El valor '5f' controla qué tan "pesado" o "flotante" se siente (menor = más flotante)
             rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, desiredVelocity, Time.deltaTime * 5f);
         }
 
@@ -70,7 +66,7 @@ namespace Minigame.Game2
         public void Hit()
         {
             trail.Stop();
-            GameManager.instance.score += (int)(200 * Aceleration.Scale);
+            MinigameManager.instance.minigame.MinigameScoreValue = 150f;
             ResetSpeed();
             MinigameManager.instance.minigame.Victory();
             this.GetComponentInChildren<SpriteRenderer>().enabled = false; // Desaparece al ser golpeado

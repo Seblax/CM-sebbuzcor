@@ -1,3 +1,4 @@
+using Score;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
@@ -20,7 +21,7 @@ public class Configuration : MonoBehaviour
     public void DeleteData()
     {
         AudioManager.instance.PlayEffect("gg");
-        Score.Score.DeleteScore();
+        ScoreDataService.DeleteScore();
     }
 
     public void MasterVolume()

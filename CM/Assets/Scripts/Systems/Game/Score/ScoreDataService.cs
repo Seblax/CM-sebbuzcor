@@ -1,15 +1,11 @@
-using EasyTextEffects.Editor.MyBoxCopy.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Score
 {
-    public class Score : MonoBehaviour
+    public class ScoreDataService : MonoBehaviour
     {
         private static string[] ScoreKeys = new string[]
         {

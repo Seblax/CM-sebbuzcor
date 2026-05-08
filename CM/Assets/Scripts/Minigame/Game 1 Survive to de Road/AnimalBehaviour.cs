@@ -17,6 +17,8 @@ namespace Game0
         {
             _renderer = GetComponentInChildren<SpriteRenderer>();
             dead = false;
+
+            MinigameManager.instance.minigame.MinigameScoreValue = 250f;
         }
 
         void Update()
@@ -44,8 +46,6 @@ namespace Game0
 
         public void Hit()
         {
-            GameManager.instance.score -= 100;
-
             this.dead = true;
             if (_hop != null) _hop.Stop();
             MinigameManager.instance.minigame.Defeat();

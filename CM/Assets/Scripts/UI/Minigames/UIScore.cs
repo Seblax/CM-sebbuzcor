@@ -15,7 +15,7 @@ namespace Minigame.UI
             MinigameUIManager.instance.OnLivesChanged += UpdateScoreUI;
             user = GetComponentInChildren<UIUser>();
 
-            userData.userComment = $"Your current score: {GameManager.instance.score}";
+            userData.userComment = $"Your current score: {GameManager.instance.Score}";
 
         }
 
@@ -23,7 +23,7 @@ namespace Minigame.UI
         {
             this.victory.SetActive(MinigameManager.instance.minigame.Win);
             this.defeat.SetActive(MinigameManager.instance.minigame.Lose);
-            userData.userComment = $"Your current score: {GameManager.instance.score}";
+            userData.userComment = $"Your current score: {GameManager.instance.Score}";
             user.UpdateUI(userData);
         }
 

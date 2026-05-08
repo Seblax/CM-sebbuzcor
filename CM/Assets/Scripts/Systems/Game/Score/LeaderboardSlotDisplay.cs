@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Score
 {
-    public class ScoreLeaderBoard : MonoBehaviour
+    public class LeaderboardSlotDisplay : MonoBehaviour
     {
         public int index;
         private TextMeshProUGUI text;
@@ -26,7 +26,7 @@ namespace Score
 
         void UpdateScore()
         {
-            text.text = (Score.LoadScore().Find(x => x.Item1 == $"UserScore_{index}").Item2).ToString();
+            text.text = (ScoreDataService.LoadScore().Find(x => x.Item1 == $"UserScore_{index}").Item2).ToString();
         }
     }
 

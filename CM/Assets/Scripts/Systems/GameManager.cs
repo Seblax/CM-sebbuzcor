@@ -12,15 +12,28 @@ public class GameManager : Singleton<GameManager>
 
     public float minigameTimer;
     public int lives = 3;
-    public int score = 0;
+    private int score = 0;
 
     public int rounds = 0;
     public int roundsIncrementation = 3;
+
+    public int Score
+    {
+        get
+        {
+            return score;
+        }
+
+        set
+        {
+            score = (int)value;
+        }
+    }
+
     public int GetCurrentRound
     {
         get
         {
-            Debug.Log($"Round Number: {rounds}");
             return rounds;
         }
     }
@@ -75,8 +88,7 @@ public class GameManager : Singleton<GameManager>
 
         Aceleration.Reset();
 
-        Score.Score.SaveScore(score);
-        ScoreManager.instance.UpdateLeaderBoardData();
+        ScoreDataService.SaveScore(score);
 
         Destroy(this.gameObject);
     }
