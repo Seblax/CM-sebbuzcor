@@ -11,12 +11,12 @@ public class PlayerControllerDrag : MonoBehaviour
 
     public virtual void OnDisable()
     {
-        InputManager.instance.DragActions -= this.DragEvent;
+        InputManager.instance.DragActions = null;
     }
 
     public virtual void OnDestroy()
     {
-        InputManager.instance.DragActions -= this.DragEvent;
+        InputManager.instance.DragActions = null;
     }
 
 

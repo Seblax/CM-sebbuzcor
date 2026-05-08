@@ -1239,6 +1239,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlockBehaviour
   health: 100
+  Blocks:
+  - block: {fileID: 3912948712575794315}
+  - block: {fileID: 1689236222741778032}
+  - block: {fileID: 6672256322726572154}
+  - block: {fileID: 2553341596437158964}
+  - block: {fileID: 4986413755609108312}
   paused: 1
 --- !u!1 &1362225127593993054
 GameObject:

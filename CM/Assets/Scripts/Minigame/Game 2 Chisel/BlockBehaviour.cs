@@ -1,6 +1,7 @@
 using Gamemanager;
 using System;
 using UnityEngine;
+using static Minigame.UIBrain;
 
 namespace Minigame.Game2
 {
@@ -9,9 +10,20 @@ namespace Minigame.Game2
         public Action<float> OnDamageTaken;
         public float health = 100f;
 
+
+        [System.Serializable]
+        public class BlockObject
+        {
+            public Block block;
+        }
+
+
+        [Header("Block Objects")]
+        public BlockObject[] Blocks;
+
+
         [SerializeField] bool paused = true;
         public bool IsPaused { get => paused; }
-
 
         private void Start()
         {
@@ -40,7 +52,14 @@ namespace Minigame.Game2
 
             this.health = MathF.Max(this.health, -1);
 
-            OnDamageTaken?.Invoke(this.health);
+            foreach (BlockObject blockObject in Blocks)
+            {
+                if (blockObject != null && blockObject.block != null)
+                {
+                    blockObject.block.TakeDamage(this.health);
+                }
+            }
+
 
             if (this.health < 0)
             {
@@ -48,8 +67,6 @@ namespace Minigame.Game2
                 GameManager.instance.score += (int)((MinigameManager.instance.minigame.minigameTimer * 100 + 100) * Aceleration.Scale);
                 MinigameManager.instance.minigame.Victory();
                 AudioManager.instance.PlayEffect("BlockWin");
-
-                base.OnDisable();
             }
         }
 

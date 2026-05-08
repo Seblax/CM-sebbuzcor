@@ -40,9 +40,9 @@ namespace Game0
             _renderer.sprite = sprite;
 
             if (dead) return;
-            
+
             MinigameManager.instance.minigame.Victory();
-            
+
             if (MinigameManager.instance.minigame.Win && MinigameManager.instance.minigame.IsTimerOver)
             {
                 GameManager.instance.score += 100 * (int)Aceleration.Scale;
@@ -54,20 +54,18 @@ namespace Game0
             if (IsPaused) return;
 
             if (_hop.IsHopping || dead) return;
-            _hop.Play();
+            if (_hop != null) _hop.Play();
             AudioManager.instance.PlayEffect("BunnyJump");
         }
 
         public void Hit()
         {
-            GameManager.instance.score -= (int)+100;
+            GameManager.instance.score -= 100;
 
             this.dead = true;
-            _hop.Stop();
+            if (_hop != null) _hop.Stop();
             MinigameManager.instance.minigame.Defeat();
             AudioManager.instance.PlayEffect("BunnyHit");
-
-            base.OnDisable();
         }
 
         public void SetPaused(bool isPaused)

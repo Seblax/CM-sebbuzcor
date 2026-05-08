@@ -25,7 +25,6 @@ namespace Minigame.Game2
         {
             shake = GetComponent<Shake>();
             blockBehaviour = GetComponentInParent<BlockBehaviour>();
-            blockBehaviour.OnDamageTaken += this.TakeDamage;
         }
 
         void Start()
@@ -44,8 +43,6 @@ namespace Minigame.Game2
             else if (currentHealth < health)
             {
                 ImpulsarObjeto();
-
-                blockBehaviour.OnDamageTaken -= this.TakeDamage;
 
                 Destroy(gameObject, 2f);
             }

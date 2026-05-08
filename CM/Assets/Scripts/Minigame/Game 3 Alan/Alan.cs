@@ -93,7 +93,7 @@ namespace Minigame.Game2
             this.GetComponentInChildren<SpriteRenderer>().enabled = false; // Desaparece al ser golpeado
             AudioManager.instance.PlayEffect("BalloonPop");
 
-            base.OnDisable();
+            Destroy(this.gameObject);
         }
 
         public void LateUpdate()

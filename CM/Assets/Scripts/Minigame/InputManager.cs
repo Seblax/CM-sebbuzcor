@@ -171,9 +171,9 @@ namespace Minigame
     {
         public PlayerInputActions inputActions;
 
-        public event Action TapActions;
-        public event Action<Vector3> TouchActions;
-        public event Action<Vector3> DragActions;
+        public Action TapActions;
+        public Action<Vector3> TouchActions;
+        public Action<Vector3> DragActions;
 
         void Awake()
         {
