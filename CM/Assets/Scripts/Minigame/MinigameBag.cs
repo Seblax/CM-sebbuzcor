@@ -1,4 +1,5 @@
 using EasyTextEffects.Editor.MyBoxCopy.Extensions;
+using System;
 using System.Collections.Generic;
 
 public class MinigameBag
@@ -21,6 +22,6 @@ public class MinigameBag
 
         int randomIndex = minigameIDs.GetRandom();
         minigameIDs.Remove(randomIndex);
-        return randomIndex;
+        return 3;
     }
 }

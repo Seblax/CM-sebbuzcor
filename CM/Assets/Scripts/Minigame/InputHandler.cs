@@ -8,9 +8,14 @@ namespace Minigame
     {
         public PlayerInputActions inputActions;
 
+        private Vector3 tapPos;
+
         [SerializeField] bool paused = true;
         public bool IsPaused { get => paused; }
+        public Vector3 TapPosition { get => tapPos; }
 
+        
+        private bool isTouching = false;
 
         protected void Awake()
         {
@@ -25,6 +30,9 @@ namespace Minigame
             inputActions.Player.Tap.performed += OnTapPerformed;
             inputActions.Player.Touch.performed += OnTouchPerformed;
             inputActions.Player.Enable();
+
+            inputActions.Player.Touch.started += ctx => isTouching = true;
+            inputActions.Player.Touch.canceled += ctx => isTouching = false;
 
             if (MinigameManager.instance != null)
                 MinigameManager.instance.Pause += SetPaused;
@@ -79,6 +87,17 @@ namespace Minigame
         public virtual void SetPaused(bool isPaused)
         {
             paused = isPaused;
+        }
+
+        void Update()
+        {
+            if (isTouching)
+            {
+                // Aquí pones lo que quieres que pase MIENTRAS mantiene pulsado
+                // Por ejemplo, seguir la posición del dedo
+                Vector2 screenPos = inputActions.Player.Touch.ReadValue<Vector2>();
+                DragEvent(ScreenToWorld(screenPos));
+            }
         }
     }
 }

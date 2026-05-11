@@ -571,6 +571,17 @@
                 },
                 {
                     "name": "",
+                    "id": "afe663ca-376f-404e-9175-eceb98447569",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "63267eba-7736-4bb7-bbf1-9d63b9984872",
                     "path": "<Touchscreen>/Press",
                     "interactions": "",
