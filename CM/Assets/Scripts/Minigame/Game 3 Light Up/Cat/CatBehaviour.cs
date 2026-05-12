@@ -1,4 +1,5 @@
 using StateManagement;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Minigame.Game3
         [SerializeField] private bool InCollisionWihtLight;
 
         [SerializeField] private bool paused = true;
+
         public bool IsPaused => paused;
 
         //State Machine
@@ -59,7 +61,7 @@ namespace Minigame.Game3
             _transitions = new List<StateManagement.Transition>
             {
                  new() {
-                    Condition = () => (true) ,
+                    Condition = () => (!IsPaused) ,
                     Source = initialState,
                     Target = idleState,
                  },

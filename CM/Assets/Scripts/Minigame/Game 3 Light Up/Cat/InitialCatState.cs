@@ -22,7 +22,7 @@ namespace Minigame.Game3
 
         public void OnExit()
         {
-            
+            AudioManager.instance.PlayEffect("GraveyardMusic");
         }
     }
 

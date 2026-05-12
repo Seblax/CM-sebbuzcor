@@ -12,8 +12,8 @@ public class IdleCatState : IState
     }
     public void OnEnter()
     {
-        AudioManager.instance.PlayEffect("GraveyardMusic");
         cat.CatReset();
+        cat.UpdateTombSpriteLayer?.Invoke(cat.transform.localPosition.y);
     }
 
     public void OnExecute()

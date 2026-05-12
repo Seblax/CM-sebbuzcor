@@ -1233,11 +1233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc19432dd15e369479761201e01fa2f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TombGenerator
-  tombSprites:
-  - {fileID: 21300000, guid: 609bbe57b63a9364a997272cf4298c00, type: 3}
-  - {fileID: 21300000, guid: fc43435048895294eb13a93eda6bfb0e, type: 3}
-  - {fileID: 21300000, guid: 0e2903090d47e8548a73397d00bce3af, type: 3}
-  - {fileID: 21300000, guid: ae13204d16f5d1340a2e06b1c54d9718, type: 3}
+  tombPrefab: {fileID: 4448158701809128291, guid: c0ef8225ff29b8245bba70826677a050, type: 3}
   tombPositions: []
 --- !u!1 &1362225127593993054
 GameObject:
@@ -3783,6 +3779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef3215f0dac16044b6a454509e378cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Minigame.Game3.Cat
+  scaleRatio: 0.15
   spriteRenderer: {fileID: 0}
   sprites: []
   timer: 2.5

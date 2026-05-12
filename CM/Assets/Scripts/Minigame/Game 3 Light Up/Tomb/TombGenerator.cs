@@ -2,68 +2,69 @@ using EasyTextEffects.Editor.MyBoxCopy.Extensions;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TombGenerator : MonoBehaviour
+namespace Minigame.Game3
 {
-    int tombNumber;
-
-    public Sprite[] tombSprites;
-    public List<Vector3> tombPositions;
-
-    void Start()
+    public class TombGenerator : MonoBehaviour
     {
-        tombNumber = Random.Range(3,7);
+        int tombNumber;
+        [SerializeField] GameObject tombPrefab;
+        public List<Vector3> tombPositions;
 
-        while (tombNumber > 0) { 
-            GenerateTombs();
-            tombNumber--;
-        }
-
-    }
-
-    void GenerateTombs() {
-        GameObject tombs = new GameObject();
-
-        SpriteRenderer spriteRender = tombs.AddComponent<SpriteRenderer>();
-        
-        spriteRender.sprite = tombSprites.GetRandom();
-        spriteRender.sortingOrder = 1;
-        Vector3 tombPosition = SetTombRandomPosition();
-
-        tombs.transform.SetParent(transform, false);
-        tombs.transform.localPosition = tombPosition;
-        tombs.transform.localScale *= Random.Range(1f, 2f);
-        
-        tombPositions.Add(tombPosition);
-    }
-
-    Vector3 SetTombRandomPosition()
-    {
-        Camera cam = Camera.main;
-        Vector3 res = Vector3.zero;
-        bool positionValid = false;
-        int attempts = 0; // Para evitar bucles infinitos si no hay espacio
-
-        while (!positionValid && attempts < 100)
+        void Start()
         {
-            float spawnX = Random.Range(0.1f, 0.90f);
-            float spawnY = Random.Range(0.15f, 0.85f);
+            tombNumber = Random.Range(3, 7);
 
-            Vector3 spawnViewportPos = new Vector3(spawnX, spawnY, Mathf.Abs(cam.transform.position.z));
-            res = cam.ViewportToWorldPoint(spawnViewportPos);
-
-            // Comprobar distancia con las tumbas existentes
-            positionValid = true;
-            foreach (Vector3 pos in tombPositions)
+            while (tombNumber > 0)
             {
-                if (Vector3.Distance(res, pos) < 2f)
-                {
-                    positionValid = false;
-                    break;
-                }
+                GenerateTombs();
+                tombNumber--;
             }
-            attempts++;
+
         }
 
-        return res;
+        void GenerateTombs()
+        {
+            Vector3 tombPosition = SetTombRandomPosition();
+
+            GameObject newTomb = Instantiate(tombPrefab, transform);
+
+            newTomb.transform.localPosition = tombPosition;
+
+            float randomX = UnityEngine.Random.value > 0.5f ? 1f : -1f;
+            newTomb.transform.localScale = new Vector3(randomX, 1, 1);
+
+            tombPositions.Add(tombPosition);
+        }
+
+        Vector3 SetTombRandomPosition()
+        {
+            Camera cam = Camera.main;
+            Vector3 res = Vector3.zero;
+            bool positionValid = false;
+            int attempts = 0; // Para evitar bucles infinitos si no hay espacio
+
+            while (!positionValid && attempts < 100)
+            {
+                float spawnX = Random.Range(0.1f, 0.90f);
+                float spawnY = Random.Range(0.15f, 0.85f);
+
+                Vector3 spawnViewportPos = new Vector3(spawnX, spawnY, Mathf.Abs(cam.transform.position.z));
+                res = cam.ViewportToWorldPoint(spawnViewportPos);
+
+                // Comprobar distancia con las tumbas existentes
+                positionValid = true;
+                foreach (Vector3 pos in tombPositions)
+                {
+                    if (Vector3.Distance(res, pos) < 2f)
+                    {
+                        positionValid = false;
+                        break;
+                    }
+                }
+                attempts++;
+            }
+
+            return res;
+        }
     }
 }

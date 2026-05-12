@@ -1,4 +1,5 @@
 using ShakeAnimation;
+using System;
 using UnityEngine;
 
 
@@ -10,6 +11,8 @@ namespace Minigame.Game3
     {
         private readonly string CAT_SPRITES_PATH = "Textures/Minigame/Game 3/gato";
 
+        public float scaleRatio = 0.15f;
+
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Sprite[] sprites;
 
@@ -19,6 +22,7 @@ namespace Minigame.Game3
         [SerializeField] private float timer;
         [SerializeField] private float catchTime = 1.5f;
         [SerializeField] private Vector3 currentPosition;
+        public Action<float> UpdateTombSpriteLayer;
 
         public bool Shaking => _shake.isPlaying;
         public bool IsCatched => timer <= 0;
@@ -32,14 +36,18 @@ namespace Minigame.Game3
             this._hop = GetComponent<Hop>();
 
             this.spriteRenderer.sprite = sprites[0];
+
+            float randomX = UnityEngine.Random.value > 0.5f ? 1f : -1f;
+            this.transform.localScale = new Vector3(randomX, 1, 1);
+            this.transform.localScale *= UnityEngine.Random.Range(1 - scaleRatio, 1 + scaleRatio);
         }
 
         public void SetRandomPosition()
         {
             Camera cam = Camera.main;
 
-            float spawnX = Random.Range(0.1f, 0.90f);
-            float spawnY = Random.Range(0.15f, 0.85f);
+            float spawnX = UnityEngine.Random.Range(0.1f, 0.90f);
+            float spawnY = UnityEngine.Random.Range(0.15f, 0.85f);
             ;
 
             Vector3 spawnViewportPos = new Vector3(spawnX, spawnY, Mathf.Abs(cam.transform.position.z));
