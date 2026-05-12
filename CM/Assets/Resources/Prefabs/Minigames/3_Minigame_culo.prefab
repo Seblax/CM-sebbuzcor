@@ -1189,6 +1189,56 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1319844933642543592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7914199042802706688}
+  - component: {fileID: 525143594392776151}
+  m_Layer: 0
+  m_Name: TombGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7914199042802706688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319844933642543592}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9180714872169651789}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &525143594392776151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319844933642543592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc19432dd15e369479761201e01fa2f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TombGenerator
+  tombSprites:
+  - {fileID: 21300000, guid: 609bbe57b63a9364a997272cf4298c00, type: 3}
+  - {fileID: 21300000, guid: fc43435048895294eb13a93eda6bfb0e, type: 3}
+  - {fileID: 21300000, guid: 0e2903090d47e8548a73397d00bce3af, type: 3}
+  - {fileID: 21300000, guid: ae13204d16f5d1340a2e06b1c54d9718, type: 3}
+  tombPositions: []
 --- !u!1 &1362225127593993054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,6 +1566,7 @@ MonoBehaviour:
   maxSpeed: 15
   acceleration: 10
   rb: {fileID: 0}
+  LanternSpriteObject: {fileID: 2874954245925271980}
 --- !u!1 &1540628108037786092
 GameObject:
   m_ObjectHideFlags: 0
@@ -3559,6 +3610,9 @@ GameObject:
   - component: {fileID: 1964837311923687766}
   - component: {fileID: 5112874930946911236}
   - component: {fileID: 6623487765800152712}
+  - component: {fileID: 2161698794749163779}
+  - component: {fileID: 6364201096700237450}
+  - component: {fileID: 3287205357715836681}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Player
@@ -3576,7 +3630,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2.43, z: -1}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9180714872169651789}
@@ -3636,7 +3690,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &1964837311923687766
@@ -3701,7 +3755,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.75
+  m_Radius: 0.5
 --- !u!114 &6623487765800152712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3714,8 +3768,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c9b61e854fbcf4c8e12fd2eee1d650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Minigame.Game4.Guy
-  closeDoor: {fileID: 21300000, guid: 205c5c1412d474940bbeff4ef1d8f629, type: 3}
-  openDoor: {fileID: 21300000, guid: 2b3f915a38f4dbf46ace0fbd4b5b5dbd, type: 3}
+  cat: {fileID: 0}
+  InCollisionWihtLight: 0
+  paused: 1
+--- !u!114 &2161698794749163779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240662636079938731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ef3215f0dac16044b6a454509e378cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Minigame.Game3.Cat
+  spriteRenderer: {fileID: 0}
+  sprites: []
+  timer: 2.5
+  catchTime: 1.5
+  currentPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &6364201096700237450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240662636079938731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947f00a3684deba428eb9fa5b2441814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShakeAnimation.Shake
+  play: 0
+  isPlaying: 0
+  startPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &3287205357715836681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240662636079938731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 875903d66e5540a498eac1aefa70607f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hop
+  amplitude: 75
+  speed: 0.25
+  direction: {x: 0, y: 1, z: 0}
 --- !u!1 &3249861861158480381
 GameObject:
   m_ObjectHideFlags: 0
@@ -7198,6 +7300,7 @@ Transform:
   - {fileID: 2330419608564460384}
   - {fileID: 2778308952396911589}
   - {fileID: 8058036381559391127}
+  - {fileID: 7914199042802706688}
   m_Father: {fileID: 4155228312364966157}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6056254066679137531
@@ -7476,7 +7579,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 2.25, y: 2.25, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2330419608564460384}

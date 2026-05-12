@@ -2,7 +2,7 @@ using Minigame.Game2;
 using UnityEngine;
 using ShakeAnimation;
 
-namespace Minigame.Game3
+namespace Minigame.Game2
 {
     public class Door : MonoBehaviour, IPausable
     {

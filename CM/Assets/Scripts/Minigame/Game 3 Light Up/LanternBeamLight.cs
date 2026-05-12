@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Minigame.Game4
+namespace Minigame.Game3
 {
     public class LanternBeamLight : MonoBehaviour
     {

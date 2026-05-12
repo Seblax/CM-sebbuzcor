@@ -1,25 +1,25 @@
 m_ProjectFiles:
   m_ManifestFileStatus:
-    m_FilePath: C:/Users/sebab/OneDrive/Desktop/CM-sebbuzcor/CM/Packages/manifest.json
+    m_FilePath: C:/Users/sebab/Desktop/CM-sebbuzcor/CM/Packages/manifest.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639132449256157262
-    m_Hash: 1910711888
+      ticks: 639128226178877313
+    m_Hash: 2879931001
   m_LockFileStatus:
-    m_FilePath: C:/Users/sebab/OneDrive/Desktop/CM-sebbuzcor/CM/Packages/packages-lock.json
+    m_FilePath: C:/Users/sebab/Desktop/CM-sebbuzcor/CM/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639132449256167273
-    m_Hash: 1144336712
+      ticks: 639128226178963326
+    m_Hash: 1256856008
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
   m_LocalFileStatus: []
-m_ProjectPath: C:/Users/sebab/OneDrive/Desktop/CM-sebbuzcor/CM/Packages
+m_ProjectPath: C:/Users/sebab/Desktop/CM-sebbuzcor/CM/Packages
 m_EditorVersion: 6000.2.12f1 (e89d5df0e333)
 m_ResolvedPackages:
 - packageId: com.qiaozhilei.easy-text-effects@https://github.com/LeiQiaoZhi/Easy-Text-Effect.git
@@ -27,7 +27,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.0.8
   source: 5
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.qiaozhilei.easy-text-effects@102249bba7e9
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.qiaozhilei.easy-text-effects@102249bba7e9
   assetPath: Packages/com.qiaozhilei.easy-text-effects
   name: com.qiaozhilei.easy-text-effects
   displayName: Easy Text Effects
@@ -116,7 +116,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 12.0.2
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.animation@34e0443c58ed
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.animation@34e0443c58ed
   assetPath: Packages/com.unity.2d.animation
   name: com.unity.2d.animation
   displayName: 2D Animation
@@ -396,7 +396,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 2.0.2
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.aseprite@dca42b450aa1
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.aseprite@dca42b450aa1
   assetPath: Packages/com.unity.2d.aseprite
   name: com.unity.2d.aseprite
   displayName: 2D Aseprite Importer
@@ -552,7 +552,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 11.0.1
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.psdimporter@0adcab25a8fd
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.psdimporter@0adcab25a8fd
   assetPath: Packages/com.unity.2d.psdimporter
   name: com.unity.2d.psdimporter
   displayName: 2D PSD Importer
@@ -770,7 +770,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.sprite@331abd9a1e2f
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.sprite@331abd9a1e2f
   assetPath: Packages/com.unity.2d.sprite
   name: com.unity.2d.sprite
   displayName: 2D Sprite
@@ -850,7 +850,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 12.0.1
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.spriteshape@1d246726c231
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.spriteshape@1d246726c231
   assetPath: Packages/com.unity.2d.spriteshape
   name: com.unity.2d.spriteshape
   displayName: 2D SpriteShape
@@ -1069,7 +1069,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.tilemap@0b99f08c0204
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.tilemap@0b99f08c0204
   assetPath: Packages/com.unity.2d.tilemap
   name: com.unity.2d.tilemap
   displayName: 2D Tilemap Editor
@@ -1168,7 +1168,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 5.0.1
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.tilemap.extras@2338d989ff2a
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.tilemap.extras@2338d989ff2a
   assetPath: Packages/com.unity.2d.tilemap.extras
   name: com.unity.2d.tilemap.extras
   displayName: 2D Tilemap Extras
@@ -1340,7 +1340,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 2.10.1
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.collab-proxy@b8d65294b30f
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.collab-proxy@b8d65294b30f
   assetPath: Packages/com.unity.collab-proxy
   name: com.unity.collab-proxy
   displayName: Unity Version Control
@@ -1555,7 +1555,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 3.0.38
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.ide.rider@1f60b3138684
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.ide.rider@1f60b3138684
   assetPath: Packages/com.unity.ide.rider
   name: com.unity.ide.rider
   displayName: JetBrains Rider Editor
@@ -1690,7 +1690,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 2.0.25
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.ide.visualstudio@74aa435fc4bb
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.ide.visualstudio@74aa435fc4bb
   assetPath: Packages/com.unity.ide.visualstudio
   name: com.unity.ide.visualstudio
   displayName: Visual Studio Editor
@@ -1808,7 +1808,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.14.2
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.inputsystem@be6c4fd0abf5
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.inputsystem@be6c4fd0abf5
   assetPath: Packages/com.unity.inputsystem
   name: com.unity.inputsystem
   displayName: Input System
@@ -1976,7 +1976,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.0.0
   source: 2
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.multiplayer.center@f3fb577b3546
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.multiplayer.center@f3fb577b3546
   assetPath: Packages/com.unity.multiplayer.center
   name: com.unity.multiplayer.center
   displayName: Multiplayer Center
@@ -2072,7 +2072,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 17.2.0
   source: 2
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.render-pipelines.universal@6c02063a0a76
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.render-pipelines.universal@6c02063a0a76
   assetPath: Packages/com.unity.render-pipelines.universal
   name: com.unity.render-pipelines.universal
   displayName: Universal Render Pipeline
@@ -2199,7 +2199,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.6.0
   source: 2
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.test-framework@d97b7cd61ded
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.test-framework@d97b7cd61ded
   assetPath: Packages/com.unity.test-framework
   name: com.unity.test-framework
   displayName: Test Framework
@@ -2289,7 +2289,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.8.9
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.timeline@6b9e48457ddb
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.timeline@6b9e48457ddb
   assetPath: Packages/com.unity.timeline
   name: com.unity.timeline
   displayName: Timeline
@@ -2493,7 +2493,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 2.0.0
   source: 2
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.ugui@a73b706e285a
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.ugui@a73b706e285a
   assetPath: Packages/com.unity.ugui
   name: com.unity.ugui
   displayName: Unity UI
@@ -2589,7 +2589,7 @@ m_ResolvedPackages:
   isDirectDependency: 1
   version: 1.9.8
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.visualscripting@b4d700247d4b
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.visualscripting@b4d700247d4b
   assetPath: Packages/com.unity.visualscripting
   name: com.unity.visualscripting
   displayName: Visual Scripting
@@ -5486,7 +5486,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 2.0.5
   source: 2
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.ext.nunit@031a54704bff
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.ext.nunit@031a54704bff
   assetPath: Packages/com.unity.ext.nunit
   name: com.unity.ext.nunit
   displayName: Custom NUnit
@@ -5566,7 +5566,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 17.2.0
   source: 2
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.render-pipelines.core@8d70e2c352d2
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.render-pipelines.core@8d70e2c352d2
   assetPath: Packages/com.unity.render-pipelines.core
   name: com.unity.render-pipelines.core
   displayName: Scriptable Render Pipeline Core
@@ -5692,7 +5692,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 17.2.0
   source: 2
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.shadergraph@33016d94899e
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.shadergraph@33016d94899e
   assetPath: Packages/com.unity.shadergraph
   name: com.unity.shadergraph
   displayName: Shader Graph
@@ -5808,7 +5808,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 17.0.3
   source: 2
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.render-pipelines.universal-config@8dc1aab4af1d
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.render-pipelines.universal-config@8dc1aab4af1d
   assetPath: Packages/com.unity.render-pipelines.universal-config
   name: com.unity.render-pipelines.universal-config
   displayName: Universal Render Pipeline Config
@@ -5916,7 +5916,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 11.0.1
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.common@dd402daace1b
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.2d.common@dd402daace1b
   assetPath: Packages/com.unity.2d.common
   name: com.unity.2d.common
   displayName: 2D Common
@@ -6099,7 +6099,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.3.2
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.mathematics@8017b507cc74
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.mathematics@8017b507cc74
   assetPath: Packages/com.unity.mathematics
   name: com.unity.mathematics
   displayName: Mathematics
@@ -6200,7 +6200,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 2.6.2
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.collections@aea9d3bd5e19
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.collections@aea9d3bd5e19
   assetPath: Packages/com.unity.collections
   name: com.unity.collections
   displayName: Collections
@@ -6392,7 +6392,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 4.9.3
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.searcher@1e17ce91558d
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.searcher@1e17ce91558d
   assetPath: Packages/com.unity.searcher
   name: com.unity.searcher
   displayName: Searcher
@@ -6490,7 +6490,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.8.25
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.burst@1df634d836b8
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.burst@1df634d836b8
   assetPath: Packages/com.unity.burst
   name: com.unity.burst
   displayName: Burst
@@ -6732,7 +6732,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.0.1
   source: 2
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.rendering.light-transport@2c9279f90d7c
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.rendering.light-transport@2c9279f90d7c
   assetPath: Packages/com.unity.rendering.light-transport
   name: com.unity.rendering.light-transport
   displayName: Unity Light Transport Library
@@ -6838,7 +6838,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 1.11.5
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.nuget.mono-cecil@d78732e851eb
   assetPath: Packages/com.unity.nuget.mono-cecil
   name: com.unity.nuget.mono-cecil
   displayName: Mono Cecil
@@ -6933,7 +6933,7 @@ m_ResolvedPackages:
   isDirectDependency: 0
   version: 3.2.0
   source: 1
-  resolvedPath: C:\Users\sebab\OneDrive\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.test-framework.performance@0840f58e4562
+  resolvedPath: C:\Users\sebab\Desktop\CM-sebbuzcor\CM\Library\PackageCache\com.unity.test-framework.performance@0840f58e4562
   assetPath: Packages/com.unity.test-framework.performance
   name: com.unity.test-framework.performance
   displayName: Performance testing API

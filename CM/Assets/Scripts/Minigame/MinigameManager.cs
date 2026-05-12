@@ -19,9 +19,11 @@ namespace Minigame
         public bool isScoreScreenOver;
 
         //State Machine
-        public IState State => _state;
         public IState _state;
         public List<StateManagement.Transition> Transitions => _transitions;
+
+        public IState State { get => _state; set => _state = value; }
+
         public List<StateManagement.Transition> _transitions = new List<StateManagement.Transition>();
 
         public Action Move;
@@ -95,33 +97,10 @@ namespace Minigame
             _state.OnEnter();
         }
 
-        public void TransitionToState(IState targetState)
-        {
-            _state.OnExit();
-            _state = targetState;
-            _state.OnEnter();
-        }
-
-        public void HandleStateTransitions()
-        {
-            foreach (StateManagement.Transition transition in _transitions)
-            {
-                if (transition.Source == _state && transition.Condition())
-                {
-                    TransitionToState(transition.Target);
-                    if (_state.GetType().Name != transition.Target.GetType().Name)
-                        Debug.Log($"Transitioning from {_state.GetType().Name} to {transition.Target.GetType().Name}");
-                    else
-                        Debug.Log($"Staying in {_state.GetType().Name}.");
-                    break;
-                }
-            }
-        }
-
         public void Update()
         {
             _state.OnExecute();
-            HandleStateTransitions();
+            ((IStateMachine)this).HandleStateTransitions();
 
             CurrentState = _state.GetType().Name;
         }

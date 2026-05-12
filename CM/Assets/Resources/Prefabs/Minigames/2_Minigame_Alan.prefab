@@ -1300,12 +1300,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14a2b8a5e25e864980817bd09b21e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Minigame.Game2.Alan
+  paused: 1
   baseSpeed: 1
-  maxSpeed: 10
+  maxSpeed: 5
   acceleration: 0.25
   rb: {fileID: 0}
   trail: {fileID: 0}
-  paused: 1
 --- !u!1 &1362225127593993054
 GameObject:
   m_ObjectHideFlags: 0

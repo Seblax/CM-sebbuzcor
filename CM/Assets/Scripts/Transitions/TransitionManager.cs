@@ -1,3 +1,4 @@
+using StateManagement;
 using System.IO;
 using UnityEngine;
 
@@ -52,7 +53,7 @@ namespace ui
             if (transition == null) return;
             if (transition.State == null) return;
 
-            transition.HandleStateTransitions();
+            ((IStateMachine)transition).HandleStateTransitions();
             transition.State.OnExecute();
         }
 

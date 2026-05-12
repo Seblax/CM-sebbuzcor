@@ -6,14 +6,14 @@ using UnityEngine;
 public class Hop : MonoBehaviour
 {
     [Header("Settings")]
-    public float _amplitude = 75f;      //  Amplitud del salto
+    public float amplitude = 75f;      //  Amplitud del salto
     public float speed = 0.25f;         //  Velocidad del salto
     public Vector3 direction = Vector3.up;         //  Velocidad del salto
 
     bool _isPlaying = false;            //  Está saltando
     Vector3 _startPos;                  //  Posición inicial del objeto
-    float _timer = 0;         
-    
+    float _timer = 0;
+
     public bool IsHopping { get => _isPlaying; }
 
 
@@ -50,17 +50,38 @@ public class Hop : MonoBehaviour
 
         // El salto es una función seno, por lo que no es un salto como tal simulado con física
         // sino un salto "arreglado".
-        float y = Mathf.Sin(progress * Mathf.PI) * _amplitude; transform.localPosition = _startPos + direction * y;
+        float y = Mathf.Sin(progress * Mathf.PI) * amplitude; transform.localPosition = _startPos + direction * y;
     }
 
     /// <summary>
     /// Inicia el salto
     /// </summary>
+    /// 
     public void Play()
     {
+        Play(speed, amplitude, Vector3.up);
+    }
+
+    public void Play(float speed)
+    {
+        Play(speed, amplitude, Vector3.up);
+    }
+
+    public void Play(float speed, float amplitude)
+    {
+        Play(speed, amplitude, Vector3.up);
+    }
+
+    public void Play(float speed, float amplitude, Vector3 direction)
+    {
+        this.speed = speed;
+        this.amplitude = amplitude;
+        this.direction = direction;
+
         this.Reset();
         _isPlaying = true;
     }
+
     public void Stop()
     {
         transform.localPosition = _startPos;

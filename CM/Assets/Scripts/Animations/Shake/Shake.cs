@@ -18,9 +18,10 @@ namespace ShakeAnimation
         public bool isPlaying;
         public Vector3 startPosition;
 
+        //State Machine
         private IState _state;
+        public IState State { get => _state; set => _state = value; }
         private List<StateTransition> _transitions = new List<StateTransition>();
-        public IState State => this._state;
         public List<StateTransition> Transitions => this._transitions;
         public float Interval => this._interval;
         public float Speed => this._speed;
@@ -42,7 +43,7 @@ namespace ShakeAnimation
             if (_state == null) return;
 
             _state.OnExecute();
-            HandleStateTransitions();
+            ((IStateMachine)this).HandleStateTransitions();
         }
 
         public void Play()
@@ -94,30 +95,17 @@ namespace ShakeAnimation
             _state.OnEnter();
         }
 
-        public void TransitionToState(IState targetState)
-        {
-            _state.OnExit();
-            _state = targetState;
-            _state.OnEnter();
-        }
-
-        public void HandleStateTransitions()
-        {
-            foreach (StateTransition transition in Transitions)
-            {
-                if (transition.Source == _state && transition.Condition())
-                {
-                    TransitionToState(transition.Target);
-                    break;
-                }
-            }
-        }
-
         void RestartStateMachine()
         {
             play = false;
             isPlaying = false;
             InitializeStateMachine();
+        }
+
+        public void Stop()
+        {
+            RestartStateMachine();
+            this.transform.localPosition = startPosition;
         }
     }
 }

@@ -1,9 +1,8 @@
 using EasyTextEffects.Editor.MyBoxCopy.Extensions;
-using Minigame;
 using System.Collections;
 using UnityEngine;
 
-namespace Game0
+namespace Minigame.Game0
 {
     public class CarBehaviour : MonoBehaviour, IPausable
     {

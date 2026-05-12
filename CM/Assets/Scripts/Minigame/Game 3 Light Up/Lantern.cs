@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Minigame.Game4
+namespace Minigame.Game3
 {
     public class Lantern : PlayerControllerDrag
     {
@@ -13,6 +13,8 @@ namespace Minigame.Game4
         public Rigidbody2D rb;
 
         public Action<Vector3> OnPositionChange;
+
+        public GameObject LanternSpriteObject;
 
 
         private void Start()
@@ -59,6 +61,13 @@ namespace Minigame.Game4
         {
             currentSpeed = baseSpeed;
             rb.linearVelocity = Vector2.zero;
+        }
+
+        private void LateUpdate()
+        {
+            if (MinigameManager.instance.minigame.IsTimerOver) {
+                Destroy(LanternSpriteObject, 1f);
+            }
         }
     }
 }

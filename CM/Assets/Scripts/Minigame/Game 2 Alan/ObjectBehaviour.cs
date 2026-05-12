@@ -1,8 +1,6 @@
-using EasyTextEffects.Editor.MyBoxCopy.Extensions;
-using System.Collections;
 using UnityEngine;
 
-namespace Minigame.Game3
+namespace Minigame.Game2
 {
     public class ObjectBehaviour : MonoBehaviour, IPausable
     {

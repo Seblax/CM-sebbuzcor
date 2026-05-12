@@ -1,7 +1,7 @@
 using ShakeAnimation;
 using UnityEngine;
 
-namespace Minigame.Game2
+namespace Minigame.Game1
 {
     public class Block : MonoBehaviour
     {

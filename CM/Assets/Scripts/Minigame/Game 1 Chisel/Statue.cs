@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Minigame.Game2
+namespace Minigame.Game1
 {
     public class Statue : MonoBehaviour
     {
