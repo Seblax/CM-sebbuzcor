@@ -8754,7 +8754,7 @@ GameObject:
   - component: {fileID: 1066552146933489463}
   - component: {fileID: 613181471307230260}
   m_Layer: 0
-  m_Name: 3_Minigame_culo
+  m_Name: 3_Minigame_cat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

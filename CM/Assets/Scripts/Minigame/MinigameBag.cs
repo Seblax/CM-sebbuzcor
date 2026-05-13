@@ -23,6 +23,6 @@ public class MinigameBag
 
         int randomIndex = minigameIDs.GetRandom();
         minigameIDs.Remove(randomIndex);
-        return 2;
+        return 4;
     }
 }

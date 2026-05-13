@@ -35,7 +35,10 @@ namespace Minigame.Game1
             {
                 float percent = currentHealth / 100;
 
-                shake.Play(percent * Data.Minigame.Game1.Blcok.Shake.INTERVAL, percent * Data.Minigame.Game1.Blcok.Shake.MAGNITUDE);
+                float interval = percent * Random.Range(Data.Minigame.Game1.Blcok.Shake.INTERVAL.Item1, Data.Minigame.Game1.Blcok.Shake.INTERVAL.Item2);
+                float magnitude = percent * Random.Range(Data.Minigame.Game1.Blcok.Shake.MAGNITUDE.Item1, Data.Minigame.Game1.Blcok.Shake.MAGNITUDE.Item2);
+
+                shake.Play(interval, percent);
                 AudioManager.instance.PlayEffect(hitSound[Random.Range(0, hitSound.Length)]).GetAudioSource.volume = 0.75f;
             }
             else if (currentHealth < health)
@@ -47,12 +50,16 @@ namespace Minigame.Game1
 
         public void ImpulsarObjeto()
         {
-            float xRange = Random.Range(-Data.Minigame.Game1.Blcok.Impulse.X_RANGE, Data.Minigame.Game1.Blcok.Impulse.X_RANGE);
-            float zRange = 0;
+            float xRange = Random.Range(Data.Minigame.Game1.Blcok.Impulse.X_RANGE.Item1, Data.Minigame.Game1.Blcok.Impulse.X_RANGE.Item2);
+            float force = Random.Range(Data.Minigame.Game1.Blcok.Impulse.FORCE.Item1, Data.Minigame.Game1.Blcok.Impulse.FORCE.Item2);
 
-            direction = new Vector3(xRange, Data.Minigame.Game1.Blcok.Impulse.Y_RANGE, zRange);
+            float x = Random.Range(-xRange, xRange);
+            float y = Random.Range(Data.Minigame.Game1.Blcok.Impulse.Y_RANGE.Item1, Data.Minigame.Game1.Blcok.Impulse.Y_RANGE.Item2);
+            float z = 0;
 
-            rb.AddForce(direction.normalized * Data.Minigame.Game1.Blcok.Impulse.FORCE, ForceMode2D.Impulse);
+            direction = new Vector3(x, y, z);
+
+            rb.AddForce(direction.normalized * force, ForceMode2D.Impulse);
 
             rb.gravityScale = 1;
         }

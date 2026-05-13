@@ -1,4 +1,7 @@
+using System;
 using UnityEngine;
+
+
 
 public class Data
 {
@@ -35,7 +38,7 @@ public class Data
 
                 public static class Hop
                 {
-                    public static readonly float AMPLITUDE = Random.Range(0.15f, 0.25f);
+                    public static readonly float AMPLITUDE = UnityEngine.Random.Range(0.15f, 0.25f);
                     public static readonly float SPEED = 0.25f;
                     public static readonly Vector3 DIRECTION = Vector3.up;
                 }
@@ -60,16 +63,16 @@ public class Data
                 public static class Shake
                 {
 
-                    public static readonly float INTERVAL = Random.Range(0.1f, 0.15f);
-                    public static readonly float MAGNITUDE = Random.Range(0.2f, 0.3f);
+                    public static readonly Tuple<float, float> INTERVAL = Tuple.Create(0.1f, 0.15f);
+                    public static readonly Tuple<float, float> MAGNITUDE = Tuple.Create(0.2f, 0.3f);
 
                 }
 
                 public static class Impulse
                 {
-                    public static readonly float X_RANGE = Random.Range(5f, 10f);
-                    public static readonly float Y_RANGE = Random.Range(1f, 2f);
-                    public static readonly float FORCE = Random.Range(7.5f, 10f);
+                    public static readonly Tuple<float,float> X_RANGE = Tuple.Create(5f, 10f);
+                    public static readonly Tuple<float, float> Y_RANGE = Tuple.Create(1f, 2f);
+                    public static readonly Tuple<float, float> FORCE = Tuple.Create(7.5f, 10f);
 
                 }
             }
@@ -105,7 +108,8 @@ public class Data
                 public static readonly string BALLOON_POP_SOUND = "BalloonPop";
                 public static readonly string BALLOON_EXPLODE_SOUND = "BalloonExplode";
 
-                public static class Shake {
+                public static class Shake
+                {
                     public static readonly float INTERVAL = 0.05f;
                     public static readonly float DURATION = 5f;
                 }
@@ -135,12 +139,14 @@ public class Data
                     public static readonly float SHAKE_SPEED = 10f;
                 }
 
-                public static class Dead {
+                public static class Dead
+                {
                     public static readonly float PERCENT = 0f;
                 }
             }
 
-            public static class Door {
+            public static class Door
+            {
                 public static readonly string DOOR_SOUND = "Door";
 
                 public static readonly float MIN_ALAN_DISTANCE = 4f;
@@ -150,7 +156,8 @@ public class Data
                 public static readonly float MIN_Y_SPAWN = 0.15f;
                 public static readonly float MAX_Y_SPAWN = 0.85f;
 
-                public static class Shake {
+                public static class Shake
+                {
                     public static readonly float SPEED = 25f;
                     public static readonly float INTERVAL = 0.05f;
                     public static readonly float DURATION = 0.5f;
@@ -162,7 +169,7 @@ public class Data
         public static class Game3
         {
             public static readonly string GRAVEYARD_MUSIC_SOUND = "GraveyardMusic";
-            
+
             public static readonly float RANDOM_SOUND_TIMER = 2.5f;
 
             public static class Cat
@@ -183,7 +190,8 @@ public class Data
                 public static readonly string CAT_CATCH_SOUND = "CatCatch";
                 public static readonly string CAT_VISIBLE_SOUND = "CatVisible";
 
-                public static class Shake {
+                public static class Shake
+                {
                     public static readonly float SPEED = 5f;
                     public static readonly float INTERVAL = 0.10f;
                     public static readonly float DURATION = 3.5f;
@@ -202,7 +210,8 @@ public class Data
                 public static readonly float MAX_SPEED = 15f;      // Velocidad tope
                 public static readonly float ACCELERATION = 10f;  // Qué tan rápido aumenta la velocidad
 
-                public static class Beam {
+                public static class Beam
+                {
                     public static readonly float BASE_SCALE = -2.5f;
                     public static readonly float BASE_POSITION = -0.75f;
 
@@ -211,5 +220,35 @@ public class Data
                 }
             }
         }
+
+        public static class Game4
+        {
+            public static readonly string CARDS_SPRITES_PATH = "Textures/Minigame/Game 4/Card";
+
+            public static class Card {
+                public static readonly float IMPULSE_FORCE = 10;
+                public static readonly float TORQUE_FORCE = 5;
+                
+                public static readonly Tuple<float, float> LINEAR_DAMPING = Tuple.Create(0.5f,0.75f);
+                public static readonly Tuple<float, float> ANGULAR_DAMPING = Tuple.Create(0.5f, 0.75f);
+
+                public static readonly Tuple<float, float> X_DIRECTION_RANGE = Tuple.Create(-0.5f,0.5f);
+                public static readonly Tuple<float, float> Y_DIRECTION_RANGE = Tuple.Create(0.2f, 1f);
+                public static readonly Tuple<float,float> Z_DIRECTION_RANGE = Tuple.Create(2.5f, 3f);
+
+
+                public static readonly Tuple<float, float> X_ROTATION_RANGE = Tuple.Create(-2f, 2f);
+                public static readonly Tuple<float, float> Y_ROTATION_RANGE = Tuple.Create(-2f, 2f);
+                public static readonly Tuple<float, float> Z_ROTATION_RANGE = Tuple.Create(-2f, 2f);
+            }
+
+            public static class Table
+            {
+                public static readonly float SPEED = 0.25f;
+                public static readonly float AMPLITUDE = 1.5f;
+            }
+        }
     }
+
+
 }
