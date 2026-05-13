@@ -7,34 +7,38 @@ namespace Minigame.Game0
     public class CarBehaviour : MonoBehaviour, IPausable
     {
         SpriteRenderer[] _sprenderers;
-        [SerializeField] Sprite[] cars;
-        [SerializeField] Sprite wheels;
+        [SerializeField] Sprite[] _cars;
+        [SerializeField] Sprite _wheels;
 
-        ConstantMove mover;
-        Hop carHop;
+        BoxCollider2D _boxCollider2D;
 
-        public float distance = 100f;
-        public float interval = 5f;
-        float totalWindow;
+        ConstantMove _mover;
+        Hop _hop;
+        
+        private float totalWindow;
 
-        bool paused = true;
-        public bool IsPaused { get => paused; }
+        //Pause
+        bool _paused = true;
+        public bool IsPaused { get => _paused; }
 
+        //Sound
         private Sound moveSound;
 
         private void Start()
         {
-            this.transform.localPosition += Vector3.right * (distance / 2);
-            mover = GetComponent<ConstantMove>();
+            this.transform.localPosition += Vector3.right * (Data.Minigame.Game0.Car.Mover.DISTANCE / 2);
+            
+            _mover = GetComponent<ConstantMove>();
             _sprenderers = GetComponentsInChildren<SpriteRenderer>();
-            carHop = GetComponentInChildren<Hop>();
+            _hop = GetComponentInChildren<Hop>();
+            _boxCollider2D = GetComponent<BoxCollider2D>();
 
-            mover.direction = Vector3.left;
-            mover.distance = distance;
-            mover.duration = interval;
+            SetHopConfiguration();
+            SetMoverConfiguration();
+            SetSkin();
+            
             totalWindow = MinigameManager.instance.minigame.GetMinigameDuration;
 
-            SetSkin();
             StartCoroutine(SpawningLoop());
         }
 
@@ -50,18 +54,22 @@ namespace Minigame.Game0
                 MinigameManager.instance.Pause -= SetPaused;
         }
 
+        public void DisableCarCollider(float x) {
+            _boxCollider2D.enabled = x <= this.transform.localPosition.x;
+        }
+
         private IEnumerator SpawningLoop()
         {
             yield return new WaitUntil(() => !IsPaused);
 
-            AudioManager.instance.PlayEffect("CarStart");
+            AudioManager.instance.PlayEffect(Data.Minigame.Game0.Car.CAR_START_SOUND);
 
             while (true)
             {
 
                 // 1. Calculamos el tiempo de espera aleatorio
                 // Restamos la duración del movimiento para no pasarnos de los 7s totales
-                float moveDuration = mover.duration;
+                float moveDuration = _mover.duration;
                 float maxWait = totalWindow - moveDuration;
                 float randomWait = Random.Range(0f, maxWait);
 
@@ -70,9 +78,9 @@ namespace Minigame.Game0
                 yield return new WaitForSeconds(randomWait);
 
                 // 3. Ejecutamos el movimiento
-                mover.StartMove();
+                _mover.StartMove();
 
-                if (mover.IsMovementComplete)
+                if (_mover.IsMovementComplete)
                 {
                     Destroy(this.gameObject);
                     Destroy(moveSound.gameObject);
@@ -84,28 +92,28 @@ namespace Minigame.Game0
 
         void SetSkin()
         {
-            _sprenderers[0].sprite = cars.GetRandom();
-            _sprenderers[1].sprite = wheels;
-            _sprenderers[2].sprite = wheels;
+            _sprenderers[0].sprite = _cars.GetRandom();
+            _sprenderers[1].sprite = _wheels;
+            _sprenderers[2].sprite = _wheels;
         }
 
         private void Update()
         {
             if (IsPaused) return;
 
-            if (!carHop.IsHopping) carHop.Play();
+            if (!_hop.IsHopping) _hop.Play();
 
-            if (moveSound == null && !mover.IsMovementComplete) moveSound = AudioManager.instance.PlayEffect("CarMoveLoop");
+            if (moveSound == null && !_mover.IsMovementComplete) moveSound = AudioManager.instance.PlayEffect(Data.Minigame.Game0.Car.CAR_LOOP_SOUND);
 
             if (moveSound != null && moveSound.GetAudioSource != null)
             {
-                moveSound.GetAudioSource.panStereo = 1f - (mover.Percent * 2f);
+                moveSound.GetAudioSource.panStereo = 1f - (_mover.Percent * 2f);
             }
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Player"))
+            if (collision.gameObject.CompareTag(Data.Minigame.PLAYER_TAG))
             {
                 collision.gameObject.GetComponentInParent<AnimalBehaviour>().Hit();
             }
@@ -113,7 +121,19 @@ namespace Minigame.Game0
 
         public void SetPaused(bool isPaused)
         {
-            paused = isPaused;
+            _paused = isPaused;
+        }
+
+        void SetHopConfiguration() {
+            _hop.amplitude = Data.Minigame.Game0.Car.Hop.AMPLITUDE;
+            _hop.speed = Data.Minigame.Game0.Car.Hop.SPEED;
+            _hop.direction = Data.Minigame.Game0.Car.Hop.DIRECTION;
+        }
+
+        void SetMoverConfiguration() {
+            _mover.direction = Vector3.left;
+            _mover.distance = Data.Minigame.Game0.Car.Mover.DISTANCE;
+            _mover.duration = Data.Minigame.Game0.Car.Mover.INTERVAL;
         }
     }
 }

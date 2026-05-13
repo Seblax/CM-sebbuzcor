@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cb7dde33b323342adb42b2f7d9ddf9, type: 3}
   m_Name: 1_placeholder
   m_EditorClassIdentifier: Assembly-CSharp::UserScriptableObject
-  userPicture: {fileID: -6878226324311285336, guid: eec160c3986d0b54a86eb4a1c4687a15, type: 3}
-  userName: AlanWoke
-  userComment: Fock spikes
-  likes: 123
-  comments: 324
+  userPicture: {fileID: 21300000, guid: 28c4d5408eee79a43ab9815d523502ab, type: 3}
+  userName: WhereIsWallyTheCat
+  userComment: 01000010 01101111 01101111
+  likes: 198765
+  comments: 234500

@@ -1,3 +1,4 @@
+using EasyTextEffects;
 using EasyTextEffects.Editor.MyBoxCopy.Extensions;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Minigame.UI
         void Start()
         {
             this.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = scoreText.GetRandom();
+            this.GetComponentInChildren<TextEffect>().Refresh();
         }
     }
 }

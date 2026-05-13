@@ -13,7 +13,7 @@ public class IdleCatState : IState
     public void OnEnter()
     {
         cat.CatReset();
-        cat.UpdateTombSpriteLayer?.Invoke(cat.transform.localPosition.y);
+        cat.UpdateTombSpriteLayer?.Invoke(cat.transform.position.y);
     }
 
     public void OnExecute()

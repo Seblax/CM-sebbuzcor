@@ -9,10 +9,6 @@ namespace Minigame.Game3
 
     public class Cat : MonoBehaviour
     {
-        private readonly string CAT_SPRITES_PATH = "Textures/Minigame/Game 3/gato";
-
-        public float scaleRatio = 0.15f;
-
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Sprite[] sprites;
 
@@ -20,7 +16,6 @@ namespace Minigame.Game3
         Hop _hop;
 
         [SerializeField] private float timer;
-        [SerializeField] private float catchTime = 1.5f;
         [SerializeField] private Vector3 currentPosition;
         public Action<float> UpdateTombSpriteLayer;
 
@@ -29,35 +24,45 @@ namespace Minigame.Game3
 
         void Awake()
         {
-            this.sprites = Resources.LoadAll<Sprite>(CAT_SPRITES_PATH);
+            this.sprites = Resources.LoadAll<Sprite>(Data.Minigame.Game3.Cat.CAT_SPRITES_PATH);
 
-            this.spriteRenderer = GetComponent<SpriteRenderer>();
-            this._shake = GetComponent<Shake>();
-            this._hop = GetComponent<Hop>();
+            this.spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            this._shake = GetComponentInChildren<Shake>();
+            this._hop = GetComponentInChildren<Hop>();
 
             this.spriteRenderer.sprite = sprites[0];
 
-            float randomX = UnityEngine.Random.value > 0.5f ? 1f : -1f;
-            this.transform.localScale = new Vector3(randomX, 1, 1);
+            float scaleRatio = Data.Minigame.Game3.Cat.SCALE_RATIO;
+
             this.transform.localScale *= UnityEngine.Random.Range(1 - scaleRatio, 1 + scaleRatio);
         }
 
-        public void SetRandomPosition()
+        public void SetPosition()
         {
-            Camera cam = Camera.main;
+            this.transform.localPosition = Utils.RandomPosition(
+                Data.Minigame.Game3.Cat.LIGHT_START_POSITION,
+                Data.Minigame.Game3.Cat.MIN_LIGHT_DISTANCE,
+                Data.Minigame.Game3.Cat.MAX_LIGHT_DISTANCE,
+                Data.Minigame.Game3.Cat.MIN_X_SPAWN,
+                Data.Minigame.Game3.Cat.MAX_X_SPAWN,
+                Data.Minigame.Game3.Cat.MIN_Y_SPAWN,
+                Data.Minigame.Game3.Cat.MAX_Y_SPAWN
+                );
 
-            float spawnX = UnityEngine.Random.Range(0.1f, 0.90f);
-            float spawnY = UnityEngine.Random.Range(0.15f, 0.85f);
-            ;
+            FlipScaleCat();
+        }
 
-            Vector3 spawnViewportPos = new Vector3(spawnX, spawnY, Mathf.Abs(cam.transform.position.z));
-            currentPosition = cam.ViewportToWorldPoint(spawnViewportPos);
-            this.transform.localPosition = currentPosition;
+        void FlipScaleCat() {
+            float randomX = UnityEngine.Random.value > 0.5f ? 1f : -1f;
+            this.transform.localScale = new Vector3(randomX, 1, 1);
         }
 
         public void Shake()
         {
-            this._shake.Play(5, 0.15f, 3.5f);
+            this._shake.Play(
+                Data.Minigame.Game3.Cat.Shake.SPEED,
+                Data.Minigame.Game3.Cat.Shake.INTERVAL,
+                Data.Minigame.Game3.Cat.Shake.DURATION);
         }
 
         public void CatReset()
@@ -66,7 +71,7 @@ namespace Minigame.Game3
             this._shake.Stop();
             this._hop.Stop();
 
-            this.timer = catchTime;
+            this.timer = Data.Minigame.Game3.Cat.CATCH_TIME;
             this.transform.localPosition = currentPosition;
         }
 
@@ -77,8 +82,13 @@ namespace Minigame.Game3
 
         public void Catched()
         {
-            _hop.Play(0.25f, 1.5f);
-            AudioManager.instance.PlayEffect("CatCatch");
+            _shake.Stop();
+            _hop.Play(
+                Data.Minigame.Game3.Cat.Hop.SPEED, 
+                Data.Minigame.Game3.Cat.Hop.AMPLITUDE);
+
+            AudioManager.instance.PlayEffect(Data.Minigame.Game3.Cat.CAT_CATCH_SOUND);
+            
             MinigameManager.instance.minigame.Victory();
             this.spriteRenderer.sprite = sprites[1];
         }

@@ -46,7 +46,6 @@ namespace Minigame.Game3
             if (IsPaused) return;
             State.OnExecute();
             ((IStateMachine)this).HandleStateTransitions();
-            Debug.Log("Current state:" + State.GetType().Name);
         }
 
         //State Machine
@@ -86,14 +85,14 @@ namespace Minigame.Game3
             _state.OnEnter();
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerStay2D(Collider2D other)
         {
-            InCollisionWihtLight = other.gameObject.tag == "Player";
+            InCollisionWihtLight = other.gameObject.tag == Data.Minigame.PLAYER_TAG;
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            InCollisionWihtLight = other.gameObject.tag == "Player" ? false : true;
+            InCollisionWihtLight = other.gameObject.tag == Data.Minigame.PLAYER_TAG ? false : true;
         }
 
         public void SetPaused(bool isPaused)

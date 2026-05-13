@@ -1,16 +1,13 @@
 using Gamemanager;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Minigame.Game2
 {
     public class Alan : PlayerControllerDrag
     {
-        public float baseSpeed = 5f;       // Velocidad inicial
-        public float maxSpeed = 25f;      // Velocidad tope
-        public float acceleration = 10f;  // Qué tan rápido aumenta la velocidad
-
-        private float currentSpeed;       // Velocidad actual acumulada
+        private float currentSpeed;
         public Rigidbody2D rb;
         public AlanTrail trail;
 
@@ -24,12 +21,22 @@ namespace Minigame.Game2
             rb = GetComponent<Rigidbody2D>();
             rb.gravityScale = 0;
 
-            currentSpeed = baseSpeed; // Inicializamos
+            currentSpeed = Data.Minigame.Game2.Alan.BASE_SPEED;
+
+            this.transform.localPosition = Utils.RandomPosition(
+                    Data.Minigame.Game2.Alan.MIN_X_SPAWN,
+                    Data.Minigame.Game2.Alan.MAX_X_SPAWN,
+                    Data.Minigame.Game2.Alan.MIN_Y_SPAWN,
+                    Data.Minigame.Game2.Alan.MIN_Y_SPAWN
+            );
+
+            FindAnyObjectByType(typeof(Door)).GetComponent<Door>().SetDoorPosition(this.transform.localPosition);
         }
 
         public override void DragEvent(Vector3 worldPosition)
         {
-            if (IsPaused || MinigameManager.instance.minigame.Win || MinigameManager.instance.minigame.IsTimerOver) {
+            if (IsPaused || MinigameManager.instance.minigame.Win || MinigameManager.instance.minigame.IsTimerOver)
+            {
                 ResetSpeed();
                 return;
             }
@@ -47,36 +54,40 @@ namespace Minigame.Game2
 
             if (distance < 0.1f)
             {
-                // Reducimos la velocidad gradualmente en lugar de cortarla en seco
                 rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.zero, Time.deltaTime * 10f);
                 return;
             }
 
             // Calculamos la velocidad objetivo
+
+            float maxSpeed = Data.Minigame.Game2.Alan.MAX_SPEED;
+            float acceleration = Data.Minigame.Game2.Alan.ACCELERATION;
+
             currentSpeed = Mathf.MoveTowards(currentSpeed, maxSpeed, acceleration * Time.deltaTime);
+
             Vector2 desiredVelocity = targetDirection.normalized * currentSpeed;
 
-            // EL TRUCO: Interpolamos la velocidad actual hacia la deseada
-            // El valor '5f' controla qué tan "pesado" o "flotante" se siente (menor = más flotante)
             rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, desiredVelocity, Time.deltaTime * 5f);
         }
 
         public void ResetSpeed()
         {
-            currentSpeed = baseSpeed;
+            currentSpeed = Data.Minigame.Game2.Alan.BASE_SPEED;
             rb.linearVelocity = Vector2.zero;
         }
 
         public void Hit()
         {
+            AudioManager.instance.PlayEffect(Data.Minigame.Game2.Alan.BALLOON_POP_SOUND);
             trail.Stop();
-            GameManager.instance.score += (int)(200 * Aceleration.Scale);
             ResetSpeed();
-            MinigameManager.instance.minigame.Victory();
-            this.GetComponentInChildren<SpriteRenderer>().enabled = false; // Desaparece al ser golpeado
-            AudioManager.instance.PlayEffect("BalloonPop");
+
+            this.GetComponentInChildren<SpriteRenderer>().enabled = false;
 
             Destroy(this.gameObject);
+
+            GameManager.instance.score += (int)(Data.Minigame.Game2.Alan.BASE_SCORE * Aceleration.Scale);
+            MinigameManager.instance.minigame.Victory();
         }
 
         public void LateUpdate()
@@ -90,7 +101,7 @@ namespace Minigame.Game2
             base.SetPaused(isPaused);
             if (!isPaused)
             {
-                trail.Play(1.25f);
+                trail.Play(Data.Minigame.Game2.Alan.TRAIL_DELAY);
             }
         }
     }

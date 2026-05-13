@@ -15,8 +15,6 @@ namespace Minigame.Game3
         private SpriteRenderer _spriteRenderer;
         private Sprite[] _tombSprites;
 
-        private BoxCollider2D _boxCollider;
-
         private Shake _shake;
 
         void Start()
@@ -24,7 +22,6 @@ namespace Minigame.Game3
             _tombSprites = Resources.LoadAll<Sprite>(TOMB_SPRITE_PATH);
             
             _shake = GetComponent<Shake>();
-            _boxCollider = GetComponent<BoxCollider2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
 
             this.transform.localScale *= Random.Range(0.80f, 2.5f);
@@ -55,12 +52,11 @@ namespace Minigame.Game3
 
         void SetTombSpriteLayer(float catY)
         {
-            Debug.LogWarning("Tumbas shaking en teoría");
-            _shake.Play(5, 0.05f, 10f);
-            float y = _boxCollider.bounds.min.y;
+            _shake.Play(5, 0.015f, 10f);
 
-            int sortingLayer = y < catY ? 1 : -1;
-            
+            float y = transform.position.y;
+            int sortingLayer = y > catY ? -1 : 1;
+
             this._spriteRenderer.sortingOrder = sortingLayer;
         }
     }

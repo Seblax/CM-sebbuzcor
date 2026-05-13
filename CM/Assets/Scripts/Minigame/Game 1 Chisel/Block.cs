@@ -9,13 +9,8 @@ namespace Minigame.Game1
 
         private Rigidbody2D rb;
         public Vector3 direction;
-        public float impulseForce = 10f;
-        public float impulseRange = 10f;
 
         private Shake shake;
-        [Header("Shake Configuration")]
-        public float shakeInterval = 2;
-        public float shakeMagnitude = 0.2f;
 
         BlockBehaviour blockBehaviour;
 
@@ -38,21 +33,26 @@ namespace Minigame.Game1
         {
             if (currentHealth >= health && currentHealth <= health + 20)
             {
-                shake.Play(currentHealth / 100 * shakeInterval, (currentHealth / 100) * shakeMagnitude);
+                float percent = currentHealth / 100;
+
+                shake.Play(percent * Data.Minigame.Game1.Blcok.Shake.INTERVAL, percent * Data.Minigame.Game1.Blcok.Shake.MAGNITUDE);
                 AudioManager.instance.PlayEffect(hitSound[Random.Range(0, hitSound.Length)]).GetAudioSource.volume = 0.75f;
             }
             else if (currentHealth < health)
             {
                 ImpulsarObjeto();
-                Destroy(gameObject, 2f);
+                Destroy(gameObject, Data.Minigame.Game1.Blcok.DESTROY_DELAY);
             }
         }
 
         public void ImpulsarObjeto()
         {
-            direction = new Vector3(Random.Range(-impulseRange, impulseRange), Random.Range(0.5f, 1f), Random.Range(impulseRange, impulseRange));
+            float xRange = Random.Range(-Data.Minigame.Game1.Blcok.Impulse.X_RANGE, Data.Minigame.Game1.Blcok.Impulse.X_RANGE);
+            float zRange = 0;
 
-            rb.AddForce(direction.normalized * impulseForce, ForceMode2D.Impulse);
+            direction = new Vector3(xRange, Data.Minigame.Game1.Blcok.Impulse.Y_RANGE, zRange);
+
+            rb.AddForce(direction.normalized * Data.Minigame.Game1.Blcok.Impulse.FORCE, ForceMode2D.Impulse);
 
             rb.gravityScale = 1;
         }

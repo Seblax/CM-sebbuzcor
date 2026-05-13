@@ -11,7 +11,6 @@ namespace Minigame.Game2
         void Awake()
         {
             trailRenderer = GetComponent<TrailRenderer>();
-            delay = 0.25f;
             this.trailRenderer.enabled = false;
             this.trailRenderer.emitting = false;
         }

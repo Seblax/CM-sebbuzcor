@@ -12,7 +12,7 @@ namespace Minigame.Game3
 
         public void OnEnter()
         {
-            AudioManager.instance.PlayEffect("CatVisible");
+            AudioManager.instance.PlayEffect(Data.Minigame.Game3.Cat.CAT_VISIBLE_SOUND);
         }
 
         public void OnExecute()

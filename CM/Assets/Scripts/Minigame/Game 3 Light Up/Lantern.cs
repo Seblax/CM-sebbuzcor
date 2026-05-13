@@ -5,11 +5,7 @@ namespace Minigame.Game3
 {
     public class Lantern : PlayerControllerDrag
     {
-        public float baseSpeed = 5f;       // Velocidad inicial
-        public float maxSpeed = 25f;      // Velocidad tope
-        public float acceleration = 10f;  // Qué tan rápido aumenta la velocidad
-
-        private float currentSpeed;       // Velocidad actual acumulada
+        private float currentSpeed;
         public Rigidbody2D rb;
 
         public Action<Vector3> OnPositionChange;
@@ -22,7 +18,7 @@ namespace Minigame.Game3
             rb = GetComponent<Rigidbody2D>();
             rb.gravityScale = 0;
 
-            currentSpeed = baseSpeed; // Inicializamos
+            currentSpeed = Data.Minigame.Game3.Lantern.BASE_SPEED;
         }
 
         public override void DragEvent(Vector3 worldPosition)
@@ -51,7 +47,7 @@ namespace Minigame.Game3
                 return;
             }
 
-            currentSpeed = Mathf.MoveTowards(currentSpeed, maxSpeed, acceleration * Time.deltaTime);
+            currentSpeed = Mathf.MoveTowards(currentSpeed, Data.Minigame.Game3.Lantern.MAX_SPEED, Data.Minigame.Game3.Lantern.ACCELERATION * Time.deltaTime);
             Vector2 desiredVelocity = targetDirection.normalized * currentSpeed;
 
             rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, desiredVelocity, Time.deltaTime * 5f);
@@ -59,7 +55,7 @@ namespace Minigame.Game3
 
         public void ResetSpeed()
         {
-            currentSpeed = baseSpeed;
+            currentSpeed = Data.Minigame.Game3.Lantern.BASE_SPEED;
             rb.linearVelocity = Vector2.zero;
         }
 

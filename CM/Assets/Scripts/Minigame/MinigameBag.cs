@@ -13,6 +13,7 @@ public class MinigameBag
             minigameIDs.Add(i);
         }
     }
+
     public static int GetRandomMinigame()
     {
         if(minigameIDs.Count == 0)
@@ -22,6 +23,6 @@ public class MinigameBag
 
         int randomIndex = minigameIDs.GetRandom();
         minigameIDs.Remove(randomIndex);
-        return 3;
+        return 2;
     }
 }

@@ -36,13 +36,19 @@ namespace Minigame.Game2
         {
             if (IsPaused) return;
 
-            if (collision.gameObject.CompareTag("Player"))
+            if (collision.gameObject.CompareTag(Data.Minigame.PLAYER_TAG))
             {
                 collision.gameObject.GetComponent<Alan>().Hit();
+
                 spriteRenderer.sprite = closeDoor;
-                AudioManager.instance.PlayEffect("Door");
+                
+                AudioManager.instance.PlayEffect(Data.Minigame.Game2.Door.DOOR_SOUND);
+                
                 shake.startPosition = this.transform.localPosition;
-                shake.Play(25f, 0.05f, 0.5f);
+                shake.Play(
+                    Data.Minigame.Game2.Door.Shake.SPEED,
+                    Data.Minigame.Game2.Door.Shake.INTERVAL,
+                    Data.Minigame.Game2.Door.Shake.DURATION);
             }
         }
 
@@ -50,5 +56,19 @@ namespace Minigame.Game2
         {
             this.paused = isPaused;
         }
+
+        public void SetDoorPosition(Vector3 vector)
+        {
+            this.transform.localPosition = Utils.RandomPosition(
+                    vector,
+                    Data.Minigame.Game2.Door.MIN_ALAN_DISTANCE,
+                    Data.Minigame.Game2.Door.MAX_ALAN_DISTANCE,
+                    Data.Minigame.Game2.Door.MIN_X_SPAWN,
+                    Data.Minigame.Game2.Door.MAX_X_SPAWN,
+                    Data.Minigame.Game2.Door.MIN_Y_SPAWN,
+                    Data.Minigame.Game2.Door.MAX_Y_SPAWN
+                );
+        }
+
     }
 }

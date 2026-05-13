@@ -1,5 +1,4 @@
 using EasyTextEffects.Editor.MyBoxCopy.Extensions;
-using Gamemanager;
 using ShakeAnimation;
 using UnityEngine;
 
@@ -10,17 +9,12 @@ namespace Minigame.Game2
         private enum AlanState { None, Dead, Terrified, Scared, Normal, Happy }
         private AlanState currentState = AlanState.None;
 
-        private readonly string ALAN_SCRIPTABLEOBJECTS_PATH = "ScriptableObjects/Minigames/Game 2 ScriptableObjects";
-
         Alan alan;
-
         SpriteRenderer alanSprite;
-
         AlanScriptableObject alanObject;
 
         Shake shake;
-        private float interval = 0.05f;
-
+        
         ParticleSystem particle;
 
         private void Awake() // Cambiado de Start a Awake
@@ -31,7 +25,7 @@ namespace Minigame.Game2
             shake = GetComponent<Shake>();
 
             // Es mejor cargar esto una sola vez
-            alanObject = Resources.LoadAll<AlanScriptableObject>(ALAN_SCRIPTABLEOBJECTS_PATH).GetRandom();
+            alanObject = Resources.LoadAll<AlanScriptableObject>(Data.Minigame.Game2.Alan.ALAN_SCRIPTABLEOBJECTS_PATH).GetRandom();
         }
 
         private void OnEnable()
@@ -50,10 +44,10 @@ namespace Minigame.Game2
         {
             AlanState newState;
 
-            if (percent <= 0) newState = AlanState.Dead;
-            else if (percent < 0.25f) newState = AlanState.Terrified;
-            else if (percent < 0.50f) newState = AlanState.Scared;
-            else if (percent < 0.75f) newState = AlanState.Normal;
+            if (percent <= Data.Minigame.Game2.Alan.Dead.PERCENT) newState = AlanState.Dead;
+            else if (percent < Data.Minigame.Game2.Alan.Terrified.PERCENT) newState = AlanState.Terrified;
+            else if (percent < Data.Minigame.Game2.Alan.Scared.PERCENT) newState = AlanState.Scared;
+            else if (percent < Data.Minigame.Game2.Alan.Normal.PERCENT) newState = AlanState.Normal;
             else newState = AlanState.Happy;
 
             if (newState != currentState)
@@ -73,34 +67,45 @@ namespace Minigame.Game2
 
         private void Happy()
         {
-            shake.Play(0, 0, 5);
-            alanSprite.sprite = alanObject.happy;
+            shake.Play(
+                Data.Minigame.Game2.Alan.Happy.SHAKE_SPEED,
+                Data.Minigame.Game2.Alan.Shake.INTERVAL,
+                Data.Minigame.Game2.Alan.Shake.DURATION);
+            alanSprite.sprite = alanObject.normal;
         }
 
         private void Normal()
         {
-            shake.Play(2, interval, 5);
+            shake.Play(
+                Data.Minigame.Game2.Alan.Normal.SHAKE_SPEED, 
+                Data.Minigame.Game2.Alan.Shake.INTERVAL,
+                Data.Minigame.Game2.Alan.Shake.DURATION);
             alanSprite.sprite = alanObject.normal;
         }
 
         private void Scared()
         {
-            shake.Play(5f, interval, 5);
-            alanSprite.sprite = alanObject.scared;
+            shake.Play(
+                Data.Minigame.Game2.Alan.Scared.SHAKE_SPEED,
+                Data.Minigame.Game2.Alan.Shake.INTERVAL,
+                Data.Minigame.Game2.Alan.Shake.DURATION);
+            alanSprite.sprite = alanObject.normal;
         }
 
         private void Terrified()
         {
-            shake.Play(10f, interval, 5);
-            alanSprite.sprite = alanObject.terrified;
+            shake.Play(
+                Data.Minigame.Game2.Alan.Terrified.SHAKE_SPEED,
+                Data.Minigame.Game2.Alan.Shake.INTERVAL,
+                Data.Minigame.Game2.Alan.Shake.DURATION);
+            alanSprite.sprite = alanObject.normal;
         }
 
         private void Dead()
         {
             if (particle != null) particle.Play();
             alanSprite.enabled = false;
-            AudioManager.instance.PlayEffect("BalloonExplode");
-
+            AudioManager.instance.PlayEffect(Data.Minigame.Game2.Alan.BALLOON_EXPLODE_SOUND);
         }
     }
 }
