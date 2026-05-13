@@ -107,7 +107,7 @@ namespace Minigame
 
         public void Destroy(GameObject o)
         {
-            Destroy(o, 2.5f);
+            Destroy(o, 0.75f);
         }
 
         public void UpdatePauseState(bool shouldPause)

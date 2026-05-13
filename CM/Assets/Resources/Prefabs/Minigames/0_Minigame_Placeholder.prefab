@@ -1379,14 +1379,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94149209847de054283293118fff45d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarBehaviour
-  cars:
+  _cars:
   - {fileID: 21300000, guid: d326893328c42c54d915130643ab2aae, type: 3}
   - {fileID: 21300000, guid: 2b3f915a38f4dbf46ace0fbd4b5b5dbd, type: 3}
   - {fileID: 21300000, guid: 205c5c1412d474940bbeff4ef1d8f629, type: 3}
-  wheels: {fileID: 21300000, guid: fd5aab0b13f78a64fb27ca6822bf318b, type: 3}
-  boxCollider2D: {fileID: 0}
-  distance: 50
-  interval: 5
+  _wheels: {fileID: 21300000, guid: fd5aab0b13f78a64fb27ca6822bf318b, type: 3}
 --- !u!61 &2640935729234815966
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8414,13 +8411,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game0.AnimalBehaviour
   paused: 1
-  _renderer: {fileID: 0}
   bunny:
   - {fileID: 2069289372647791419, guid: 22c0dd218f52bc5469b0a3617ff34b0d, type: 3}
   - {fileID: 8688786240149452080, guid: 22c0dd218f52bc5469b0a3617ff34b0d, type: 3}
   - {fileID: 122033616, guid: 22c0dd218f52bc5469b0a3617ff34b0d, type: 3}
-  _hop: {fileID: 4555487553723104475}
-  dead: 0
   car: {fileID: 0}
 --- !u!61 &8345499085726980022
 BoxCollider2D:

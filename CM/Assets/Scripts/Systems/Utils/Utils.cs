@@ -23,6 +23,7 @@ public class Utils
         int maxAttempts = 50;
         int currentAttempt = 0;
 
+
         do
         {
             float spawnX = Random.Range(minOffsetX, maxOffsetX);
@@ -38,12 +39,12 @@ public class Utils
             {
                 currentAttempt = 0;
                 minDistance -= 0.1f;
-                Debug.Log($"Límite de intentos alcanzado: {currentDistance}");
             }
 
             currentAttempt++;
         } while (currentDistance < minDistance || currentDistance > maxDistance);
 
+        Debug.Log($"Position {position} \nFinal Position {finalPosition}");
         return finalPosition;
     }
 }

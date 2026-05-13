@@ -39,8 +39,10 @@ namespace Minigame.Game3
 
         public void SetPosition()
         {
-            this.transform.localPosition = Utils.RandomPosition(
-                Data.Minigame.Game3.Cat.LIGHT_START_POSITION,
+            Vector3 LanternPosition = FindAnyObjectByType<Lantern>().gameObject.transform.localPosition;
+
+            currentPosition = Utils.RandomPosition(
+                LanternPosition,
                 Data.Minigame.Game3.Cat.MIN_LIGHT_DISTANCE,
                 Data.Minigame.Game3.Cat.MAX_LIGHT_DISTANCE,
                 Data.Minigame.Game3.Cat.MIN_X_SPAWN,
@@ -49,10 +51,13 @@ namespace Minigame.Game3
                 Data.Minigame.Game3.Cat.MAX_Y_SPAWN
                 );
 
+            this.transform.localPosition = currentPosition;
+
             FlipScaleCat();
         }
 
-        void FlipScaleCat() {
+        void FlipScaleCat()
+        {
             float randomX = UnityEngine.Random.value > 0.5f ? 1f : -1f;
             this.transform.localScale = new Vector3(randomX, 1, 1);
         }
@@ -84,11 +89,11 @@ namespace Minigame.Game3
         {
             _shake.Stop();
             _hop.Play(
-                Data.Minigame.Game3.Cat.Hop.SPEED, 
+                Data.Minigame.Game3.Cat.Hop.SPEED,
                 Data.Minigame.Game3.Cat.Hop.AMPLITUDE);
 
             AudioManager.instance.PlayEffect(Data.Minigame.Game3.Cat.CAT_CATCH_SOUND);
-            
+
             MinigameManager.instance.minigame.Victory();
             this.spriteRenderer.sprite = sprites[1];
         }

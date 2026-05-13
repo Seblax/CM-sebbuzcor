@@ -32,7 +32,7 @@ public class Data
 
                 public static class Mover
                 {
-                    public static readonly float DISTANCE = 100f;
+                    public static readonly float DISTANCE = 50f;
                     public static readonly float INTERVAL = 5f;
                 }
 
@@ -70,9 +70,9 @@ public class Data
 
                 public static class Impulse
                 {
-                    public static readonly Tuple<float,float> X_RANGE = Tuple.Create(5f, 10f);
-                    public static readonly Tuple<float, float> Y_RANGE = Tuple.Create(1f, 2f);
-                    public static readonly Tuple<float, float> FORCE = Tuple.Create(7.5f, 10f);
+                    public static readonly Tuple<float,float> X_RANGE = Tuple.Create(0.25f, 0.5f);
+                    public static readonly Tuple<float, float> Y_RANGE = Tuple.Create(0.05f, 0.25f);
+                    public static readonly Tuple<float, float> FORCE = Tuple.Create(1f, 5f);
 
                 }
             }
@@ -93,8 +93,8 @@ public class Data
                 public static readonly string ALAN_SCRIPTABLEOBJECTS_PATH = "ScriptableObjects/Minigames/Game 2 ScriptableObjects";
 
                 public static readonly float BASE_SPEED = 1f;
-                public static readonly float MAX_SPEED = 5f;
-                public static readonly float ACCELERATION = 0.25f;
+                public static readonly float MAX_SPEED = 2.5f;
+                public static readonly float ACCELERATION = 0.15f;
 
                 public static readonly float TRAIL_DELAY = 1.25f;
 
@@ -179,7 +179,6 @@ public class Data
                 public static readonly float CATCH_TIME = 1.5f;
                 public static readonly float SCALE_RATIO = 0.15f;
 
-                public static readonly Vector3 LIGHT_START_POSITION = Vector3.zero;
                 public static readonly float MIN_LIGHT_DISTANCE = 4f;
                 public static readonly float MAX_LIGHT_DISTANCE = 50f;
                 public static readonly float MIN_X_SPAWN = 0.1f;

@@ -38,7 +38,8 @@ namespace Minigame.Game1
                 float interval = percent * Random.Range(Data.Minigame.Game1.Blcok.Shake.INTERVAL.Item1, Data.Minigame.Game1.Blcok.Shake.INTERVAL.Item2);
                 float magnitude = percent * Random.Range(Data.Minigame.Game1.Blcok.Shake.MAGNITUDE.Item1, Data.Minigame.Game1.Blcok.Shake.MAGNITUDE.Item2);
 
-                shake.Play(interval, percent);
+                shake.Play(interval, magnitude);
+
                 AudioManager.instance.PlayEffect(hitSound[Random.Range(0, hitSound.Length)]).GetAudioSource.volume = 0.75f;
             }
             else if (currentHealth < health)
@@ -61,7 +62,7 @@ namespace Minigame.Game1
 
             rb.AddForce(direction.normalized * force, ForceMode2D.Impulse);
 
-            rb.gravityScale = 1;
+            rb.gravityScale = 5f;
         }
 
         private void OnDestroy()

@@ -14,10 +14,10 @@ namespace Minigame
         public bool IsPaused { get => paused; }
         public Vector3 TapPosition { get => tapPos; }
 
-        
+
         private bool isTouching = false;
 
-        protected void Awake()
+        private void Awake()
         {
             if (inputActions == null)
                 inputActions = new PlayerInputActions();
@@ -25,14 +25,18 @@ namespace Minigame
 
         protected virtual void OnEnable()
         {
-            if (inputActions == null) inputActions = new PlayerInputActions();
+            // No llames a OnDisable aquí, es redundante si el ciclo de vida es correcto
+            if (inputActions == null)
+                inputActions = new PlayerInputActions();
 
+            // SUSCRIPCIONES CON MÉTODOS REALES
             inputActions.Player.Tap.performed += OnTapPerformed;
             inputActions.Player.Touch.performed += OnTouchPerformed;
-            inputActions.Player.Enable();
 
-            inputActions.Player.Touch.started += ctx => isTouching = true;
-            inputActions.Player.Touch.canceled += ctx => isTouching = false;
+            // Cambiamos las lambdas por métodos para poder desuscribirlos
+            inputActions.Player.Tap.performed += OnTapState;
+
+            inputActions.Player.Enable();
 
             if (MinigameManager.instance != null)
                 MinigameManager.instance.Pause += SetPaused;
@@ -40,24 +44,53 @@ namespace Minigame
 
         protected virtual void OnDisable()
         {
+            InputSystem.DisableAllEnabledActions();
+
             if (inputActions != null)
             {
+                inputActions.Player.Disable();
+
+                // DESUSCRIPCIÓN TOTAL
                 inputActions.Player.Tap.performed -= OnTapPerformed;
                 inputActions.Player.Touch.performed -= OnTouchPerformed;
-                inputActions.Player.Disable();
+                inputActions.Player.Tap.started -= OnTapState;
+
+                inputActions.Dispose();
+                inputActions = null;
             }
 
             if (MinigameManager.instance != null)
                 MinigameManager.instance.Pause -= SetPaused;
+
+            ResetInputState();
+        }
+
+        // 2. La función limpia
+        private void OnTapState(InputAction.CallbackContext ctx)
+        {
+            if (IsPaused) return;
+
+            isTouching = ctx.ReadValueAsButton();
+            Debug.Log($"Touch: {Time.frameCount} \t Touch value: {isTouching}");
+        }
+
+        private void ResetInputState()
+        {
+            isTouching = false;
+            tapPos = Vector3.zero;
         }
 
         private void OnTapPerformed(InputAction.CallbackContext ctx)
         {
+            if (IsPaused) return;
+            
             TapEvent();
         }
 
         private void OnTouchPerformed(InputAction.CallbackContext ctx)
         {
+            if (IsPaused) return;
+
             if (ctx.valueType == typeof(Vector2))
             {
                 Vector2 pos = ctx.ReadValue<Vector2>();
@@ -91,10 +124,10 @@ namespace Minigame
 
         void Update()
         {
+            if (IsPaused) return;
+            
             if (isTouching)
             {
-                // Aquí pones lo que quieres que pase MIENTRAS mantiene pulsado
-                // Por ejemplo, seguir la posición del dedo
                 Vector2 screenPos = inputActions.Player.Touch.ReadValue<Vector2>();
                 DragEvent(ScreenToWorld(screenPos));
             }

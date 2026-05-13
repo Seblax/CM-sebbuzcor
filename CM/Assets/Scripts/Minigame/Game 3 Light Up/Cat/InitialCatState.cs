@@ -12,7 +12,7 @@ namespace Minigame.Game3
 
         public void OnEnter()
         {
-            cat.SetPosition();
+
         }
 
         public void OnExecute()
@@ -23,6 +23,7 @@ namespace Minigame.Game3
         public void OnExit()
         {
             AudioManager.instance.PlayEffect(Data.Minigame.Game3.GRAVEYARD_MUSIC_SOUND);
+            cat.SetPosition();
         }
     }
 

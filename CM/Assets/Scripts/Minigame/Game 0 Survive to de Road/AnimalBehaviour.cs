@@ -17,6 +17,7 @@ namespace Minigame.Game0
         void Start()
         {
             _renderer = GetComponentInChildren<SpriteRenderer>();
+            hop = GetComponentInChildren<Hop>();
             car = FindAnyObjectByType(typeof(CarBehaviour)).GetComponent<CarBehaviour>();
 
             SetHopConfiguration();
