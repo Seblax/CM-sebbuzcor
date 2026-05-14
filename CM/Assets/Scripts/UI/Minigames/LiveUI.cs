@@ -1,5 +1,5 @@
 using Minigame;
-using ShakeAnimation;
+using Animation;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +13,6 @@ public class LiveUI : MonoBehaviour
     private int _lastSpriteIndex = -1;
     
     private float timer;
-    public float amplitude = 2;
 
     private Shake shake;
 
@@ -21,6 +20,8 @@ public class LiveUI : MonoBehaviour
     {
         _image = GetComponent<Image>();
         shake = GetComponent<Shake>();
+
+        this.transform.localPosition.Set(this.transform.localPosition.x, -Data.Minigame.UI.Hearts.Y_OFFSET, this.transform.localPosition.z);
 
         MinigameUIManager.instance.OnLivesChanged += UpdateHeartStatus;
     }
@@ -56,12 +57,12 @@ public class LiveUI : MonoBehaviour
         shake.Play(50, 10, 0.15f);
         if (!animation) return;
 
-        AudioManager.instance.PlayEffect("HeartBreak");
+        AudioManager.instance.PlayEffect(Data.Minigame.UI.Hearts.BROKEN_HEART_SOUND);
     }
 
     void LifeAnimation() {
         timer += Time.deltaTime;
-        float y = Mathf.Sin((this.heartIndex * 0.25f) + Mathf.PI * timer) * amplitude;
+        float y = Mathf.Sin((this.heartIndex * 0.25f) + Mathf.PI * timer) * Data.Minigame.UI.Hearts.AMPLITUDE;
         transform.localPosition += Vector3.up * y;
 
         int currentSpriteIndex = (Mathf.Repeat(Time.time, 0.5f) < 0.25f) ? 0 : 1;
@@ -76,6 +77,6 @@ public class LiveUI : MonoBehaviour
     void DisableHeart() {
         this._image.sprite = _sprites[2];
         shake.startPosition = this.gameObject.transform.localPosition;
-        shake.startPosition.y = -50;
+        shake.startPosition.y = -Data.Minigame.UI.Hearts.Y_OFFSET;
     }
 }

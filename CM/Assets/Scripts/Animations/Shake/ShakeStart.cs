@@ -1,7 +1,7 @@
 using StateManagement;
 using UnityEngine;
 
-namespace ShakeAnimation
+namespace Animation
 {
     public class ShakeStart : IState
     {

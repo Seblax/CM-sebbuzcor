@@ -4,15 +4,15 @@ using ui;
 using UnityEngine;
 using StateTransition = StateManagement.Transition;
 
-namespace ShakeAnimation
+namespace Animation
 {
-
     public class Shake : MonoBehaviour, IStateMachine
     {
         [Header("Configuration")]
         float _speed;
         float _interval;
         float _duration = 0.25f;
+        float _delay = 0f;
 
         public bool play;
         public bool isPlaying;
@@ -25,6 +25,7 @@ namespace ShakeAnimation
         public List<StateTransition> Transitions => this._transitions;
         public float Interval => this._interval;
         public float Speed => this._speed;
+        public float Delay { get => this._delay; set => this._delay = value; }
 
         public float Duration
         {
@@ -71,6 +72,16 @@ namespace ShakeAnimation
             this.play = true;
         }
 
+        public void PlayDelay(float speed, float interval, float duration, float delay)
+        {
+            RestartStateMachine();
+            this._speed = speed;
+            this._interval = interval;
+            this._duration = duration;
+            this._delay = delay;
+            this.play = true;
+        }
+
         public virtual void InitializeStateMachine()
         {
             // Initialize States
@@ -80,7 +91,7 @@ namespace ShakeAnimation
             _transitions = new List<StateTransition>
             {
                 new() {
-                    Condition = () => play,
+                    Condition = () => play && _delay <= 0f,
                     Source = stopState,
                     Target = startState,
                 },

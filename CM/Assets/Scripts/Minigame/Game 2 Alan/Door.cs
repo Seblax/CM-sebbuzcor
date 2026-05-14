@@ -1,6 +1,6 @@
 using Minigame.Game2;
 using UnityEngine;
-using ShakeAnimation;
+using Animation;
 
 namespace Minigame.Game2
 {

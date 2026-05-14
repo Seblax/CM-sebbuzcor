@@ -1,6 +1,6 @@
 using EasyTextEffects.Editor.MyBoxCopy.Extensions;
 using Minigame.Game3;
-using ShakeAnimation;
+using Animation;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;

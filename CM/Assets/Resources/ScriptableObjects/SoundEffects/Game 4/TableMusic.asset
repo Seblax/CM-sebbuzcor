@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45447b1fa3b5f8d409dc880acb482b15, type: 3}
+  m_Name: TableMusic
+  m_EditorClassIdentifier: Assembly-CSharp::SoundEffect
+  clips:
+  - {fileID: 8300000, guid: cccc0d84e539c0f4daaf7fc484015e38, type: 3}
+  accerelable: 1
+  randomPitch: 0
+  globalPitch: 1
+  group: {fileID: -1988084199983904983, guid: 7e58d7b9298e9e842990e9c4c43c7a9d, type: 2}
+  volume: 0.5
+  estereo: 0

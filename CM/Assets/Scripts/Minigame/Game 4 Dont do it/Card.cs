@@ -82,13 +82,15 @@ namespace Minigame.Game4
             rgbody.AddTorque(randomRotation * Data.Minigame.Game4.Card.TORQUE_FORCE, ForceMode.Impulse);
 
             boxCollider.enabled = true;
+
+            AudioManager.instance.PlayEffectDelay(Data.Minigame.Game4.Card.THROW_SOUND, Random.Range(0f, 1f));
         }
 
         private void Update()
         {
             if (MinigameManager.instance.minigame.TimerPercent <= 0)
             {
-                Destroy(gameObject, 0.5f);
+                Destroy(gameObject, 1f);
             }
         }
     }

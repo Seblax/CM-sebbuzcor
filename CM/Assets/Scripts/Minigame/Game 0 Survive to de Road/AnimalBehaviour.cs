@@ -1,4 +1,4 @@
-using System;
+using Animation;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,18 +7,18 @@ namespace Minigame.Game0
     public class AnimalBehaviour : PlayerControllerTap
     {
         private SpriteRenderer _renderer;
+
         [SerializeField] private Sprite[] bunny;
 
         private Hop hop;
-        private bool dead = false;
 
+        [SerializeField] private bool dead = false;
         [SerializeField] private CarBehaviour car;
 
         void Start()
         {
             _renderer = GetComponentInChildren<SpriteRenderer>();
             hop = GetComponentInChildren<Hop>();
-            car = FindAnyObjectByType(typeof(CarBehaviour)).GetComponent<CarBehaviour>();
 
             SetHopConfiguration();
 
@@ -28,6 +28,10 @@ namespace Minigame.Game0
         void Update()
         {
             if (IsPaused) return;
+
+            if (car == null)
+                car = FindAnyObjectByType(typeof(CarBehaviour)).GetComponent<CarBehaviour>();
+
             car.DisableCarCollider(this.transform.localPosition.x);
 
             Sprite sprite = this.hop.IsHopping ? bunny[1] : bunny[0];

@@ -8,13 +8,25 @@ public class Data
     public static class Minigame
     {
         public static string PLAYER_TAG = "Player";
+
+        public static class UI
+        {
+            public static class Hearts
+            {
+                public static readonly string BROKEN_HEART_SOUND = "HeartBreak";
+
+                public static readonly float AMPLITUDE = 2f;
+                public static readonly float Y_OFFSET = 50f;
+            }
+        }
+
         public static class Game0
         {
             public static class Bunny
             {
 
-                public static string JUMP_SOUND = "BunnyJump";
-                public static string HIT_SOUND = "BunnyHit";
+                public static readonly string JUMP_SOUND = "BunnyJump";
+                public static readonly string HIT_SOUND = "BunnyHit";
 
                 public static class Hop
                 {
@@ -47,13 +59,13 @@ public class Data
 
         public static class Game1
         {
-            public static string WIN_SOUND = "BlockWin";
-            public static float HEALTH = 100f;
-            public static float MIN_DMG = 5f;
-            public static float MAX_DMG = 10f;
+            public static readonly string WIN_SOUND = "BlockWin";
+            public static readonly float HEALTH = 100f;
+            public static readonly float MIN_DMG = 5f;
+            public static readonly float MAX_DMG = 10f;
 
-            public static float BASE_SCORE_POINTS = 100f;
-            public static float RATIO_SCORE_POINTS_TIMER = 100f;
+            public static readonly float BASE_SCORE_POINTS = 100f;
+            public static readonly float RATIO_SCORE_POINTS_TIMER = 100f;
 
             public static class Blcok
             {
@@ -70,7 +82,7 @@ public class Data
 
                 public static class Impulse
                 {
-                    public static readonly Tuple<float,float> X_RANGE = Tuple.Create(0.25f, 0.5f);
+                    public static readonly Tuple<float, float> X_RANGE = Tuple.Create(0.25f, 0.5f);
                     public static readonly Tuple<float, float> Y_RANGE = Tuple.Create(0.05f, 0.25f);
                     public static readonly Tuple<float, float> FORCE = Tuple.Create(1f, 5f);
 
@@ -80,13 +92,13 @@ public class Data
 
         public static class Game2
         {
-            public static string WIN_SOUND = "BlockWin";
-            public static float HEALTH = 100f;
-            public static float MIN_DMG = 5f;
-            public static float MAX_DMG = 10f;
+            public static readonly string WIN_SOUND = "BlockWin";
+            public static readonly float HEALTH = 100f;
+            public static readonly float MIN_DMG = 5f;
+            public static readonly float MAX_DMG = 10f;
 
-            public static float BASE_SCORE_POINTS = 100f;
-            public static float RATIO_SCORE_POINTS_TIMER = 100f;
+            public static readonly float BASE_SCORE_POINTS = 100f;
+            public static readonly float RATIO_SCORE_POINTS_TIMER = 100f;
 
             public static class Alan
             {
@@ -179,7 +191,7 @@ public class Data
                 public static readonly float CATCH_TIME = 1.5f;
                 public static readonly float SCALE_RATIO = 0.15f;
 
-                public static readonly float MIN_LIGHT_DISTANCE = 4f;
+                public static readonly float MIN_LIGHT_DISTANCE = 1.5f;
                 public static readonly float MAX_LIGHT_DISTANCE = 50f;
                 public static readonly float MIN_X_SPAWN = 0.1f;
                 public static readonly float MAX_X_SPAWN = 0.9f;
@@ -223,17 +235,22 @@ public class Data
         public static class Game4
         {
             public static readonly string CARDS_SPRITES_PATH = "Textures/Minigame/Game 4/Card";
+            public static readonly string QUIET_SOUND = "Quiet";
+            public static readonly string MUSIC_SOUND = "TableMusic";
 
-            public static class Card {
+            public static class Card
+            {
+                public static readonly string THROW_SOUND = "CardThrow";
+
                 public static readonly float IMPULSE_FORCE = 10;
                 public static readonly float TORQUE_FORCE = 5;
-                
-                public static readonly Tuple<float, float> LINEAR_DAMPING = Tuple.Create(0.5f,0.75f);
+
+                public static readonly Tuple<float, float> LINEAR_DAMPING = Tuple.Create(0.5f, 0.75f);
                 public static readonly Tuple<float, float> ANGULAR_DAMPING = Tuple.Create(0.5f, 0.75f);
 
-                public static readonly Tuple<float, float> X_DIRECTION_RANGE = Tuple.Create(-0.5f,0.5f);
+                public static readonly Tuple<float, float> X_DIRECTION_RANGE = Tuple.Create(-0.5f, 0.5f);
                 public static readonly Tuple<float, float> Y_DIRECTION_RANGE = Tuple.Create(0.2f, 1f);
-                public static readonly Tuple<float,float> Z_DIRECTION_RANGE = Tuple.Create(2.5f, 3f);
+                public static readonly Tuple<float, float> Z_DIRECTION_RANGE = Tuple.Create(2.5f, 3f);
 
 
                 public static readonly Tuple<float, float> X_ROTATION_RANGE = Tuple.Create(-2f, 2f);
@@ -243,8 +260,16 @@ public class Data
 
             public static class Table
             {
-                public static readonly float SPEED = 0.25f;
-                public static readonly float AMPLITUDE = 1.5f;
+                public static readonly string TABLE_HIT_SOUND = "TableHit";
+                public static readonly string BAD_SURPRISE_SOUND = "BadSurprise";
+
+                public static readonly float HOP_SPEED = 0.25f;
+                public static readonly float AMPLITUDE = 2.5f;
+
+                public static readonly float SHAKE_SPEED = 15f;
+                public static readonly float INTERVAL = 0.15f;
+                public static readonly float DURATION = 0.25f;
+                public static readonly float DELAY = 0.25f;
             }
         }
     }

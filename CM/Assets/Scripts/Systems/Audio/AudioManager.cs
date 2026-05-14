@@ -112,7 +112,27 @@ public class AudioManager : Singleton<AudioManager>
         return s;
     }
 
+    public void PlayEffectDelay(SoundEffect effect, float delay)
+    {
+        StartCoroutine(PlayEffectWithDelay(effect, delay));
+    }
 
+    public void PlayEffectDelay(string effect, float delay)
+    {
+        StartCoroutine(PlayEffectWithDelay(effect, delay));
+    }
+
+    private IEnumerator PlayEffectWithDelay(string effect, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PlayEffect(effect);
+    }
+
+    private IEnumerator PlayEffectWithDelay(SoundEffect effect, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PlayEffect(effect);
+    }
 
     public IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume)
     {

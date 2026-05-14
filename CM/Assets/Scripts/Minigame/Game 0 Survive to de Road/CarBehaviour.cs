@@ -1,3 +1,4 @@
+using Animation;
 using EasyTextEffects.Editor.MyBoxCopy.Extensions;
 using System.Collections;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace Minigame.Game0
 
         ConstantMove _mover;
         Hop _hop;
-        
+
         private float totalWindow;
 
         //Pause
@@ -27,7 +28,7 @@ namespace Minigame.Game0
         private void Start()
         {
             this.transform.localPosition += Vector3.right * (Data.Minigame.Game0.Car.Mover.DISTANCE / 2);
-            
+
             _mover = GetComponent<ConstantMove>();
             _sprenderers = GetComponentsInChildren<SpriteRenderer>();
             _hop = GetComponentInChildren<Hop>();
@@ -36,7 +37,7 @@ namespace Minigame.Game0
             SetHopConfiguration();
             SetMoverConfiguration();
             SetSkin();
-            
+
             totalWindow = MinigameManager.instance.minigame.GetMinigameDuration;
 
             StartCoroutine(SpawningLoop());
@@ -54,8 +55,10 @@ namespace Minigame.Game0
                 MinigameManager.instance.Pause -= SetPaused;
         }
 
-        public void DisableCarCollider(float x) {
-            _boxCollider2D.enabled = x <= this.transform.localPosition.x;
+        public void DisableCarCollider(float x)
+        {
+            if (x >= this.transform.localPosition.x)
+                Destroy(_boxCollider2D);
         }
 
         private IEnumerator SpawningLoop()
@@ -124,13 +127,15 @@ namespace Minigame.Game0
             _paused = isPaused;
         }
 
-        void SetHopConfiguration() {
+        void SetHopConfiguration()
+        {
             _hop.amplitude = Data.Minigame.Game0.Car.Hop.AMPLITUDE;
             _hop.speed = Data.Minigame.Game0.Car.Hop.SPEED;
             _hop.direction = Data.Minigame.Game0.Car.Hop.DIRECTION;
         }
 
-        void SetMoverConfiguration() {
+        void SetMoverConfiguration()
+        {
             _mover.direction = Vector3.left;
             _mover.distance = Data.Minigame.Game0.Car.Mover.DISTANCE;
             _mover.duration = Data.Minigame.Game0.Car.Mover.INTERVAL;

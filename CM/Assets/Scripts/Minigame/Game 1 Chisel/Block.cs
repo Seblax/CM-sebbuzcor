@@ -1,4 +1,4 @@
-using ShakeAnimation;
+using Animation;
 using UnityEngine;
 
 namespace Minigame.Game1

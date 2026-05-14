@@ -21,7 +21,6 @@ namespace Minigame
 
         public void OnExecute()
         {
-            Debug.Log($"Defeat State Executing. Lifes: {GameManager.instance.GetLives}");
             timer -= Time.deltaTime;
             if (timer < 1.5f)
             {

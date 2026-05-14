@@ -1,5 +1,5 @@
 using EasyTextEffects.Editor.MyBoxCopy.Extensions;
-using ShakeAnimation;
+using Animation;
 using UnityEngine;
 
 namespace Minigame.Game2

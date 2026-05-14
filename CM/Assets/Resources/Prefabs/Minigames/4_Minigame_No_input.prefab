@@ -397,6 +397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3906323912604996064}
   - component: {fileID: 4057259137384504756}
+  - component: {fileID: 2444634913768909863}
   m_Layer: 0
   m_Name: NaipeCastle
   m_TagString: Untagged
@@ -437,7 +438,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf418595b3c974743bf1816542e1aed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputDetector
+  isTouching: 0
   paused: 1
+--- !u!114 &2444634913768909863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259511633554457144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c41eb887c23004ea12d77e68f15a67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Minigame.Game4.Music
+  musicSound: {fileID: 0}
 --- !u!1 &266444133560755369
 GameObject:
   m_ObjectHideFlags: 0
@@ -4024,6 +4039,7 @@ GameObject:
   - component: {fileID: 6257412014045373915}
   - component: {fileID: 8282232401172377435}
   - component: {fileID: 3602645823840675529}
+  - component: {fileID: 8793858310465409210}
   m_Layer: 0
   m_Name: Table
   m_TagString: Untagged
@@ -4074,6 +4090,21 @@ MonoBehaviour:
   amplitude: 75
   speed: 0.25
   direction: {x: 0, y: 1, z: 0}
+--- !u!114 &8793858310465409210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055227043430270958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947f00a3684deba428eb9fa5b2441814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShakeAnimation.Shake
+  play: 0
+  isPlaying: 0
+  startPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &3063069726432635249
 GameObject:
   m_ObjectHideFlags: 0
@@ -6767,7 +6798,6 @@ MonoBehaviour:
   - {fileID: 9200775849295203296, guid: 05b3920ad42fc6a469768e1dc0dacb9a, type: 3}
   - {fileID: -4997167023504409373, guid: 05b3920ad42fc6a469768e1dc0dacb9a, type: 3}
   - {fileID: -3837318412928117542, guid: 05b3920ad42fc6a469768e1dc0dacb9a, type: 3}
-  amplitude: 2
 --- !u!114 &3371973247692283489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10503,7 +10533,6 @@ MonoBehaviour:
   - {fileID: 9200775849295203296, guid: 05b3920ad42fc6a469768e1dc0dacb9a, type: 3}
   - {fileID: -4997167023504409373, guid: 05b3920ad42fc6a469768e1dc0dacb9a, type: 3}
   - {fileID: -3837318412928117542, guid: 05b3920ad42fc6a469768e1dc0dacb9a, type: 3}
-  amplitude: 2
 --- !u!114 &245714865856066549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11794,7 +11823,6 @@ MonoBehaviour:
   - {fileID: 9200775849295203296, guid: 05b3920ad42fc6a469768e1dc0dacb9a, type: 3}
   - {fileID: -4997167023504409373, guid: 05b3920ad42fc6a469768e1dc0dacb9a, type: 3}
   - {fileID: -3837318412928117542, guid: 05b3920ad42fc6a469768e1dc0dacb9a, type: 3}
-  amplitude: 2
 --- !u!114 &2559536260571370267
 MonoBehaviour:
   m_ObjectHideFlags: 0
