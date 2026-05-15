@@ -7,14 +7,9 @@ namespace Score
     {
         public Action UpdateLeaderBoard;
 
-        void Start()
-        {
-            UpdateLeaderBoard.Invoke();
-        }
-
         public void UpdateLeaderBoardData()
         {
-            UpdateLeaderBoard.Invoke();
+            UpdateLeaderBoard?.Invoke();
         }
     }
 }
