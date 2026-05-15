@@ -4,26 +4,28 @@ using ui;
 using UnityEngine;
 using StateTransition = StateManagement.Transition;
 
-namespace ShakeAnimation
+namespace Animation
 {
-
     public class Shake : MonoBehaviour, IStateMachine
     {
         [Header("Configuration")]
         float _speed;
         float _interval;
         float _duration = 0.25f;
+        float _delay = 0f;
 
         public bool play;
         public bool isPlaying;
         public Vector3 startPosition;
 
+        //State Machine
         private IState _state;
+        public IState State { get => _state; set => _state = value; }
         private List<StateTransition> _transitions = new List<StateTransition>();
-        public IState State => this._state;
         public List<StateTransition> Transitions => this._transitions;
         public float Interval => this._interval;
         public float Speed => this._speed;
+        public float Delay { get => this._delay; set => this._delay = value; }
 
         public float Duration
         {
@@ -42,7 +44,7 @@ namespace ShakeAnimation
             if (_state == null) return;
 
             _state.OnExecute();
-            HandleStateTransitions();
+            ((IStateMachine)this).HandleStateTransitions();
         }
 
         public void Play()
@@ -70,6 +72,16 @@ namespace ShakeAnimation
             this.play = true;
         }
 
+        public void PlayDelay(float speed, float interval, float duration, float delay)
+        {
+            RestartStateMachine();
+            this._speed = speed;
+            this._interval = interval;
+            this._duration = duration;
+            this._delay = delay;
+            this.play = true;
+        }
+
         public virtual void InitializeStateMachine()
         {
             // Initialize States
@@ -79,7 +91,7 @@ namespace ShakeAnimation
             _transitions = new List<StateTransition>
             {
                 new() {
-                    Condition = () => play,
+                    Condition = () => play && _delay <= 0f,
                     Source = stopState,
                     Target = startState,
                 },
@@ -94,30 +106,17 @@ namespace ShakeAnimation
             _state.OnEnter();
         }
 
-        public void TransitionToState(IState targetState)
-        {
-            _state.OnExit();
-            _state = targetState;
-            _state.OnEnter();
-        }
-
-        public void HandleStateTransitions()
-        {
-            foreach (StateTransition transition in Transitions)
-            {
-                if (transition.Source == _state && transition.Condition())
-                {
-                    TransitionToState(transition.Target);
-                    break;
-                }
-            }
-        }
-
         void RestartStateMachine()
         {
             play = false;
             isPlaying = false;
             InitializeStateMachine();
+        }
+
+        public void Stop()
+        {
+            RestartStateMachine();
+            this.transform.localPosition = startPosition;
         }
     }
 }

@@ -1,4 +1,4 @@
-using ShakeAnimation;
+using Animation;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +21,7 @@ namespace Minigame.UI
 
         private Shake _shake;
 
-        private void Start()
+        private void Awake()
         {
             image = GetComponent<Image>();
             _shake = GetComponent<Shake>();

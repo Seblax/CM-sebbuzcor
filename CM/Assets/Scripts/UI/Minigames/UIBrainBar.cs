@@ -17,7 +17,7 @@ namespace Minigame.UI
         [Header("Bar Levels")]
         public BarLevel[] levels;
 
-        private void Start()
+        private void Awake()
         {
             image = GetComponent<Image>();
 

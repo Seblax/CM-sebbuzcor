@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8cb7dde33b323342adb42b2f7d9ddf9, type: 3}
+  m_Name: 2_placeholder
+  m_EditorClassIdentifier: Assembly-CSharp::UserScriptableObject
+  userPicture: {fileID: 21300000, guid: c0a42d19a384ad14fbe3abec54dc88d1, type: 3}
+  userName: "Ladr\xF3nDeGuanteBlanco"
+  userComment: I built this house of cards a long time ago for my child who died
+    of cancer; she loved playing with my cards.
+  likes: 5
+  comments: 4

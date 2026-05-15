@@ -11,11 +11,12 @@ namespace ui
     {
         public string sceneName = string.Empty;
 
+        //State Machine
         protected IState _state;
+        public IState State { get => _state; set => _state = value; }
         protected List<StateTransition> _transitions = new List<StateTransition>();
-
-        public IState State => _state;
         public  List<StateTransition> Transitions => _transitions;
+
 
         public bool isSceneLoaded = false;
 
@@ -48,25 +49,6 @@ namespace ui
 
             _state = startState;
             _state.OnEnter();
-        }
-
-        public void TransitionToState(IState targetState)
-        {
-            _state.OnExit();
-            _state = targetState;
-            _state.OnEnter();
-        }
-
-        public void HandleStateTransitions()
-        {
-            foreach (StateTransition transition in _transitions)
-            {
-                if (transition.Source == _state && transition.Condition())
-                {
-                    TransitionToState(transition.Target);
-                    break;
-                }
-            }
         }
 
         //###################################

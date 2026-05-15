@@ -1,7 +1,7 @@
 using StateManagement;
 using UnityEngine;
 
-namespace ShakeAnimation
+namespace Animation
 {
     public class ShakeStop : IState
     {
@@ -21,6 +21,8 @@ namespace ShakeAnimation
 
         public void OnExecute()
         {
+            if (this._shake.play)
+                this._shake.Delay -= Time.deltaTime;
         }
 
         public void OnExit()

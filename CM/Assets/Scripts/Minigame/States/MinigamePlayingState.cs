@@ -3,60 +3,53 @@ using UnityEngine;
 
 namespace Minigame
 {
-    public class MinigamePlayingState : IState
+    public class MinigamePlayingState : MinigameState
     {
-        private Minigame minigame;
         float timer;
-        bool _moveRequested =  false;
 
-        public MinigamePlayingState(Minigame minigame)
+        public MinigamePlayingState(Minigame minigame) : base(minigame)
         {
-            this.minigame = minigame;
+
         }
 
-        public void OnEnter()
+        public override void OnEnter()
         {
+            base.OnEnter();
             if (!GameManager.instance.IsStillAlive) return;
 
-            MinigameUIManager.instance.score.SetActive(true);
-            MinigameUIManager.instance.minigame.SetActive(true);
+            mover.OnStartMove(() => SetActiveOn(ui.score));
+            mover.OnStartMove(() => ui.UpdateScoreUI(false));
 
-            MinigameUIManager.instance.OnUserChanged.Invoke(MinigameUIManager.instance.GetUser(this.minigame.ID));
-
-            MinigameManager.instance.isPlaying = true;
+            manager.isPlaying = true;
             timer = 0.75f;
-            _moveRequested = false;
 
-            MinigameManager.instance.UpdatePauseState(false);
+            manager.UpdatePauseState(false);
         }
 
-        public void OnExecute()
+        public override void OnExecute()
         {
-            if (_moveRequested) return;
+            if (moveRequested) return;
 
-            this.minigame.Timer();
-            MinigameUIManager.instance.UpdateHealthBarUI(this.minigame.TimerPercent);
+            minigame.Timer();
+            ui.UpdateHealthBarUI(minigame.TimerPercent);
 
-            if (this.minigame.IsTimerOver) {
+            if (minigame.IsTimerOver) {
 
                 timer -= Time.deltaTime;
 
                 if (timer < 0) {
-                    _moveRequested = true;
-
-                    MinigameManager.instance.isPlaying = false;
-                    MinigameManager.instance.Move?.Invoke();
+                    moveRequested = true;
+                    manager.isPlaying = false;
+                    mover.Play();
                 }
             }
 
         }
 
-        public void OnExit()
+        public override void OnExit()
         {
-            MinigameManager.instance.Destroy(MinigameUIManager.instance.minigame);
-            MinigameManager.instance.UpdatePauseState(true);
-
-            InputManager.RemoveGameObject();
+            manager.UpdatePauseState(true);
+            manager.DestroyGameObject(ui.minigame);
         }
     }
 }

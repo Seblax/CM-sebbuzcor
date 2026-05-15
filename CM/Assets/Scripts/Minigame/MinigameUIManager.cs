@@ -66,6 +66,12 @@ namespace Minigame
             OnUserChanged?.Invoke(userData);
         }
 
+        public void UpdateMinigameUI(UserScriptableObject userData)
+        {
+            OnUserChanged?.Invoke(userData);
+            OnHealthBarChanged?.Invoke(1);
+        }
+
         public void UpdateTittleUI(TittleScriptableObject tittle)
         {
             OnTittleChanged?.Invoke(tittle);

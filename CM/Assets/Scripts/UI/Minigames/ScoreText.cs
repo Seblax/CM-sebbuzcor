@@ -1,3 +1,4 @@
+using EasyTextEffects;
 using EasyTextEffects.Editor.MyBoxCopy.Extensions;
 using UnityEngine;
 
@@ -7,10 +8,10 @@ namespace Minigame.UI
     {
         [SerializeField] private string[] scoreText = { "Null" };
 
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        void Awake()
         {
             this.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = scoreText.GetRandom();
+            this.GetComponentInChildren<TextEffect>().Refresh();
         }
     }
 }

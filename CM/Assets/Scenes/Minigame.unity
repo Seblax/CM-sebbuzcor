@@ -564,6 +564,7 @@ MonoBehaviour:
   isTittleOver: 0
   isPlaying: 0
   isScoreScreenOver: 0
+  IsPaused: 0
   CurrentState: 
 --- !u!4 &1655755447
 Transform:
