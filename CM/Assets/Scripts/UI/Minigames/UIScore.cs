@@ -10,7 +10,7 @@ namespace Minigame.UI
         [SerializeField] UIUser user;
         [SerializeField] UserScriptableObject userData;
 
-        void Start()
+        void Awake()
         {
             MinigameUIManager.instance.OnLivesChanged += UpdateScoreUI;
             user = GetComponentInChildren<UIUser>();
@@ -21,6 +21,8 @@ namespace Minigame.UI
 
         void UpdateScoreUI(int i, bool animation)
         {
+            MinigameUIManager.instance.OnLivesChanged -= UpdateScoreUI;
+
             this.victory.SetActive(MinigameManager.instance.minigame.Win);
             this.defeat.SetActive(MinigameManager.instance.minigame.Lose);
             userData.userComment = $"Your current score: {GameManager.instance.score}";

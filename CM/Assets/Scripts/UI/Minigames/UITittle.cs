@@ -20,6 +20,8 @@ namespace Minigame.UI
 
         void UpdateUI(TittleScriptableObject tittle)
         {
+            MinigameUIManager.instance.OnTittleChanged -= UpdateUI;
+
             this.tittleText.text = tittle.tittle;
             this.tittleRound.text = "Round: " + GameManager.instance.GetCurrentRound;
 

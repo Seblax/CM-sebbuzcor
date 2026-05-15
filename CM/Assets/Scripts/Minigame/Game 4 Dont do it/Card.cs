@@ -83,7 +83,8 @@ namespace Minigame.Game4
 
             boxCollider.enabled = true;
 
-            AudioManager.instance.PlayEffectDelay(Data.Minigame.Game4.Card.THROW_SOUND, Random.Range(0f, 1f));
+            if (Random.Range(0f, 1f) <= 0.05f)
+                AudioManager.instance.PlayEffectDelay(Data.Minigame.Game4.Card.THROW_SOUND, Random.Range(0f, 1f));
         }
 
         private void Update()

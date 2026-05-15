@@ -1,33 +1,34 @@
-using StateManagement;
-using System.Threading;
-using UnityEngine;
-
 namespace Minigame
 {
-    // Solo si es el primer juego
-    public class MinigameInitialState : IState
+    public class MinigameInitialState : MinigameState
     {
-        bool _moveRequested = false;
-
-        public void OnEnter()
-        {
-
+        public MinigameInitialState(Minigame minigame) : base(minigame) { 
+        
         }
 
-        public void OnExecute()
+        public override void OnEnter()
         {
-            if (_moveRequested) return;
+            base.OnEnter();
+            SetOff();
+            mover.OnStartMove(() => SetActiveOn(ui.tittle));
+            mover.OnStartMove(() => ui.UpdateTittleUI(ui.GetTittle(minigame.ID)));
+        }
 
-            if (!MinigameManager.instance.isMoving)
+        public override void OnExecute()
+        {
+            if (moveRequested) return;
+
+            if (!manager.isMoving)
             {
-                _moveRequested = true;
-                MinigameManager.instance.Move?.Invoke();
+                moveRequested = true;
+                mover.Play();
             }
         }
 
-        public void OnExit()
-        {
-
+        void SetOff() {
+            SetActiveOff(ui.tittle);
+            SetActiveOff(ui.score);
+            SetActiveOff(ui.minigame);
         }
     }
 }

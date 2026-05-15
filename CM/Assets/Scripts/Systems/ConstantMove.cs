@@ -1,4 +1,5 @@
 using Minigame;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -13,6 +14,10 @@ public class ConstantMove : MonoBehaviour
 
     public float Percent { get => percent; }
 
+    Action StartMove;
+    Action WhileMove;
+    Action EndMove;
+
 
 
     public bool isMoving = false; // Variable para controlar el estado del movimiento
@@ -22,10 +27,11 @@ public class ConstantMove : MonoBehaviour
 
 
     [ContextMenu("Ejecutar Movimiento")] // Permite probarlo desde el Inspector
-    public void StartMove()
+    public void Play()
     {
         if (!isMoving)
         {
+            StartMove?.Invoke();
             StartCoroutine(MoveRoutine(transform.localPosition, transform.localPosition + (direction.normalized * distance), duration));
         }
     }
@@ -37,6 +43,8 @@ public class ConstantMove : MonoBehaviour
 
         while (elapsed < time)
         {
+            WhileMove?.Invoke();
+
             // Calculamos el progreso entre 0 y 1
             float t = elapsed / time;
 
@@ -50,7 +58,31 @@ public class ConstantMove : MonoBehaviour
         }
 
         // Aseguramos la posición final exacta
+        EndMove?.Invoke();
         transform.localPosition = endPos;
         isMoving = false;
+        Reset();
+    }
+
+    public virtual void OnStartMove(Action function)
+    {
+        StartMove += function;
+    }
+
+    public virtual void OnExecuteMove(Action function)
+    {
+        WhileMove += function;
+    }
+
+    public virtual void OnEndMove(Action function)
+    {
+        EndMove += function;
+    }
+
+    private void Reset()
+    {
+        this.StartMove = null;
+        this.WhileMove = null;
+        this.EndMove = null;
     }
 }

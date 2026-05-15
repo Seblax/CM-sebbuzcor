@@ -21,7 +21,7 @@ namespace Minigame.UI
 
         private Shake _shake;
 
-        private void Start()
+        private void Awake()
         {
             image = GetComponent<Image>();
             _shake = GetComponent<Shake>();

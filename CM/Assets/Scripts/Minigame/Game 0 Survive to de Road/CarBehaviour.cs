@@ -81,7 +81,7 @@ namespace Minigame.Game0
                 yield return new WaitForSeconds(randomWait);
 
                 // 3. Ejecutamos el movimiento
-                _mover.StartMove();
+                _mover.Play();
 
                 if (_mover.IsMovementComplete)
                 {

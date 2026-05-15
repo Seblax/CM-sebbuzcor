@@ -23,6 +23,9 @@ namespace Minigame.UI
 
         public void UpdateUI(UserScriptableObject userData)
         {
+            if (!this.gameObject.activeInHierarchy) return;
+            MinigameUIManager.instance.OnUserChanged -= UpdateUI;
+
             SetUserUI(userData);
             SetPostUI(userData);
         }

@@ -71,7 +71,7 @@ namespace Minigame.Game2
                 Data.Minigame.Game2.Alan.Happy.SHAKE_SPEED,
                 Data.Minigame.Game2.Alan.Shake.INTERVAL,
                 Data.Minigame.Game2.Alan.Shake.DURATION);
-            alanSprite.sprite = alanObject.normal;
+            alanSprite.sprite = alanObject.happy;
         }
 
         private void Normal()
@@ -89,7 +89,7 @@ namespace Minigame.Game2
                 Data.Minigame.Game2.Alan.Scared.SHAKE_SPEED,
                 Data.Minigame.Game2.Alan.Shake.INTERVAL,
                 Data.Minigame.Game2.Alan.Shake.DURATION);
-            alanSprite.sprite = alanObject.normal;
+            alanSprite.sprite = alanObject.scared;
         }
 
         private void Terrified()
@@ -98,7 +98,7 @@ namespace Minigame.Game2
                 Data.Minigame.Game2.Alan.Terrified.SHAKE_SPEED,
                 Data.Minigame.Game2.Alan.Shake.INTERVAL,
                 Data.Minigame.Game2.Alan.Shake.DURATION);
-            alanSprite.sprite = alanObject.normal;
+            alanSprite.sprite = alanObject.terrified;
         }
 
         private void Dead()

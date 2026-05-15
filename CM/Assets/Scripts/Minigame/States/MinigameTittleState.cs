@@ -3,52 +3,46 @@ using UnityEngine;
 
 namespace Minigame
 {
-    public class MinigameTittleState : IState
+    public class MinigameTittleState : MinigameState
     {
-        private Minigame minigame;
-        MinigameUIManager UI;
+        private float _timer;
 
-        float timer;
-        bool _moveRequested = false;
-
-        public MinigameTittleState(Minigame minigame)
+        public MinigameTittleState(Minigame minigame) : base(minigame)
         {
-            this.minigame = minigame;
         }
 
-        public void OnEnter()
+        public override void OnEnter()
         {
-            MinigameUIManager.instance.minigame.SetActive(true);
-            MinigameUIManager.instance.tittle.SetActive(true);
+            base.OnEnter();
 
-            timer = 5f;
-            _moveRequested = false;
-            UI = MinigameUIManager.instance;
-            UI.UpdateTittleUI(UI.GetTittle(minigame.ID));
+            mover.OnStartMove(() => SetActiveOn(ui.minigame));  // Show the minigame container when the move starts
+            mover.OnStartMove(() => ui.UpdateMinigameUI(ui.GetUser(minigame.ID)));  // Update the user info when the move starts
 
-            MinigameManager.instance.UpdatePauseState(true);
+            manager.UpdatePauseState(true);                     // Pause the minigame while the title is displayed
+
+            _timer = 5f;
         }
 
-        public void OnExecute()
+        public override void OnExecute()
         {
             if (!GameManager.instance.IsStillAlive) return;
 
-            if (_moveRequested) return;
+            if (moveRequested) return;
 
-            timer -= Time.deltaTime;
+            _timer -= Time.deltaTime;
 
-            MinigameManager.instance.isTittleOver = timer < 0;
+            manager.isTittleOver = _timer < 0;
 
             if (MinigameManager.instance.isTittleOver)
             {
-                _moveRequested = true;
-                MinigameManager.instance.Move?.Invoke();
+                moveRequested = true;
+                mover.Play();
             }
         }
 
-        public void OnExit()
+        public override void OnExit()
         {
-            MinigameManager.instance.Destroy(MinigameUIManager.instance.tittle);
+            manager.DestroyGameObject(ui.tittle);
         }
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(RawImage))]
 
-/// Scrollea la textura del componente raw image a una velocidad especificada de forma indefinida
 public class RawImageScroller : MonoBehaviour
 {
     RawImage _rawImage;

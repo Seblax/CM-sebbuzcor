@@ -13,10 +13,12 @@ public class Data
         {
             public static class Hearts
             {
+                public static readonly string HEART_SPRITES_PATH = "Textures/Minigame/UI/Lives";
+
                 public static readonly string BROKEN_HEART_SOUND = "HeartBreak";
 
-                public static readonly float AMPLITUDE = 2f;
-                public static readonly float Y_OFFSET = 50f;
+                public static readonly float AMPLITUDE = 50f;
+                public static readonly float Y_OFFSET = 0f;
             }
         }
 
