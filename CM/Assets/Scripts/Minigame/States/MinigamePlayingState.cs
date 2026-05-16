@@ -18,7 +18,11 @@ namespace Minigame
             if (!GameManager.instance.IsStillAlive) return;
 
             mover.OnStartMove(() => SetActiveOn(ui.score));
-            mover.OnStartMove(() => ui.UpdateScoreUI(false));
+            mover.OnStartMove(() =>
+            {
+                GameManager.instance.SaveScore();
+                ui.UpdateScoreUI(false);
+            });
 
             manager.isPlaying = true;
             timer = 0.75f;
@@ -33,11 +37,13 @@ namespace Minigame
             minigame.Timer();
             ui.UpdateHealthBarUI(minigame.TimerPercent);
 
-            if (minigame.IsTimerOver) {
+            if (minigame.IsTimerOver)
+            {
 
                 timer -= Time.deltaTime;
 
-                if (timer < 0) {
+                if (timer < 0)
+                {
                     moveRequested = true;
                     manager.isPlaying = false;
                     mover.Play();

@@ -18,6 +18,7 @@ namespace Minigame
 
         public override void OnEnter()
         {
+            base.OnEnter();
             ui.UpdateScoreUI(false);
         }
 

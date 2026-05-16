@@ -39,8 +39,18 @@ namespace Minigame.UI
 
         void SetPostUI(UserScriptableObject userData)
         {
+            SetTextSize(postLikes);
+            SetTextSize(postComments);
+
             postLikes.text = userData.FormatQuantity(userData.likes);
             postComments.text = userData.FormatQuantity(userData.comments);
+        }
+
+        void SetTextSize(TextMeshProUGUI text)
+        {
+            text.enableAutoSizing = true;
+            text.fontSizeMin = 18f;
+            text.fontSizeMax = 36f;
         }
     }
 

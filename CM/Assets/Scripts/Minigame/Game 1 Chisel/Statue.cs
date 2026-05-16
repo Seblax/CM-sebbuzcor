@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Minigame.Game1
@@ -11,7 +12,7 @@ namespace Minigame.Game1
 
         void Start()
         {
-            spriteID = Random.Range(0, statueSprites.Length);
+            spriteID = UnityEngine.Random.Range(0, statueSprites.Length);
             this.statueSprite = GetComponentInChildren<SpriteRenderer>();
 
             this.statueSprite.sprite = statueSprites[spriteID];

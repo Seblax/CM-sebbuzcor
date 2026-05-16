@@ -57,7 +57,8 @@ public class ConstantMove : MonoBehaviour
             percent = Mathf.Clamp01(elapsed / time); // Actualiza el porcentaje de movimiento
         }
 
-        // Aseguramos la posición final exacta
+        percent = 0f;
+
         EndMove?.Invoke();
         transform.localPosition = endPos;
         isMoving = false;

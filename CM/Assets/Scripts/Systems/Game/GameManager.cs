@@ -1,6 +1,8 @@
 using Gamemanager;
+using Minigame;
 using Score;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
@@ -17,6 +19,8 @@ public class GameManager : Singleton<GameManager>
     public int rounds = 0;
     public int roundsIncrementation = 3;
 
+    public bool isGameOver;
+
     public int Score
     {
         get
@@ -26,7 +30,7 @@ public class GameManager : Singleton<GameManager>
 
         set
         {
-            score = (int)value;
+            score = value;
         }
     }
 
@@ -88,7 +92,7 @@ public class GameManager : Singleton<GameManager>
 
         Aceleration.Reset();
 
-        ScoreDataService.SaveScore(score);
+        ScoreDataService.SaveScore();
 
         Destroy(this.gameObject);
     }
@@ -120,5 +124,12 @@ public class GameManager : Singleton<GameManager>
 
         rounds = 0;
         roundsIncrementation = 3;
+
+        isGameOver = false;
+    }
+
+    public void SaveScore() {
+        Score += (int)(MinigameManager.instance.minigame.MinigameScoreValue * Aceleration.Scale);
+        PlayerPrefs.SetInt("HotSave", Score);
     }
 }

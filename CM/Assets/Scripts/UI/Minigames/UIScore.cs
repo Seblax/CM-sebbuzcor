@@ -14,9 +14,6 @@ namespace Minigame.UI
         {
             MinigameUIManager.instance.OnLivesChanged += UpdateScoreUI;
             user = GetComponentInChildren<UIUser>();
-
-            userData.userComment = $"Your current score: {GameManager.instance.Score}";
-
         }
 
         void UpdateScoreUI(int i, bool animation)

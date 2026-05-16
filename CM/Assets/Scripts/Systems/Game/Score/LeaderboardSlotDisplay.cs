@@ -26,7 +26,9 @@ namespace Score
 
         void UpdateScore()
         {
-            text.text = (ScoreDataService.LoadScore().Find(x => x.Item1 == $"UserScore_{index}").Item2).ToString();
+            int score = (ScoreDataService.LoadScore().Find(x => x.Item1 == $"UserScore_{index}").Item2);
+
+            text.text = score > 0 ? score.ToString(): " ";
         }
     }
 

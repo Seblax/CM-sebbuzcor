@@ -23,8 +23,9 @@ namespace Minigame
         public override void OnExecute()
         {
             base.OnExecute();
-            if (timer < 1.5f)
+            if (timer < 1.5f && !moveRequested)
             {
+                moveRequested = true;
                 AudioManager.instance.PlayEffect("gg");
                 Aceleration.Scale = 0.15f;
                 manager.StartCoroutine(manager.EndGame());
@@ -35,8 +36,7 @@ namespace Minigame
 
         public override void OnExit()
         {
-
+            GameManager.instance.isGameOver = true;
         }
-
     }
 }

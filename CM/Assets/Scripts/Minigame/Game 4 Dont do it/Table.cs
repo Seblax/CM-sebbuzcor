@@ -11,6 +11,8 @@ namespace Minigame.Game4
 
         private void Start()
         {
+            MinigameManager.instance.minigame.MinigameScoreValue = (int)((MinigameManager.instance.minigame.minigameTimer * Data.Minigame.Game2.RATIO_SCORE_POINTS_TIMER + Data.Minigame.Game2.BASE_SCORE));
+
             hop = GetComponent<Hop>();
             shake = GetComponent<Shake>();
 
@@ -28,6 +30,8 @@ namespace Minigame.Game4
 
         void TableAnimation()
         {
+            MinigameManager.instance.minigame.MinigameScoreValue = (int)((Data.Minigame.Game4.BASE_SCORE));
+
             playerInputDetector.PlayerInputDetected -= TableAnimation;
 
             hop.Play(Data.Minigame.Game4.Table.HOP_SPEED, Data.Minigame.Game4.Table.AMPLITUDE);

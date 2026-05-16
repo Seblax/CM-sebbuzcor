@@ -8,7 +8,11 @@ namespace Gamemanager
 
         public static float Scale
         {
-            get => Mathf.Min(3f, _scale);
+            get
+            {
+                return Mathf.Min(3f, _scale);
+            }
+
             set
             {
                 _scale = value;

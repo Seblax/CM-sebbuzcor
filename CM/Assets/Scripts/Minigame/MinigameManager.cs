@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ui;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Minigame
 {
@@ -39,6 +40,8 @@ namespace Minigame
 
         public void Start()
         {
+            if (GameManager.instance.isGameOver) Destroy(this.gameObject);
+
             gameManager = GameManager.instance;
             LoadNewMinigame();
             InitializeStateMachine();
@@ -91,7 +94,7 @@ namespace Minigame
                     Target = initialState,
                 },
                 new() {
-                    Condition = () => isScoreScreenOver && GameManager.instance.lives > 1 && !isMoving,
+                    Condition = () => isScoreScreenOver && GameManager.instance.lives > 0 && !isMoving,
                     Source = defeatState,
                     Target = initialState,
                 }
@@ -103,6 +106,8 @@ namespace Minigame
 
         public void Update()
         {
+            if (GameManager.instance.isGameOver) Destroy(this.gameObject);
+
             _state.OnExecute();
             ((IStateMachine)this).HandleStateTransitions();
         }
@@ -146,15 +151,19 @@ namespace Minigame
         }
         public IEnumerator EndGame()
         {
-            yield return new WaitForSecondsRealtime(2.5f);
+            GameObject minigameMusic = GameObject.Find("MinigameMusic");
+            
+            if (minigameMusic != null)
+            {
+                Destroy(minigameMusic);
+            }
+
+            yield return new WaitForSecondsRealtime(3.5f);
 
             TransitionManager.instance.SetTransitionPrefab(Resources.Load<GameObject>("Prefabs/UI/Transitions/TransitionMinigame"));
             TransitionManager.instance.TransitionTo("PrincipalMenu");
 
-            MinigameUIManager.RemoveGameObject();
-
             GameManager.instance.ResetGameManager();
-            RemoveGameObject();
         }
     }
 

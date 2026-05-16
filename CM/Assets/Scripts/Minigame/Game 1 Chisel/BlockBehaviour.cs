@@ -26,7 +26,7 @@ namespace Minigame.Game1
             if (this.health < 0)
             {
                 SetPaused(true);
-                GameManager.instance.score += (int)((MinigameManager.instance.minigame.minigameTimer * Data.Minigame.Game1.RATIO_SCORE_POINTS_TIMER + Data.Minigame.Game1.BASE_SCORE_POINTS) * Aceleration.Scale);
+                MinigameManager.instance.minigame.MinigameScoreValue = (int)((MinigameManager.instance.minigame.minigameTimer * Data.Minigame.Game1.RATIO_SCORE_POINTS_TIMER + Data.Minigame.Game1.BASE_SCORE_POINTS));
 
                 MinigameManager.instance.minigame.Victory();
                 

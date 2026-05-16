@@ -1,5 +1,6 @@
 using Animation;
 using EasyTextEffects.Editor.MyBoxCopy.Extensions;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ namespace Minigame.Game0
         //Pause
         bool _paused = true;
         public bool IsPaused { get => _paused; }
+
+        public Action<float> ShowSignal;
 
         //Sound
         private Sound moveSound;
@@ -51,6 +54,8 @@ namespace Minigame.Game0
 
         private void OnDisable()
         {
+            if (moveSound != null) Destroy(moveSound);
+
             if (MinigameManager.instance != null)
                 MinigameManager.instance.Pause -= SetPaused;
         }
@@ -74,7 +79,7 @@ namespace Minigame.Game0
                 // Restamos la duración del movimiento para no pasarnos de los 7s totales
                 float moveDuration = _mover.duration;
                 float maxWait = totalWindow - moveDuration;
-                float randomWait = Random.Range(0f, maxWait);
+                float randomWait = UnityEngine.Random.Range(0f, maxWait);
 
 
                 // 2. Esperamos el tiempo aleatorio
@@ -82,6 +87,13 @@ namespace Minigame.Game0
 
                 // 3. Ejecutamos el movimiento
                 _mover.Play();
+
+                bool _hasHit50 = false;
+                bool _hasHit75 = false;
+
+                _mover.OnExecuteMove(() => ShowSignal?.Invoke(_mover.Percent));
+
+
 
                 if (_mover.IsMovementComplete)
                 {
@@ -103,7 +115,6 @@ namespace Minigame.Game0
         private void Update()
         {
             if (IsPaused) return;
-
             if (!_hop.IsHopping) _hop.Play();
 
             if (moveSound == null && !_mover.IsMovementComplete) moveSound = AudioManager.instance.PlayEffect(Data.Minigame.Game0.Car.CAR_LOOP_SOUND);

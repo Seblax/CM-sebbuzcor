@@ -12,6 +12,9 @@ namespace Minigame.Game3
 
         public GameObject LanternSpriteObject;
 
+        float distance;
+
+
 
         private void Start()
         {
@@ -39,18 +42,21 @@ namespace Minigame.Game3
         {
 
             Vector2 targetDirection = (Vector2)worldPosition - rb.position;
-            float distance = targetDirection.magnitude;
-
-            if (distance < 0.1f)
-            {
-                ResetSpeed();
-                return;
-            }
+            distance = targetDirection.magnitude;
 
             currentSpeed = Mathf.MoveTowards(currentSpeed, Data.Minigame.Game3.Lantern.MAX_SPEED, Data.Minigame.Game3.Lantern.ACCELERATION * Time.deltaTime);
             Vector2 desiredVelocity = targetDirection.normalized * currentSpeed;
 
             rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, desiredVelocity, Time.deltaTime * 5f);
+        }
+
+        private void FixedUpdate()
+        {
+            if (distance <= 0.1f)
+            {
+                ResetSpeed();
+                return;
+            }
         }
 
         public void ResetSpeed()

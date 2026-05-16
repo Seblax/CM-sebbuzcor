@@ -1,4 +1,7 @@
 
+using Gamemanager;
+using UnityEngine;
+
 namespace Minigame
 {
     public class MinigameVictoryState : MinigameScoreState

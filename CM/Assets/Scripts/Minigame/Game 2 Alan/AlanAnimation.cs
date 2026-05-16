@@ -104,6 +104,7 @@ namespace Minigame.Game2
         private void Dead()
         {
             if (particle != null) particle.Play();
+            shake.Stop();
             alanSprite.enabled = false;
             AudioManager.instance.PlayEffect(Data.Minigame.Game2.Alan.BALLOON_EXPLODE_SOUND);
         }

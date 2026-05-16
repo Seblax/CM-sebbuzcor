@@ -30,8 +30,10 @@ namespace Score
             return res;
         }
 
-        public static void SaveScore(int currentScore)
+        public static void SaveScore()
         {
+            int currentScore = PlayerPrefs.GetInt("HotSave");
+
             string key = LoadScore().First(x => (x.Item2 <= currentScore)).Item1;
 
             PlayerPrefs.SetInt(key, currentScore);

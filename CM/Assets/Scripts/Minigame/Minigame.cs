@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace Minigame
 {
@@ -10,7 +11,7 @@ namespace Minigame
         public GameObject tittle;
         public GameObject game;
         public GameObject score;
-        
+
         private float minigameValue;
 
 
@@ -32,7 +33,20 @@ namespace Minigame
         public bool Lose { get => !succes; }
 
         public int ID { get => id; }
-        public float MinigameScoreValue{ get => minigameValue; set => minigameValue = value; }
+
+        public float MinigameScoreValue
+        {
+            get
+            {
+                Debug.LogWarning($"Get Score: {minigameValue}");
+                return minigameValue;
+            }
+            set
+            {
+                Debug.LogWarning($"Score: {value}");
+                minigameValue = value;
+            }
+        }
 
 
         Minigame(int id, GameObject minigameObject)

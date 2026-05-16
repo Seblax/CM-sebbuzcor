@@ -7,7 +7,10 @@ public class Data
 {
     public static class Minigame
     {
+        public static string SCENE_NAME = "Minigame";
         public static string PLAYER_TAG = "Player";
+
+        public static readonly string MINIGAME_OBJECTS_PREFABS_PATH= "Prefabs/Minigames";
 
         public static class UI
         {
@@ -24,11 +27,14 @@ public class Data
 
         public static class Game0
         {
+            public static readonly float BASE_SCORE = 350f;
+
             public static class Bunny
             {
 
                 public static readonly string JUMP_SOUND = "BunnyJump";
                 public static readonly string HIT_SOUND = "BunnyHit";
+
 
                 public static class Hop
                 {
@@ -57,6 +63,12 @@ public class Data
                     public static readonly Vector3 DIRECTION = Vector3.up;
                 }
             }
+
+            public static class Signal { 
+                public static readonly string ALARM_SOUND = "Alarm";
+                public static readonly float SHOW_TIME = 0.25f;
+            }
+
         }
 
         public static class Game1
@@ -67,7 +79,7 @@ public class Data
             public static readonly float MAX_DMG = 10f;
 
             public static readonly float BASE_SCORE_POINTS = 100f;
-            public static readonly float RATIO_SCORE_POINTS_TIMER = 100f;
+            public static readonly float RATIO_SCORE_POINTS_TIMER = 10f;
 
             public static class Blcok
             {
@@ -99,8 +111,8 @@ public class Data
             public static readonly float MIN_DMG = 5f;
             public static readonly float MAX_DMG = 10f;
 
-            public static readonly float BASE_SCORE_POINTS = 100f;
-            public static readonly float RATIO_SCORE_POINTS_TIMER = 100f;
+            public static readonly float BASE_SCORE = 50f;
+            public static readonly float RATIO_SCORE_POINTS_TIMER = 20f;
 
             public static class Alan
             {
@@ -112,7 +124,6 @@ public class Data
 
                 public static readonly float TRAIL_DELAY = 1.25f;
 
-                public static readonly float BASE_SCORE = 200f;
 
                 public static readonly float MIN_X_SPAWN = 0.1f;
                 public static readonly float MAX_X_SPAWN = 0.9f;
@@ -186,6 +197,10 @@ public class Data
 
             public static readonly float RANDOM_SOUND_TIMER = 2.5f;
 
+
+            public static readonly float BASE_SCORE = 150f;
+            public static readonly float RATIO_SCORE_POINTS_TIMER = 30f;
+
             public static class Cat
             {
                 public static readonly string CAT_SPRITES_PATH = "Textures/Minigame/Game 3/gato";
@@ -239,6 +254,8 @@ public class Data
             public static readonly string CARDS_SPRITES_PATH = "Textures/Minigame/Game 4/Card";
             public static readonly string QUIET_SOUND = "Quiet";
             public static readonly string MUSIC_SOUND = "TableMusic";
+
+            public static readonly float BASE_SCORE = 150f;
 
             public static class Card
             {

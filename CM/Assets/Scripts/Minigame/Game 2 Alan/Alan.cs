@@ -86,7 +86,7 @@ namespace Minigame.Game2
 
             Destroy(this.gameObject);
 
-            GameManager.instance.score += (int)(Data.Minigame.Game2.Alan.BASE_SCORE * Aceleration.Scale);
+            MinigameManager.instance.minigame.MinigameScoreValue = (int)((MinigameManager.instance.minigame.minigameTimer * Data.Minigame.Game2.RATIO_SCORE_POINTS_TIMER + Data.Minigame.Game2.BASE_SCORE));
             MinigameManager.instance.minigame.Victory();
         }
 

@@ -37,10 +37,12 @@ namespace Minigame.Game0
             Sprite sprite = this.hop.IsHopping ? bunny[1] : bunny[0];
             sprite = this.dead ? bunny[2] : sprite;
 
+            MinigameManager.instance.minigame.MinigameScoreValue = 0f;
+
             _renderer.sprite = sprite;
 
             if (dead) return;
-
+            MinigameManager.instance.minigame.MinigameScoreValue = Data.Minigame.Game0.BASE_SCORE;
             MinigameManager.instance.minigame.Victory();
         }
 

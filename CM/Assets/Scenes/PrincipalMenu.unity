@@ -3184,7 +3184,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   yPosition: -1920
-  delay: 1
+  delay: 2.5
   _startY: 0
   _targetY: 0
   _grid: {fileID: 688905814}
@@ -3432,7 +3432,6 @@ MonoBehaviour:
   minigameDuration: 7
   minigameTimer: 0
   lives: 3
-  score: 0
   rounds: 0
   roundsIncrementation: 3
 --- !u!4 &619735445
@@ -4262,7 +4261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875903d66e5540a498eac1aefa70607f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hop
-  _amplitude: 75
+  amplitude: 75
   speed: 0.25
   direction: {x: 0, y: 1, z: 0}
 --- !u!1 &846069245
@@ -4466,7 +4465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875903d66e5540a498eac1aefa70607f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hop
-  _amplitude: 75
+  amplitude: 75
   speed: 0.25
   direction: {x: 0, y: 1, z: 0}
 --- !u!114 &872301457
@@ -4692,7 +4691,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   yPosition: 0
-  delay: 1
+  delay: 2.5
   _startY: 0
   _targetY: 0
   _grid: {fileID: 688905814}
@@ -4855,7 +4854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875903d66e5540a498eac1aefa70607f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hop
-  _amplitude: 75
+  amplitude: 75
   speed: 0.25
   direction: {x: 0, y: 1, z: 0}
 --- !u!1 &942010355
@@ -6199,7 +6198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875903d66e5540a498eac1aefa70607f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hop
-  _amplitude: 75
+  amplitude: 75
   speed: 0.25
   direction: {x: 0, y: 1, z: 0}
 --- !u!114 &1192012780
@@ -7558,7 +7557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875903d66e5540a498eac1aefa70607f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hop
-  _amplitude: 75
+  amplitude: 75
   speed: 0.25
   direction: {x: 0, y: 1, z: 0}
 --- !u!114 &1412529310
@@ -8083,7 +8082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875903d66e5540a498eac1aefa70607f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hop
-  _amplitude: 75
+  amplitude: 75
   speed: 0.25
   direction: {x: 0, y: 1, z: 0}
 --- !u!114 &1581386669
@@ -9352,7 +9351,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   yPosition: 1920
-  delay: 1
+  delay: 2.5
   _startY: 0
   _targetY: 0
   _grid: {fileID: 688905814}
