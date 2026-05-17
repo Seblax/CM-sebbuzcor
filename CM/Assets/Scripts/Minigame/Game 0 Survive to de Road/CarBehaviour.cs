@@ -75,25 +75,16 @@ namespace Minigame.Game0
             while (true)
             {
 
-                // 1. Calculamos el tiempo de espera aleatorio
-                // Restamos la duración del movimiento para no pasarnos de los 7s totales
                 float moveDuration = _mover.duration;
                 float maxWait = totalWindow - moveDuration;
                 float randomWait = UnityEngine.Random.Range(0f, maxWait);
 
 
-                // 2. Esperamos el tiempo aleatorio
                 yield return new WaitForSeconds(randomWait);
 
-                // 3. Ejecutamos el movimiento
                 _mover.Play();
 
-                bool _hasHit50 = false;
-                bool _hasHit75 = false;
-
                 _mover.OnExecuteMove(() => ShowSignal?.Invoke(_mover.Percent));
-
-
 
                 if (_mover.IsMovementComplete)
                 {

@@ -235,8 +235,8 @@ public class Data
             public static class Lantern
             {
                 public static readonly float BASE_SPEED = 5f;       // Velocidad inicial
-                public static readonly float MAX_SPEED = 15f;      // Velocidad tope
-                public static readonly float ACCELERATION = 10f;  // Qué tan rápido aumenta la velocidad
+                public static readonly float MAX_SPEED = 15f;       // Velocidad tope
+                public static readonly float ACCELERATION = 10f;    // Qué tan rápido aumenta la velocidad
 
                 public static class Beam
                 {

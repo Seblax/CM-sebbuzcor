@@ -4,24 +4,31 @@ namespace Minigame.Game3
 {
     public class CatchedCatState : IState
     {
-        Cat cat;
-        public CatchedCatState(Cat cat) { 
-            this.cat = cat;
+        Cat _cat;
+        bool _isPaused;
+
+        public CatchedCatState(Cat cat, bool isPaused) { 
+            this._cat = cat;
+            this._isPaused = isPaused;
         }
 
         public void OnEnter()
         {
-            cat.Catched();
+            if (_isPaused) return;
+
+            _cat.Catched();
             MinigameManager.instance.minigame.MinigameScoreValue = (int)((MinigameManager.instance.minigame.minigameTimer * Data.Minigame.Game3.RATIO_SCORE_POINTS_TIMER + Data.Minigame.Game3.BASE_SCORE));
         }
 
         public void OnExecute()
         {
-            cat.CatchedAnimation();
+            if (_isPaused) return;
+            _cat.CatchedAnimation();
         }
 
         public void OnExit()
         {
+
         }
     }
 }

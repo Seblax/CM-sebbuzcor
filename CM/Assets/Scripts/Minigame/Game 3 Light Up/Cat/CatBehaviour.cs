@@ -44,6 +44,7 @@ namespace Minigame.Game3
         private void Update()
         {
             if (IsPaused) return;
+
             State.OnExecute();
             ((IStateMachine)this).HandleStateTransitions();
         }
@@ -55,7 +56,7 @@ namespace Minigame.Game3
             InitialCatState initialState = new(cat);
             IdleCatState idleState = new(cat);
             DisturbCatState disturbState = new(cat);
-            CatchedCatState catchedState = new(cat);
+            CatchedCatState catchedState = new(cat, IsPaused);
 
             _transitions = new List<StateManagement.Transition>
             {
